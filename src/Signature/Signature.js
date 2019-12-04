@@ -4,6 +4,14 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';  
 
+import FacebookIcon from '@material-ui/icons/Facebook';
+import WhatsAppIcon from '@material-ui/icons/WhatsApp';
+import InstagramIcon from '@material-ui/icons/Instagram';
+import TwitterIcon from '@material-ui/icons/Twitter';
+import LinkedInIcon from '@material-ui/icons/LinkedIn';
+import PinterestIcon from '@material-ui/icons/Pinterest';
+import GitHubIcon from '@material-ui/icons/GitHub';
+
 const useStyles = makeStyles(theme => ({
     root: {
         '& > *': {
@@ -55,10 +63,11 @@ export default function Signature() {
                     +55 32 98888-7777
                 </Typography>
                 <Typography variant="body2" component="p">
-                    www.johndoe.google.com
+                    www.johndoe.google.com 
                 </Typography>
+                <LinkedInIcon/> <FacebookIcon /> <WhatsAppIcon /> <TwitterIcon/><InstagramIcon />  <PinterestIcon/> <GitHubIcon />
             </CardContent>
         </Card> 
-        
+
     );
 }

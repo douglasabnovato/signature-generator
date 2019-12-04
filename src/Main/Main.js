@@ -17,7 +17,7 @@ const useStyles = makeStyles(theme => ({
     card: {
       minWidth: 225,
       maxWidth: 960,
-      margin: '30px 8% 10% 8%',//top right bottom left
+      margin: '15px 8% 10% 15%',//top right bottom left
     },
     menuButton: {
         marginRight: theme.spacing(2),
@@ -36,9 +36,11 @@ export default function Main() {
             <ButtonAppBar />
             
             <Card className={classes.card}>
+                
                 <Form />
                 <Signature />
-                <Tutorials />           
+                <Tutorials />
+                           
             </Card> 
         </div>  
                
