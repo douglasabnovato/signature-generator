@@ -1,12 +1,14 @@
 import React from 'react';
-import Formulario from './Formulario/Formulario';
+import Main from './Main/Main';
 
 function App() {
-  return (
-    <div>
-      <Formulario />
-    </div>
-  );
+
+    return (
+
+        <Main />
+      
+    );
+    
 }
 
 export default App;
