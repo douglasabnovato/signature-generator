@@ -1,9 +1,10 @@
 import React from 'react';
+import Formulario from './Formulario/Formulario';
 
 function App() {
   return (
     <div>
-      @douglasbnovato
+      <Formulario />
     </div>
   );
 }
