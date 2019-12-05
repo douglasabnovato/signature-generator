@@ -8,6 +8,7 @@ import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';  
 
 const useStyles = makeStyles(theme => ({
+    
     root: {
         '& > *': {
             margin: theme.spacing(4),
@@ -21,16 +22,16 @@ const useStyles = makeStyles(theme => ({
         minWidth: 225,
         maxWidth: 960,
         margin: '20px 5% 20px 5%',//top right bottom left
-    },       
-  }));
+    }, 
 
+})); 
 
 export default function Form() {
 
     const classes = useStyles();
 
     return (
-        
+    
         <Card className={classes.cardForm}>
 
             <CardContent>
@@ -45,7 +46,7 @@ export default function Form() {
                 </form>
             </CardContent>
 
-        </Card>            
-        
-    );
-}
+        </Card>         
+                        
+    ); 
+}  

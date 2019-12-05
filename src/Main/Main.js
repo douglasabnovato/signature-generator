@@ -10,6 +10,8 @@ import Tutorials from '../Tutorials/Tutorials';
 
 import ButtonAppBar from '../ButtonAppBar/ButtonAppBar';
 
+import FormComp from '../Form/FormComp';
+
 const useStyles = makeStyles(theme => ({
     root: {
         flexGrow: 1,
@@ -40,6 +42,7 @@ export default function Main() {
                 <Form />
                 <Signature />
                 <Tutorials />
+                <FormComp />
                            
             </Card> 
         </div>  
