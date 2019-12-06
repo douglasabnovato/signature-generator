@@ -43,13 +43,10 @@ export default function Form() {
                     <TextField id="standard-basic" label="Office" />
                     <TextField id="standard-basic" label="Site"/>
                     <TextField id="standard-basic" label="Telephone" />
-                    <TextField id="standard-basic" label="Whatsapp"  /> 
                     <TextField id="standard-basic" label="Instagram"/> 
                     <TextField id="standard-basic" label="Github" />
-                    <TextField id="standard-basic" label="Linkedin"/>                                                                                                                  
-                    <TextField id="standard-basic" label="Facebook" />                    
-                    <TextField id="standard-basic" label="Twitter" />              
-                    <TextField id="standard-basic" label="Pinterest" /> 
+                    <TextField id="standard-basic" label="Linkedin"/>                   
+                    <TextField id="standard-basic" label="Twitter" /> 
                 </form>
             </CardContent>
 
