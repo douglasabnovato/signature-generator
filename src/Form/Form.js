@@ -48,8 +48,7 @@ export default function Form() {
                     <TextField id="standard-basic" label="Telephone" />
                     <TextField id="standard-basic" label="Whatsapp"  /><br/>                                        
                     <TextField id="standard-basic" label="Facebook" />                    
-                    <TextField id="standard-basic" label="Twitter" /><br/>                    
-                    <TextField id="standard-basic" label="Pinterest" />                    
+                    <TextField id="standard-basic" label="Twitter" /><br/>                
                 </form>
             </CardContent>
 

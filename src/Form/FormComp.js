@@ -1,16 +1,36 @@
 import React from 'react'; 
 
 import TextField from '@material-ui/core/TextField';
-
-import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card'; 
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography'; 
 
-class FormComp extends React.Component {
+import { makeStyles } from '@material-ui/core/styles';
 
+const useStyles = makeStyles(theme => ({
+    
+    root: {
+        '& > *': {
+            margin: theme.spacing(4),
+            width: 300,
+        },
+    },
+    title: {
+        fontSize: 14,
+    },
+    cardForm: {
+        minWidth: 225,
+        maxWidth: 960,
+        margin: '20px 5% 20px 5%',//top right bottom left
+    }, 
+
+})); 
+
+class FormComp extends React.Component {
+     
     constructor() {
         super();
+        
         this.state = {
             firstname: "",
             lastname: "",
@@ -30,9 +50,9 @@ class FormComp extends React.Component {
             const name = this.state.firstname + ' ' + this.state.lastname
             this.setState({fullname: name})
         };
-    }
+    }    
 
-    render(){                
+    render(){           
 
         return (
             
