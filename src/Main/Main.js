@@ -18,8 +18,8 @@ const useStyles = makeStyles(theme => ({
     },
     card: {
       minWidth: 225,
-      maxWidth: 960,
-      margin: '15px 8% 10% 15%',//top right bottom left
+      maxWidth: 1300,
+      margin: '5px 5px 5px 5px',//top right bottom left
     },
     menuButton: {
         marginRight: theme.spacing(2),
@@ -42,7 +42,6 @@ export default function Main() {
                 <Form />
                 <Signature />
                 <Tutorials />
-                <FormComp />
                            
             </Card> 
         </div>  

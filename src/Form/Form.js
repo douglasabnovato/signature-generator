@@ -11,8 +11,8 @@ const useStyles = makeStyles(theme => ({
     
     root: {
         '& > *': {
-            margin: theme.spacing(4),
-            width: 300,
+            margin: theme.spacing(1),
+            width: 250,
         },
     },
     title: {
@@ -20,7 +20,7 @@ const useStyles = makeStyles(theme => ({
     },
     cardForm: {
         minWidth: 225,
-        maxWidth: 960,
+        maxWidth: 1200,
         margin: '20px 5% 20px 5%',//top right bottom left
     }, 
 
@@ -40,15 +40,16 @@ export default function Form() {
                 </Typography>  
                 <form className={classes.root} noValidate autoComplete="off">
                     <TextField id="standard-basic" label="Full Name"  />
-                    <TextField id="standard-basic" label="Office" /><br/>
-                    <TextField id="standard-basic" label="Github" />
-                    <TextField id="standard-basic" label="Linkedin"/><br/>
-                    <TextField id="standard-basic" label="Instagram"/>
-                    <TextField id="standard-basic" label="Site"/><br/>
+                    <TextField id="standard-basic" label="Office" />
+                    <TextField id="standard-basic" label="Site"/>
                     <TextField id="standard-basic" label="Telephone" />
-                    <TextField id="standard-basic" label="Whatsapp"  /><br/>                                        
+                    <TextField id="standard-basic" label="Whatsapp"  /> 
+                    <TextField id="standard-basic" label="Instagram"/> 
+                    <TextField id="standard-basic" label="Github" />
+                    <TextField id="standard-basic" label="Linkedin"/>                                                                                                                  
                     <TextField id="standard-basic" label="Facebook" />                    
-                    <TextField id="standard-basic" label="Twitter" /><br/>                
+                    <TextField id="standard-basic" label="Twitter" />              
+                    <TextField id="standard-basic" label="Pinterest" /> 
                 </form>
             </CardContent>
 

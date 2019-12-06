@@ -5,27 +5,6 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography'; 
 
-import { makeStyles } from '@material-ui/core/styles';
-
-const useStyles = makeStyles(theme => ({
-    
-    root: {
-        '& > *': {
-            margin: theme.spacing(4),
-            width: 300,
-        },
-    },
-    title: {
-        fontSize: 14,
-    },
-    cardForm: {
-        minWidth: 225,
-        maxWidth: 960,
-        margin: '20px 5% 20px 5%',//top right bottom left
-    }, 
-
-})); 
-
 class FormComp extends React.Component {
      
     constructor() {

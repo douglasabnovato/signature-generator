@@ -34,7 +34,7 @@ const useStyles = makeStyles(theme => ({
         minWidth: 230,
         maxWidth: 400,
         minHeight: 170,
-        margin: '5px 20px 22px 27%', //top right bottom left 
+        margin: '5px 20px 22px 30%', //top right bottom left 
     },      
   }));
 

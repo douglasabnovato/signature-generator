@@ -17,9 +17,9 @@ const useStyles = makeStyles(theme => ({
         fontSize: 14,
     }, 
     cardTutorials: {
-        minWidth: 200,
-        maxWidth: 860,
-        margin: '20px 20px 30px 5%', //top right bottom left 
+        minWidth: 225,
+        maxWidth: 1200,
+        margin: '20px 5% 30px 5%', //top right bottom left 
     },       
   }));
 
