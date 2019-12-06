@@ -41,8 +41,15 @@ export default function Form() {
                 <form className={classes.root} noValidate autoComplete="off">
                     <TextField id="standard-basic" label="Full Name"  />
                     <TextField id="standard-basic" label="Office" /><br/>
+                    <TextField id="standard-basic" label="Github" />
+                    <TextField id="standard-basic" label="Linkedin"/><br/>
+                    <TextField id="standard-basic" label="Instagram"/>
+                    <TextField id="standard-basic" label="Site"/><br/>
                     <TextField id="standard-basic" label="Telephone" />
-                    <TextField id="standard-basic" label="Site" />
+                    <TextField id="standard-basic" label="Whatsapp"  /><br/>                                        
+                    <TextField id="standard-basic" label="Facebook" />                    
+                    <TextField id="standard-basic" label="Twitter" /><br/>                    
+                    <TextField id="standard-basic" label="Pinterest" />                    
                 </form>
             </CardContent>
 
