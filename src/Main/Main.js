@@ -34,7 +34,7 @@ export default function Main() {
     const classes = useStyles();
 
     return ( 
-        <div>    
+        <div>
             <ButtonAppBar />
             
             <Card className={classes.card}>
