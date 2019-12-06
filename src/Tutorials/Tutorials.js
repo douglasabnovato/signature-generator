@@ -1,4 +1,5 @@
 import React from 'react'; 
+
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card'; 
 import CardActions from '@material-ui/core/CardActions';
@@ -29,7 +30,9 @@ export default function Tutorials() {
 
     return (
         <Card className={classes.cardTutorials}> 
-            <CardContent>          
+
+            <CardContent>   
+
                 <Typography className={classes.title} color="textSecondary" gutterBottom>
                     SIGNATURE TUTORIALS
                 </Typography>          
@@ -41,7 +44,9 @@ export default function Tutorials() {
                         Gmail
                     </Button> 
                 </CardActions>
+
             </CardContent>
+
         </Card>
     );
 }
