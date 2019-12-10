@@ -35,10 +35,19 @@ const useStyles = makeStyles(theme => ({
     },      
   }));
 
-export default function Signature() {
-
+export default function Signature(props) {
+    
     const classes = useStyles();
     const bull = <span className={classes.bullet}>•</span>;
+    /*const fullname = "John Doe Van Schwarzenegger";
+    const office = "Digital Marketing Manager";
+    const phone = "+55 32 98888-7777";
+    const site = "www.johndoe.google.com";
+
+    const linkinstagram = "topperfil.linkinstagram";
+    const linkgithub  = "topperfil.linkgithub";
+    const linklinkedin  = "topperfil.linklinkedin";
+    const linktwitter  = "topperfil.linktwitter";*/
 
     return (
 
@@ -47,22 +56,19 @@ export default function Signature() {
                 <Typography className={classes.title} color="textSecondary" gutterBottom>
                     SIGNATURE EXAMPLE
                 </Typography>                  
-                <Typography variant="h5" component="h2">
-                    John{bull}
-                    Doe{bull}
-                    Van{bull}
-                    Schwarzenegger
+                <Typography variant="h5" component="h2" >
+                    {bull}{props.fullname}{bull} 
                 </Typography>
                 <Typography className={classes.title} color="textSecondary" gutterBottom>
-                    Digital Marketing Manager
+                    {props.office}
                 </Typography>
                 <Typography className={classes.pos} color="textSecondary">
-                    +55 32 98888-7777
+                    {props.phone}
                 </Typography>
                 <Typography variant="body2" component="p">
-                    www.johndoe.google.com 
+                    {props.site} 
                 </Typography>
-                <LinkedInIcon/> <TwitterIcon/> <InstagramIcon /> <GitHubIcon />
+                <LinkedInIcon /> <TwitterIcon/> <InstagramIcon /> <GitHubIcon />
             </CardContent>
         </Card> 
 

@@ -26,9 +26,22 @@ const useStyles = makeStyles(theme => ({
 
 })); 
 
-export default function Form() {
+function handleChange(e) {
+    this.props.onTemperatureChange(e.target.value); 
+}
+
+
+export default function Form(props) {
+
+ 
 
     const classes = useStyles();
+    /*
+    const fullname = fullname;
+    const office = office;
+    const site = site;
+    const phone = phone;
+    */
 
     return (
     
@@ -39,10 +52,11 @@ export default function Form() {
                     SIGNATURE INFORMATION
                 </Typography>  
                 <form className={classes.root} noValidate autoComplete="off">
-                    <TextField id="standard-basic" label="Full Name"  />
-                    <TextField id="standard-basic" label="Office" />
-                    <TextField id="standard-basic" label="Site"/>
-                    <TextField id="standard-basic" label="Telephone" />
+                    <TextField id="standard-basic" label="Full Name" value={props.fullname} onChange={handleChange}/>
+                    <TextField id="standard-basic" label="Office" value={props.office} onChange={handleChange}/>
+                    <TextField id="standard-basic" label="Site" value={props.site} onChange={handleChange}/>
+                    <TextField id="standard-basic" label="Phone" value={props.phone} onChange={handleChange}/>
+
                     <TextField id="standard-basic" label="Instagram"/> 
                     <TextField id="standard-basic" label="Github" />
                     <TextField id="standard-basic" label="Linkedin"/>                   
