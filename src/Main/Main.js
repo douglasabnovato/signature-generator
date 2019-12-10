@@ -10,8 +10,6 @@ import Tutorials from '../Tutorials/Tutorials';
 
 import ButtonAppBar from '../ButtonAppBar/ButtonAppBar';
 
-import FormComp from '../Form/FormComp';
-
 const useStyles = makeStyles(theme => ({
     root: {
         flexGrow: 1,
