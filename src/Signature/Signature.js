@@ -39,15 +39,6 @@ export default function Signature(props) {
     
     const classes = useStyles();
     const bull = <span className={classes.bullet}>•</span>;
-    /*const fullname = "John Doe Van Schwarzenegger";
-    const office = "Digital Marketing Manager";
-    const phone = "+55 32 98888-7777";
-    const site = "www.johndoe.google.com";
-
-    const linkinstagram = "topperfil.linkinstagram";
-    const linkgithub  = "topperfil.linkgithub";
-    const linklinkedin  = "topperfil.linklinkedin";
-    const linktwitter  = "topperfil.linktwitter";*/
 
     return (
 

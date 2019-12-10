@@ -33,15 +33,7 @@ function handleChange(e) {
 
 export default function Form(props) {
 
- 
-
     const classes = useStyles();
-    /*
-    const fullname = fullname;
-    const office = office;
-    const site = site;
-    const phone = phone;
-    */
 
     return (
     
