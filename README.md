@@ -5,7 +5,7 @@
 
 ### Ferramentas : 
 
-![AppMasters](/images/logo-reactjs.png)
+![AppMasters](/images/logo-appmasters.png)
 ![ReactJS](/images/logo-reactjs.jpg)
 ![Git](/images/logo-git.png)
 ![Github](/images/logo-github.png)
