@@ -1,5 +1,5 @@
 ### Signature Block Generator 
-### Atualização: 26 de dezembro de 2019 - 21:49
+### Atualização: 27 de dezembro de 2019 - 14:51
 ### Criação: 03 de dezembro de 2019
 ### Prática : @douglasabnovato
 
