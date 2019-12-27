@@ -19,8 +19,14 @@ export default class Main extends React.Component {
         }
     } 
 
+    // Nesse caso, eu passo o mesmo contexto para os elementos que 
+    // queremos manipular, por isso, ao invés de manipular o 
+    // state do componente, pegamos e manipulamos o do Pai (Main).
+
     render() {
+
         return ( 
+
             <div>
                 <ButtonAppBar />
                 

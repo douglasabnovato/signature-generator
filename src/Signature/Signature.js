@@ -9,6 +9,50 @@ import TwitterIcon from '@material-ui/icons/Twitter';
 import LinkedInIcon from '@material-ui/icons/LinkedIn';
 import GitHubIcon from '@material-ui/icons/GitHub';
 
+export default class Signature extends React.Component {
+
+    constructor(props) {
+        super(props);
+
+    }
+
+    render() {
+
+        // Nesse caso, como estamos pegando o contexto do elemento Pai (Main, this) 
+        // é possível manipular um e pegar no outro.
+        // Só se imaginar que estão compartilhando o mesmo contexto (this), sendo assim 
+        // o mesmo state. Se compartilham o mesmo State, logicamente, é possível 
+        // manipular em um e jogar para o outro.
+       
+        let context = this.props.context;
+        return (
+
+            <Card className={classes.cardSignature}>
+                <CardContent>  
+                    <Typography className={classes.title} color="textSecondary" gutterBottom>
+                        SIGNATURE EXAMPLE
+                    </Typography>                  
+                    <Typography variant="h5" component="h2" >
+                        {bull}{props.fullname}{bull} 
+                    </Typography>
+                    <Typography className={classes.title} color="textSecondary" gutterBottom>
+                        {props.office}
+                    </Typography>
+                    <Typography className={classes.pos} color="textSecondary">
+                        {props.phone}
+                    </Typography>
+                    <Typography variant="body2" component="p">
+                        {props.site} 
+                    </Typography>
+                    <LinkedInIcon /> <TwitterIcon/> <InstagramIcon /> <GitHubIcon />
+                </CardContent>
+            </Card> 
+
+        );
+    }
+}
+
+
 const useStyles = makeStyles(theme => ({
     root: {
         '& > *': {
@@ -34,34 +78,3 @@ const useStyles = makeStyles(theme => ({
         margin: '5px 20px 22px 30%', //top right bottom left 
     },      
   }));
-
-export default function Signature(props) {
-    
-    const classes = useStyles();
-    const bull = <span className={classes.bullet}>•</span>;
-
-    return (
-
-        <Card className={classes.cardSignature}>
-            <CardContent>  
-                <Typography className={classes.title} color="textSecondary" gutterBottom>
-                    SIGNATURE EXAMPLE
-                </Typography>                  
-                <Typography variant="h5" component="h2" >
-                    {bull}{props.fullname}{bull} 
-                </Typography>
-                <Typography className={classes.title} color="textSecondary" gutterBottom>
-                    {props.office}
-                </Typography>
-                <Typography className={classes.pos} color="textSecondary">
-                    {props.phone}
-                </Typography>
-                <Typography variant="body2" component="p">
-                    {props.site} 
-                </Typography>
-                <LinkedInIcon /> <TwitterIcon/> <InstagramIcon /> <GitHubIcon />
-            </CardContent>
-        </Card> 
-
-    );
-}

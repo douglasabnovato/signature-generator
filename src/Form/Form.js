@@ -14,15 +14,15 @@ export default class Form extends React.Component {
     }
 
     handleChange = (e) => {
-        // Quando ele executa essa funcao, ele pega o contexto (this) que eu passei via props e muda o estado dele
-        // Quando esse camarada muda o estado, ele esta mudando o estado do contexto que passei via props (contexto pai).
+        // Quando executa essa função, pega o contexto (this) que passei via props e muda-se o estado
+        // Quando esse elemento muda o estado, está mudando o estado do contexto passamos via props (contexto pai).
         this.props.context.setState({
             [e.target.name]: e.target.value
         })
     }
 
     render() {
-        
+        // Aqui pegamos o contexto (this) que passamos no Main para esse elemento
         let context = this.props.context; 
 
         return (
