@@ -8,7 +8,34 @@ import Form from '../Form/Form';
 import Signature from '../Signature/Signature';
 import Tutorials from '../Tutorials/Tutorials'; 
 
-import ButtonAppBar from '../ButtonAppBar/ButtonAppBar';
+import ButtonAppBar from '../ButtonAppBar/ButtonAppBar'; 
+
+export default class Main extends React.Component {
+    
+    constructor(props) {
+        super(props)
+        this.state = {
+
+        }
+    } 
+
+    render() {
+        return ( 
+            <div>
+                <ButtonAppBar />
+                
+                <Card className={useStyles.card}>
+                    
+                    <Form context={this} />
+                    <Signature context={this} />
+                    <Tutorials />
+                            
+                </Card> 
+            </div>  
+                
+        );
+    }
+} 
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -25,25 +52,4 @@ const useStyles = makeStyles(theme => ({
     title: {
         flexGrow: 1,
     },
-})); 
-
-export default function Main(props) {
-
-    const classes = useStyles();
-
-    return ( 
-        <div>
-            <ButtonAppBar />
-            
-            <Card className={classes.card}>
-                
-                <Form />
-                <Signature />
-                <Tutorials />
-                           
-            </Card> 
-        </div>  
-               
-    );
-} 
-
+}));
