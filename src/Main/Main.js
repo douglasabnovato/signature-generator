@@ -1,7 +1,5 @@
 import React from 'react'; 
 
-import { makeStyles } from '@material-ui/core/styles';
-
 import Card from '@material-ui/core/Card'; 
 
 import Form from '../Form/Form';
@@ -22,8 +20,6 @@ export default class Main extends React.Component {
     //Repara como eu to passando o this (que é o contexto da Main)
     //Eu passo o this via props para poder manipular tanto o 
     //state como outras coisas dentro dos componentes
-
-    
 
     render() {
 

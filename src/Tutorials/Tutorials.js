@@ -1,6 +1,7 @@
 import React from 'react'; 
 
 import { makeStyles } from '@material-ui/core/styles';
+
 import Card from '@material-ui/core/Card'; 
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
@@ -19,10 +20,10 @@ const useStyles = makeStyles(theme => ({
     }, 
     cardTutorials: {
         minWidth: 225,
-        maxWidth: 1200,
-        margin: '20px 5% 30px 5%', //top right bottom left 
+        maxWidth: 900,
+        margin: '20px 5% 30px 10%', //top right bottom left 
     },       
-  }));
+}));
 
 export default function Tutorials() {
 
