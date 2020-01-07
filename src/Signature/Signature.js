@@ -28,37 +28,33 @@ export default class Signature extends React.Component {
         return (
 
             <Card className={classes.cardSignature}>
-                <CardContent>  
+                <CardContent>
                     <Typography className={classes.title} color="textSecondary" gutterBottom>
                         SIGNATURE EXAMPLE
-                    </Typography>                  
+                    </Typography>
                     <Typography variant="h5" component="h2" >
-                        {bull}{props.fullname}{bull} 
+                        {context.state.fullname}
                     </Typography>
                     <Typography className={classes.title} color="textSecondary" gutterBottom>
-                        {props.office}
+                        {context.state.office}
                     </Typography>
                     <Typography className={classes.pos} color="textSecondary">
-                        {props.phone}
+                        {context.state.phone}
                     </Typography>
                     <Typography variant="body2" component="p">
-                        {props.site} 
+                        {context.state.site}
                     </Typography>
-                    <LinkedInIcon /> <TwitterIcon/> <InstagramIcon /> <GitHubIcon />
+                    <LinkedInIcon /> <TwitterIcon /> <InstagramIcon /> <GitHubIcon />
                 </CardContent>
-            </Card> 
+            </Card>
 
         );
     }
 }
 
-
-const useStyles = makeStyles(theme => ({
+const classes =  {
     root: {
-        '& > *': {
-            margin: theme.spacing(4),
-            width: 300,
-        },
+        width: 300,
     },
     title: {
         fontSize: 14,
@@ -67,14 +63,14 @@ const useStyles = makeStyles(theme => ({
         marginBottom: 12,
     },
     bullet: {
-        display: 'inline-block',
-        margin: '0 2px',
-        transform: 'scale(0.8)',
-    }, 
+        display: 'inline-block !important',
+        margin: '0 2px !important',
+        transform: 'scale(0.8) !important',
+    },
     cardSignature: {
-        minWidth: 230,
-        maxWidth: 400,
+
+        width: 400,
         minHeight: 170,
-        margin: '5px 20px 22px 30%', //top right bottom left 
-    },      
-  }));
+        margin: '100px 20px 22px 30% !important', //top right bottom left 
+    },
+};

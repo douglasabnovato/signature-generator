@@ -19,9 +19,11 @@ export default class Main extends React.Component {
         }
     } 
 
-    // Nesse caso, eu passo o mesmo contexto para os elementos que 
-    // queremos manipular, por isso, ao invés de manipular o 
-    // state do componente, pegamos e manipulamos o do Pai (Main).
+    //Repara como eu to passando o this (que é o contexto da Main)
+    //Eu passo o this via props para poder manipular tanto o 
+    //state como outras coisas dentro dos componentes
+
+    
 
     render() {
 
@@ -33,6 +35,11 @@ export default class Main extends React.Component {
                 <Card className={useStyles.card}>
                     
                     <Form context={this} />
+                    {
+                        // Nesse caso, eu passo o mesmo contexto para os elementos que 
+                        // queremos manipular, por isso, ao invés de manipular o 
+                        // state do componente, pegamos e manipulamos o do Pai (Main).
+                    }
                     <Signature context={this} />
                     <Tutorials />
                             
@@ -43,14 +50,14 @@ export default class Main extends React.Component {
     }
 } 
 
-const useStyles = makeStyles(theme => ({
+const useStyles = (theme => ({
     root: {
         flexGrow: 1,
     },
     card: {
-      minWidth: 225,
-      maxWidth: 1300,
-      margin: '5px 5px 5px 5px',//top right bottom left
+        minWidth: 225,
+        maxWidth: 1300,
+        margin: '5px 5px 5px 5px',//top right bottom left
     },
     menuButton: {
         marginRight: theme.spacing(2),
@@ -58,4 +65,4 @@ const useStyles = makeStyles(theme => ({
     title: {
         flexGrow: 1,
     },
-}));
+})); 

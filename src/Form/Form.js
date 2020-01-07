@@ -28,47 +28,37 @@ export default class Form extends React.Component {
         return (
             
             <Card className={useStyles.cardForm}>
-                
-                <CardContent>
-                    
-                    <Typography className={classes.title} color="textSecondary" gutterBottom>
-                        SIGNATURE INFORMATION
-                    </Typography>  
-                    
-                    <form className={classes.root} noValidate autoComplete="off">
-                        <TextField id="standard-basic" label="Full Name" value={props.fullname} onChange={handleChange}/>
-                        <TextField id="standard-basic" label="Office" value={props.office} onChange={handleChange}/>
-                        <TextField id="standard-basic" label="Site" value={props.site} onChange={handleChange}/>
-                        <TextField id="standard-basic" label="Phone" value={props.phone} onChange={handleChange}/>
 
-                        <TextField id="standard-basic" label="Instagram"/> 
+                <CardContent>
+                    <Typography className={useStyles.title} color="textSecondary" gutterBottom>
+                        SIGNATURE INFORMATION
+                    </Typography>
+                    <form className={useStyles.root} noValidate autoComplete="off">
+                        <TextField id="standard-basic" label="Full Name" value={context.state.fullname} name="fullname" onChange={(e)=>this.handleChange(e)} />
+                        <TextField id="standard-basic" label="Office" value={context.state.office} name="office"  onChange={(e)=>this.handleChange(e)} />
+                        <TextField id="standard-basic" label="Site" value={context.state.site} name="site"  onChange={(e)=>this.handleChange(e)} />
+                        <TextField id="standard-basic" label="Phone" value={context.state.phone} name="phone"  onChange={(e)=>this.handleChange(e)} />
+
+                        <TextField id="standard-basic" label="Instagram" />
                         <TextField id="standard-basic" label="Github" />
-                        <TextField id="standard-basic" label="Linkedin"/>                   
-                        <TextField id="standard-basic" label="Twitter" /> 
+                        <TextField id="standard-basic" label="Linkedin" />
+                        <TextField id="standard-basic" label="Twitter" />
                     </form>
-                
                 </CardContent>
-            
-            </Card>                                     
+
+            </Card>                                 
         ); 
     }
 }  
 
-const useStyles = makeStyles(theme => ({
+const useStyles = {
     
-    root: {
-        '& > *': {
-            margin: theme.spacing(1),
-            width: 250,
-        },
-    },
     title: {
         fontSize: 14,
     },
     cardForm: {
         minWidth: 225,
         maxWidth: 1200,
-        margin: '20px 5% 20px 5%',//top right bottom left
-    }, 
-
-}));
+        margin: '20px 5% 20px 5% !important',//top right bottom left
+    },
+}

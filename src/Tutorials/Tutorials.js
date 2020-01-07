@@ -7,6 +7,23 @@ import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';  
 import Button from '@material-ui/core/Button';  
 
+const useStyles = makeStyles(theme => ({
+    root: {
+        '& > *': {
+            margin: theme.spacing(4),
+            width: 300,
+        },
+    },
+    title: {
+        fontSize: 14,
+    }, 
+    cardTutorials: {
+        minWidth: 225,
+        maxWidth: 1200,
+        margin: '20px 5% 30px 5%', //top right bottom left 
+    },       
+  }));
+
 export default function Tutorials() {
 
     const classes = useStyles(); 
@@ -33,20 +50,3 @@ export default function Tutorials() {
         </Card>
     );
 }
-
-const useStyles = makeStyles(theme => ({
-    root: {
-        '& > *': {
-            margin: theme.spacing(4),
-            width: 300,
-        },
-    },
-    title: {
-        fontSize: 14,
-    }, 
-    cardTutorials: {
-        minWidth: 225,
-        maxWidth: 1200,
-        margin: '20px 5% 30px 5%', //top right bottom left 
-    },       
-  }));
