@@ -41,7 +41,6 @@ export default function TutOutlook() {
                     <Typography className={classes.title} color="textSecondary" gutterBottom>
                         Segundo
                     </Typography>
-
             </CardContent>
 
         </Card>
