@@ -1,5 +1,6 @@
 import React from 'react'; 
 
+
 import { makeStyles } from '@material-ui/core/styles';
 
 import Card from '@material-ui/core/Card'; 
@@ -7,6 +8,8 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';  
 import Button from '@material-ui/core/Button';  
+
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -39,10 +42,10 @@ export default function Tutorials() {
                 </Typography>          
                 <CardActions>
                     <Button variant="contained" color="secondary">
-                        Outlook
+                        <Link to="/tutorialoutlook">Outlook</Link>
                     </Button>
                     <Button variant="contained" color="secondary">
-                        Gmail
+                        <Link to="/tutorialgmail">Gmail</Link>
                     </Button> 
                 </CardActions>
 
