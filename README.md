@@ -1,7 +1,14 @@
-### Signature Block Generator 
-### Atualização: 15 de janeiro de 2020 - 13:08
+### Signature Cards Block Generator
+
 ### Criação: 03 de dezembro de 2019
+### Atualização: 15 de janeiro de 2020 - 13:08
+### Terminado: Sim
+### Publicado: https://signature-card-block-generator.herokuapp.com/
 ### Prática : @douglasabnovato
+
+## Desafio do projeto `Signature Cards Block Generator`
+- Esse projeto é para gerar uma assinatura automaticamente
+1. Endereço publicado [link para essa aplicação](https://signature-card-block-generator.herokuapp.com/)
 
 ### Ferramentas : 
 
@@ -13,6 +20,10 @@
 ![VSCode](/images/logo-VSCode.png)
 ![Yarn](/images/logo-yarn.png)
 ![Nodejs](/images/logo-nodejs.png)
+
+## Terminado o projeto `Signature Cards Block Generator`
+![Signature-Cards](/images/tela-1.jpg)
+>@douglasabnovato
 
 #### Projeto de gerador de assinatura de e-mal em `ReactJS` 
 - Utilizando Material UI `https://material-ui.com/`, uma biblioteca de componentes react usando o material design, fazer a aplicação usando SOMENTE componentes visuais, colocar 3 cards: O primeiro com o formulário, o segundo com a assinatura e o terceiro com os botões pra ir para os tutoriais.
