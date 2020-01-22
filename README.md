@@ -1,4 +1,4 @@
-### Signature Cards Block Generator
+## Signature Cards Block Generator
 
 ### Criação: 03 de dezembro de 2019
 ### Atualização: 15 de janeiro de 2020 - 13:08
@@ -6,7 +6,7 @@
 ### Publicado: https://signature-card-block-generator.herokuapp.com/
 ### Prática : @douglasabnovato
 
-## Desafio do projeto `Signature Cards Block Generator`
+### Desafio do projeto `Signature Cards Block Generator`
 - Esse projeto é para gerar uma assinatura automaticamente
 1. Endereço publicado [link para essa aplicação](https://signature-card-block-generator.herokuapp.com/)
 
@@ -21,7 +21,7 @@
 ![Yarn](/images/logo-yarn.png)
 ![Nodejs](/images/logo-nodejs.png)
 
-## Terminado o projeto `Signature Cards Block Generator`
+### Terminado o projeto `Signature Cards Block Generator`
 ![Signature-Cards](/images/tela-1.jpg)
 >@douglasabnovato
 
