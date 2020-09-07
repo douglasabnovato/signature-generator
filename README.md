@@ -1,16 +1,12 @@
-## Signature Cards Block Generator
+### Signature Card Block Generator
 
-### Criação: 03 de dezembro de 2019
-### Atualização: 15 de janeiro de 2020 - 13:08
-### Terminado: Sim
-### Publicado: https://signature-card-block-generator.herokuapp.com/
-### Prática : @douglasabnovato
+#### Objetivo
 
-### Desafio do projeto `Signature Cards Block Generator`
-- Esse projeto é para gerar uma assinatura automaticamente
-1. Endereço publicado [link para essa aplicação](https://signature-card-block-generator.herokuapp.com/)
+Uma aplicação que oferece um formulário para ser preenchido e assim, construir um modelo de assinatura para ser inserido no e-mail.
 
-### Ferramentas : 
+#### Ferramentas / Tecnologias
+
+Uma aplicação web responsiva desenvolvida em reactjs com material design lite do Google. 
 
 ![AppMasters](/images/logo-appmasters.png)
 ![ReactJS](/images/logo-reactjs.jpg)
@@ -21,11 +17,15 @@
 ![Yarn](/images/logo-yarn.png)
 ![Nodejs](/images/logo-nodejs.png)
 
-### Terminado o projeto `Signature Cards Block Generator`
-![Signature-Cards](/images/tela-1.jpg)
->@douglasabnovato
+#### Detalhes
 
-#### Projeto de gerador de assinatura de e-mal em `ReactJS` 
+- Criação: 03 de dezembro de 2019
+- Atualização: 15 de janeiro de 2020
+- Terminado: Sim 
+- Publicado: [Gerador de Bloco de Cartão de Assinaturas](https://signature-card-block-generator.herokuapp.com)
+
+#### Publicado
+
 - Utilizando Material UI `https://material-ui.com/`, uma biblioteca de componentes react usando o material design, fazer a aplicação usando SOMENTE componentes visuais, colocar 3 cards: O primeiro com o formulário, o segundo com a assinatura e o terceiro com os botões pra ir para os tutoriais.
 
 A aplicação assim que aberta exibe o formulário de preenchimento, o modelo para visualizar a assinatura, e os botões para ter as instruções de como copiar no seu email:
@@ -40,4 +40,4 @@ E copiada e colada no email para ter o design formatado.
 A versão do projeto anterior.
 ![Sistema](/images/tela-4.jpg)
 
-:. projeto desafio.
+:. [Linkedin - @douglasabnovato](https://www.linkedin.com/in/douglasabnovato/) 
