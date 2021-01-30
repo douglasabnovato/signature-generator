@@ -3,7 +3,7 @@
 </h1>
 
 <h4 align="center"> 
-	🚧 - [Signature Card Block Generator][signaturecardblockgenerator] 🚀 em construção... 🚧
+	🚧 Signature Card Block Generator  🚀 em construção... 🚧
 </h4> 
 
 <p align="center">
@@ -109,5 +109,4 @@ Feito com ❤️ por Douglas A B Novato 👋🏽 [Entre em contato!](https://www
 [license]: https://opensource.org/licenses/MIT
 [vceslint]: https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint
 [prettier]: https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode
-[rs]: https://rocketseat.com.br
-[signaturecardblockgenerator]: https://signature-card-block-generator.herokuapp.com
+[rs]: https://rocketseat.com.br 
