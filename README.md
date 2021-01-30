@@ -3,7 +3,7 @@
 </h1>
 
 <h4 align="center"> 
-	🚧 [SignatureCardBlockGenerator][signaturecardblockgenerator] 🚀 em construção... 🚧
+	🚧 - [SignatureCardBlockGenerator][signaturecardblockgenerator] 🚀 em construção... 🚧
 </h4> 
 
 <p align="center">
