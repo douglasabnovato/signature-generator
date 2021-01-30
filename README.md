@@ -12,6 +12,7 @@
   <a href="https://www.twitter.com/douglasabnovato/">
     <img alt="Siga no Twitter" src="https://img.shields.io/twitter/url?url=https%3A%2F%2Fgithub.com%douglasabnovato%2Fnlw1">
   </a>
+  <img src="https://img.shields.io/static/v1?label=Dev&message=douglasabnovato&color=7159c1&style=for-the-badge&logo=ghost"/>
 </p>
 
 ## 💻 Sobre o projeto
