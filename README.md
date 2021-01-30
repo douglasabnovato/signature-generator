@@ -94,7 +94,7 @@ $ npm run start
 
 Este projeto esta sobe a licença MIT.
 
-Feito com ❤️ por Douglas A B Novato 👋🏽 Entre em contato!
+Feito com ❤️ por Douglas A B Novato 👋🏽 Entre em contato! 
 <a href="https://www.linkedin.com/in/douglasabnovato/">
    <img src="https://img.shields.io/static/v1?label=Dev&message=douglasabnovato&color=7159c1&style=for-the-badge&logo=ghost"/>
 </a>
