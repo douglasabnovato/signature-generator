@@ -99,6 +99,8 @@ Este projeto esta sobe a licença MIT.
 
 Feito com ❤️ por Douglas A B Novato 👋🏽 [Entre em contato!](https://www.linkedin.com/in/douglasabnovato/)
 
+[git]: https://git-scm.com/doc
+[github]: https://docs.github.com/en
 [nodejs]: https://nodejs.org/
 [typescript]: https://www.typescriptlang.org/
 [expo]: https://expo.io/
