@@ -3,10 +3,7 @@
 </h1>
 
 <h4 align="center"> 
-	🚧 SignatureCardBlockGenerator 🚀 em construção... 🚧
-</h4>
-<h4 align="center"> 
-	🚧 SignatureCardBlockGenerator 🚀 [Gerador de Bloco de Cartão de Assinaturas](https://signature-card-block-generator.herokuapp.com)🚧
+	🚧 [SignatureCardBlockGenerator][signaturecardblockgenerator] 🚀 em construção... 🚧
 </h4> 
 
 <p align="center">
@@ -113,3 +110,4 @@ Feito com ❤️ por Douglas A B Novato 👋🏽 [Entre em contato!](https://www
 [vceslint]: https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint
 [prettier]: https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode
 [rs]: https://rocketseat.com.br
+[signaturecardblockgenerator]: https://signature-card-block-generator.herokuapp.com
