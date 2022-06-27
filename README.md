@@ -48,14 +48,14 @@ Podemos considerar este projeto como sendo com uma parte:
 #### Pré-requisitos
 
 Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:
-[Git](https://git-scm.com), [Node.js][nodejs]. 
+[Git][git], [Node.js][nodejs]. 
 Além disto é bom ter um editor para trabalhar com o código como [VSCode][vscode]
 
 ### 🧭 Rodando a aplicação web (Front End)
 
 ```bash
 # Clone este repositório
-$ git clone https://github.com/douglasabnovato/nlw1
+$ git clone https://github.com/douglasabnovato/signature-generator
 
 # Instale as dependências
 $ npm install
@@ -88,3 +88,4 @@ Feito com ❤️ por <a href="https://www.linkedin.com/in/douglasabnovato/">
 [nodejs]: https://nodejs.org/
 [reactjs]: https://reactjs.org
 [yarn]: https://yarnpkg.com/
+[vscode]: https://code.visualstudio.com/
