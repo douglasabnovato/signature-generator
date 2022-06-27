@@ -1,44 +1,36 @@
-<h1 align="center">
-    <img alt="SignatureCardBlockGenerator" title="#SignatureCardBlockGenerator" src="./assets/tela-2.jpg" />
-</h1>
-
 <h4 align="center"> 
-	🚧 Signature Generator 🚀 em construção... 🚧
+	🚧 Signature Generator 🚀
 </h4> 
 
-<p align="center">
-  <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/tgmarinho/nlw1?color=%2304D361">
-  <img alt="Repository size" src="https://img.shields.io/github/repo-size/tgmarinho/nlw1">
-  <a href="https://www.twitter.com/douglasabnovato/">
-    <img alt="Siga no Twitter" src="https://img.shields.io/twitter/url?url=https%3A%2F%2Fgithub.com%douglasabnovato%2Fnlw1">
-  </a>  
-</p>
+<h1 align="center">
+    <img alt="Signature Generator" title="#Signature Generator" src="./assets/tela-2.jpg" />
+</h1>
 
-## 💻 Sobre o projeto
+### 💻 Sobre o projeto
 
-♻️ Signature Card Block Generator 
+♻️ Signature Generator 
 
 Uma aplicação que oferece um formulário para ser preenchido e assim, construir um modelo de assinatura para ser inserido no e-mail. 
  
-## 🎨 Layout
+### 🎨 Layout
 
 Uma aplicação web responsiva desenvolvida em reactjs com material design lite do Google. 
 
-### Web - v2.0
+#### Web - v2.0
 
 <p align="center" style="display: flex; align-items: flex-start; justify-content: center;">
-  <img alt="SignatureCardBlockGenerator" title="#SignatureCardBlockGenerator" src="./assets/tela-2.jpg" width="400px">
-  <img alt="SignatureCardBlockGenerator" title="#SignatureCardBlockGenerator" src="./assets/tela-1.jpg" width="400px">
+  <img alt="Signature Generator" title="#Signature Generator" src="./assets/tela-2.jpg" width="400px">
+  <img alt="Signature Generator" title="#Signature Generator" src="./assets/tela-1.jpg" width="400px">
 </p>
 
-### Web - v1.0
+#### Web - v1.0
 
 <p align="center" style="display: flex; align-items: flex-start; justify-content: center;">
-  <img alt="SignatureCardBlockGenerator" title="#SignatureCardBlockGenerator" src="./assets/tela-3.jpg" width="400px">
-  <img alt="SignatureCardBlockGenerator" title="#SignatureCardBlockGenerator" src="./assets/tela-4.jpg" width="400px">
+  <img alt="Signature Generator" title="#Signature Generator" src="./assets/tela-3.jpg" width="400px">
+  <img alt="Signature Generator" title="#Signature Generator" src="./assets/tela-4.jpg" width="400px">
 </p>
 
-## 🛠 Tecnologias
+### 🛠 Tecnologias
 
 As seguintes ferramentas foram usadas na construção do projeto:
 
@@ -49,12 +41,12 @@ As seguintes ferramentas foram usadas na construção do projeto:
 - [Git][git]
 - [Github][github] 
 
-## 🚀 Como executar o projeto
+### 🚀 Como executar o projeto
 
 Podemos considerar este projeto como sendo com uma parte:
 1. Front End (pasta web)  
 
-### Pré-requisitos
+#### Pré-requisitos
 
 Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:
 [Git](https://git-scm.com), [Node.js][nodejs]. 
@@ -64,13 +56,7 @@ Além disto é bom ter um editor para trabalhar com o código como [VSCode][vsco
 
 ```bash
 # Clone este repositório
-$ git clone https://github.com/tgmarinho/nlw1
-
-# Acesse a pasta do projeto no seu terminal/cmd
-$ cd nlw1
-
-# Vá para a pasta da aplicação Front End
-$ cd web
+$ git clone https://github.com/douglasabnovato/nlw1
 
 # Instale as dependências
 $ npm install
@@ -94,10 +80,10 @@ $ npm run start
 
 Este projeto esta sobe a licença MIT.
 
-Feito com ❤️ por Douglas A B Novato 👋🏽 Entre em contato! 
+Feito com ❤️ por  
 <a href="https://www.linkedin.com/in/douglasabnovato/">
    <img src="https://img.shields.io/static/v1?label=Dev&message=douglasabnovato&color=7159c1&style=for-the-badge&logo=ghost"/>
-</a>
+</a>👋🏽
 
 [git]: https://git-scm.com/doc
 [github]: https://docs.github.com/en
