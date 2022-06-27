@@ -80,8 +80,7 @@ $ npm run start
 
 Este projeto esta sobe a licença MIT.
 
-Feito com ❤️ por  
-<a href="https://www.linkedin.com/in/douglasabnovato/">
+Feito com ❤️ por <a href="https://www.linkedin.com/in/douglasabnovato/">
    <img src="https://img.shields.io/static/v1?label=Dev&message=douglasabnovato&color=7159c1&style=for-the-badge&logo=ghost"/>
 </a>👋🏽
 
