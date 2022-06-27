@@ -37,7 +37,6 @@ As seguintes ferramentas foram usadas na construção do projeto:
 - [Yarn][yarn]
 - [Node.js][nodejs]
 - [React][reactjs]
-- [React Native][rn]
 - [Git][git]
 - [Github][github] 
 
@@ -87,14 +86,5 @@ Feito com ❤️ por <a href="https://www.linkedin.com/in/douglasabnovato/">
 [git]: https://git-scm.com/doc
 [github]: https://docs.github.com/en
 [nodejs]: https://nodejs.org/
-[typescript]: https://www.typescriptlang.org/
-[expo]: https://expo.io/
 [reactjs]: https://reactjs.org
-[rn]: https://facebook.github.io/react-native/
 [yarn]: https://yarnpkg.com/
-[vscode]: https://code.visualstudio.com/
-[vceditconfig]: https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig
-[license]: https://opensource.org/licenses/MIT
-[vceslint]: https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint
-[prettier]: https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode
-[rs]: https://rocketseat.com.br 
