@@ -3,7 +3,7 @@
 </h4> 
 
 <h1 align="center">
-    <img alt="Signature Generator" title="#Signature Generator" src="./assets/tela-2.jpg" />
+    <img alt="Signature Generator" title="#Signature Generator" src="./.github/tela-2.jpg" />
 </h1>
 
 ### 💻 Sobre o projeto
@@ -18,16 +18,18 @@ Uma aplicação web responsiva desenvolvida em reactjs com material design lite 
 
 #### Web - v2.0
 
+- Avançado design para uma estilização mais moderna.
+
 <p align="center" style="display: flex; align-items: flex-start; justify-content: center;">
-  <img alt="Signature Generator" title="#Signature Generator" src="./assets/tela-2.jpg" width="400px">
-  <img alt="Signature Generator" title="#Signature Generator" src="./assets/tela-1.jpg" width="400px">
+  <img alt="Signature Generator" title="#Signature Generator" src="./.github/tela-2.jpg" width="400px">
+  <img alt="Signature Generator" title="#Signature Generator" src="./.github/tela-1.jpg" width="400px">
 </p>
 
 #### Web - v1.0
 
 <p align="center" style="display: flex; align-items: flex-start; justify-content: center;">
-  <img alt="Signature Generator" title="#Signature Generator" src="./assets/tela-3.jpg" width="400px">
-  <img alt="Signature Generator" title="#Signature Generator" src="./assets/tela-4.jpg" width="400px">
+  <img alt="Signature Generator" title="#Signature Generator" src="./.github/tela-3.jpg" width="400px">
+  <img alt="Signature Generator" title="#Signature Generator" src="./.github/tela-4.jpg" width="400px">
 </p>
 
 ### 🛠 Tecnologias
