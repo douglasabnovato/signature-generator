@@ -1,8 +1,8 @@
 import React from 'react'; 
 import Card from '@material-ui/core/Card'; 
-import Form from '../SignatureInfo/SignatureInfo';
+import SignatureInfo from '../SignatureInfo/SignatureInfo';
 import SignatureView from '../SignatureView/SignatureView';
-import ButtonAppBar from '../ButtonAppBar/ButtonAppBar'; 
+import Navbar from '../Navbar/Navbar'; 
 
 export default class Main extends React.Component {
     
@@ -14,9 +14,9 @@ export default class Main extends React.Component {
     render() {
         return ( 
             <div>
-                <ButtonAppBar />                
+                <Navbar />                
                 <Card className={useStyles.card}>                    
-                    <Form context={this} />
+                    <SignatureInfo context={this} />
                     {}
                     <SignatureView context={this} />                            
                 </Card> 
