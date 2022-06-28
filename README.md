@@ -46,22 +46,17 @@ As seguintes ferramentas foram usadas na construção do projeto:
 - [Git][git]
 - [Github][github] 
 
-### 🚀 Como executar o projeto
-
-Podemos considerar este projeto como sendo com uma parte:
-1. Front End (pasta web)  
-
 #### Pré-requisitos
 
 Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:
 [Git][git], [Node.js][nodejs]. 
 Além disto é bom ter um editor para trabalhar com o código como [VSCode][vscode]
 
-### 🧭 Rodando a aplicação web (Front End)
+### 🧭 Rodando a aplicação web
 
 ```bash
 # Clone este repositório
-$ git clone https://github.com/douglasabnovato/signature-generator
+$ git clone https://github.com/douglasabnovato/signature-generator-app
 
 # Instale as dependências
 $ npm install
