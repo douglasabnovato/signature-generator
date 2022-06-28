@@ -43,7 +43,7 @@ export default class SignatureInfo extends React.Component {
             <Card className={useStyles.cardForm}>
                 <CardContent>
                     <Typography className={useStyles.title} color="textSecondary" gutterBottom>
-                        SIGNATURE INFORMATION  
+                        INFORMATION  
                     </Typography>
                     <form className={useStyles.root} noValidate autoComplete="off">
                         <TextField 

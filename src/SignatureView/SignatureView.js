@@ -45,7 +45,7 @@ export default class SignatureView extends React.Component {
             <Card className={classes.cardSignature}>
                 <CardContent>
                     <Typography className={classes.title} color="textSecondary" gutterBottom>
-                        SIGNATURE DEMO
+                        DEMO
                     </Typography>
                     <Typography variant="h5" component="h2" >
                         {context.state.fullname}
