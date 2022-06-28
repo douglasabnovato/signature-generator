@@ -18,7 +18,7 @@ Uma aplicação web responsiva desenvolvida em reactjs com material design lite 
 
 #### Web - v3.0
 
-- implementar as funcionalidades descritivas no board projects com as issues.
+- implementar as funcionalidades descritivas no projects board com as issues.
 
 #### Web - v2.0
 
