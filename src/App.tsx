@@ -21,8 +21,10 @@ import {
 } from "@material-ui/icons";
 import CircularProgressWithLabel from "./CircularProgressWithLabel";
 
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
 
 import "./App.css";
 
@@ -218,10 +220,15 @@ function App() {
 
     return (
         <Container>
-            <AppBar position="static">
-                <Toolbar>
-                </Toolbar>
-            </AppBar>
+            <Box sx={{ flexGrow: 1 }}>
+                <AppBar position="static">
+                    <Toolbar>
+                        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                            Signature Generator App
+                        </Typography>
+                    </Toolbar>
+                </AppBar>
+            </Box>
 
             <img className={classes.centeredImage} src={Logo} alt={"logo"} />
 
