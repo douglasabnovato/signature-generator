@@ -4,7 +4,6 @@ import Card from '@material-ui/core/Card';
 
 import Form from '../Form/Form';
 import Signature from '../Signature/Signature';
-import Tutorials from '../Tutorials/Tutorials'; 
 
 import ButtonAppBar from '../ButtonAppBar/ButtonAppBar'; 
 
@@ -37,7 +36,6 @@ export default class Main extends React.Component {
                         // state do componente, pegamos e manipulamos o do Pai (Main).
                     }
                     <Signature context={this} />
-                    <Tutorials />
                             
                 </Card> 
             </div>  
