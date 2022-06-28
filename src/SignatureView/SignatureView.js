@@ -4,7 +4,6 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';  
 import Link from '@material-ui/core/Link';
-
 import InstagramIcon from '@material-ui/icons/Instagram';
 import TwitterIcon from '@material-ui/icons/Twitter';
 import LinkedInIcon from '@material-ui/icons/LinkedIn';
@@ -28,34 +27,25 @@ const classes =  {
     cardSignature: {
         width: 300,
         minHeight: 170,
-        margin: '10px 20px 22px 30% !important', //top right bottom left 
+        margin: '10px 20px 22px 30% !important',
     },
 };
 
-export default class Signature extends React.Component {
+export default class SignatureView extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-
-        }
+        this.state = {}
     }
 
     render() {
-
-        // Nesse caso, como estamos pegando o contexto do elemento Pai (Main, this) 
-        // é possível manipular um e pegar no outro.
-        // Só se imaginar que estão compartilhando o mesmo contexto (this), sendo assim 
-        // o mesmo state. Se compartilham o mesmo State, logicamente, é possível 
-        // manipular em um e jogar para o outro.
-       
         let context = this.props.context;
-        return (
 
+        return (
             <Card className={classes.cardSignature}>
                 <CardContent>
                     <Typography className={classes.title} color="textSecondary" gutterBottom>
-                        SIGNATURE EXAMPLE
+                        SIGNATURE DEMO
                     </Typography>
                     <Typography variant="h5" component="h2" >
                         {context.state.fullname}
@@ -85,7 +75,6 @@ export default class Signature extends React.Component {
                     </Typography>
                 </CardContent>
             </Card>
-
         );
     }
 }

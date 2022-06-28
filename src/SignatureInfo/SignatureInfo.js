@@ -1,7 +1,5 @@
 import React from 'react';
-
 import { makeStyles } from '@material-ui/core/styles';
-
 import TextField from '@material-ui/core/TextField';
 import Card from '@material-ui/core/Card'; 
 import CardContent from '@material-ui/core/CardContent';
@@ -13,43 +11,35 @@ const useStyles = makeStyles(theme => ({
             margin: theme.spacing(4),
             width: 300,
         },
-    },
-    
+    },    
     title: {
         fontSize: 14,
-    },
-    
+    },    
     cardForm: {
         minWidth: 225,
         maxWidth: 1200,
-        margin: '20px 5% 20px 5% !important',//top right bottom left
+        margin: '20px 5% 20px 5% !important',
     },       
 }));
 
 
-export default class Form extends React.Component {
+export default class SignatureInfo extends React.Component {
     
     constructor(props) {
         super(props);
-        this.state = {
-
-        }
+        this.state = {}
     }
 
     handleChange = (e) => {
-        // Quando executa essa função, pega o contexto (this) que passei via props e muda-se o estado
-        // Quando esse elemento muda o estado, está mudando o estado do contexto passamos via props (contexto pai).
         this.props.context.setState({
             [e.target.name]: e.target.value
         })
     }
 
     render() {
-        // Aqui pegamos o contexto (this) que passamos no Main para esse elemento
         let context = this.props.context; 
         
-        return (
-            
+        return (            
             <Card className={useStyles.cardForm}>
                 <CardContent>
                     <Typography className={useStyles.title} color="textSecondary" gutterBottom>
@@ -83,5 +73,3 @@ export default class Form extends React.Component {
         ); 
     }
 }  
-
-

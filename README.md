@@ -12,7 +12,7 @@
 
 Uma aplicação que oferece um formulário para ser preenchido e assim, construir um modelo de assinatura para ser inserido no e-mail. 
  
-### 🎨 Layout
+#### 🎨 Layout
 
 Uma aplicação web responsiva desenvolvida em reactjs com material design lite do Google. 
 
@@ -67,7 +67,7 @@ $ npm run start
 # A aplicação será aberta na porta:3000 - acesse http://localhost:3000
 ```
 
-## 😯 Como contribuir para o projeto
+#### 😯 Como contribuir para o projeto
 
 1. Faça um **fork** do projeto.
 2. Crie uma nova branch com as suas alterações: `git checkout -b my-feature`
@@ -75,10 +75,11 @@ $ npm run start
 4. Envie as suas alterações: `git push origin my-feature`
 > Caso tenha alguma dúvida confira este [guia de como contribuir no GitHub](https://github.com/firstcontributions/first-contributions)
 
-
-## 📝 Licença
+#### 📝 Licença
 
 Este projeto esta sobe a licença MIT.
+
+---
 
 Feito com ❤️ por <a href="https://www.linkedin.com/in/douglasabnovato/"><img src="https://img.shields.io/static/v1?label=Dev&message=douglasabnovato&color=7159c1&style=for-the-badge&logo=ghost"/></a>👋🏽
 
