@@ -16,6 +16,10 @@ Uma aplicação que oferece um formulário para ser preenchido e assim, construi
 
 Uma aplicação web responsiva desenvolvida em reactjs com material design lite do Google. 
 
+#### Web - v3.0
+
+- implementar as funcionalidades descritivas no board projects com as issues.
+
 #### Web - v2.0
 
 - Avançado design para uma estilização mais moderna.
