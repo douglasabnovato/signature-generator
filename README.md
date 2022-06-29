@@ -1,4 +1,4 @@
-# Simple SPA for email-signature generation.
+### Simple SPA for signature generation app
 
 - ReactJS
 - Material-UI
