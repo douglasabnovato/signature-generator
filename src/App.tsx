@@ -1,4 +1,4 @@
-import React, { useState }  from "react";
+import React, { useState } from "react";
 import {
     createStyles,
     makeStyles,
@@ -20,7 +20,7 @@ import {
     FileCopyOutlined
 } from "@material-ui/icons";
 import CircularProgressWithLabel from "./CircularProgressWithLabel";
-  
+
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
@@ -243,7 +243,15 @@ function App() {
                     <Typography variant="h5">Signature Generator App</Typography>
                 </Toolbar>
             </AppBar>
-            <img className={classes.centeredImage} src={Logo} alt={"logo"} />
+
+            <Grid container spacing={3}>
+                <Grid item xs={12}>
+                    <Paper className={classes.paper}>
+                        <img className={classes.centeredImage} src={Logo} alt={"logo"} />
+                    </Paper>
+                </Grid>
+            </Grid>
+
             <Grid container spacing={3}>
                 <Grid item xs={6}>
                     <Paper className={classes.paper}>
