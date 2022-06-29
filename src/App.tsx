@@ -142,7 +142,7 @@ function App() {
                             onClick={copyToClipboard}
                             endIcon={state.copied ? <CheckOutlined /> : <FileCopyOutlined />}
                         >
-                            {state.copied ? "Copied" : "Copy to clipboard."}
+                            {state.copied ? "Copied." : "Copy to clipboard."}
                         </Button>
                     </React.Fragment>
                 );
