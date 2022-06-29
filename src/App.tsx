@@ -142,7 +142,7 @@ function App() {
                             onClick={copyToClipboard}
                             endIcon={state.copied ? <CheckOutlined /> : <FileCopyOutlined />}
                         >
-                            {state.copied ? "Copied" : "Copy to clipboard"}
+                            {state.copied ? "Copied." : "Copy to clipboard."}
                         </Button>
                     </React.Fragment>
                 );
@@ -201,9 +201,11 @@ function App() {
     const copyToClipboard = () => {
         let copyText = document.querySelector(".signature");
         const range = document.createRange();
+
         if (copyText) {
             range.selectNode(copyText);
         }
+        
         const windowSelection = window.getSelection();
         if (windowSelection) {
             windowSelection.removeAllRanges();
