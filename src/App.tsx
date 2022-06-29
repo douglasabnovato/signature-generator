@@ -78,7 +78,7 @@ const useStyles = makeStyles((theme: Theme) =>
 export interface PhotoSignatureProps {
     fullName: string;
     position: string;
-    skype: string;
+    site: string;
     phone: string;
     photo: string;
 }
@@ -91,7 +91,7 @@ interface State extends PhotoSignatureProps {
 const initialState: State = {
     fullName: "",
     position: "",
-    skype: "",
+    site: "",
     phone: "",
     photo: "",
     withPhoto: false,
@@ -127,7 +127,7 @@ function App() {
                 state.fullName &&
                 state.phone &&
                 state.position &&
-                state.skype &&
+                state.site &&
                 state.photo
             ) {
                 return (
@@ -135,7 +135,7 @@ function App() {
                         <Signature
                             fullName={state.fullName}
                             position={state.position}
-                            skype={state.skype}
+                            site={state.site}
                             phone={state.phone}
                             photo={state.photo}
                         />
@@ -152,7 +152,7 @@ function App() {
             } else {
                 Object.entries(state).forEach(([key, value]) => {
                     if (
-                        ["fullName", "phone", "position", "skype", "photo"].includes(key)
+                        ["fullName", "phone", "position", "site", "photo"].includes(key)
                     ) {
                         if (value.length === 0) {
                             progress = progress - 20;
@@ -161,13 +161,13 @@ function App() {
                 });
             }
         } else {
-            if (state.fullName && state.phone && state.position && state.skype) {
+            if (state.fullName && state.phone && state.position && state.site) {
                 return (
                     <React.Fragment>
                         <Signature
                             fullName={state.fullName}
                             position={state.position}
-                            skype={state.skype}
+                            site={state.site}
                             phone={state.phone}
                             photo={"no-photo"}
                         />
@@ -182,7 +182,7 @@ function App() {
                 );
             } else {
                 Object.entries(state).forEach(([key, value]) => {
-                    if (["fullName", "phone", "position", "skype"].includes(key)) {
+                    if (["fullName", "phone", "position", "site"].includes(key)) {
                         if (value.length === 0) {
                             progress = progress - 25;
                         }
@@ -270,9 +270,9 @@ function App() {
                             <TextField
                                 fullWidth={true}
                                 required
-                                label="Skype"
-                                value={state.skype}
-                                name={"skype"}
+                                label="Site"
+                                value={state.site}
+                                name={"site"}
                                 onChange={handleChange}
                             />
                             <TextField
