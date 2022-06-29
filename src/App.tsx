@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState }  from "react";
 import {
     createStyles,
     makeStyles,
@@ -19,7 +19,12 @@ import {
     CheckOutlined,
     FileCopyOutlined
 } from "@material-ui/icons";
-import CircularProgressWithLabel from "./CircularProgressWithLabel"; 
+import CircularProgressWithLabel from "./CircularProgressWithLabel";
+  
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
+import Typography from "@material-ui/core/Typography";
+import green from "@material-ui/core/colors/green";
 
 import "./App.css";
 
@@ -42,9 +47,9 @@ const useStyles = makeStyles((theme: Theme) =>
             display: "block",
             marginLeft: "auto",
             marginRight: "auto",
-            marginTop: "4vh",
-            marginBottom: "4vh",
-            height: "25vh"
+            marginTop: "11.5vh",
+            marginBottom: "1.5vh",
+            height: "23vh"
         },
         centeredText: {
             textAlign: "center",
@@ -53,7 +58,20 @@ const useStyles = makeStyles((theme: Theme) =>
             textAlign: "center",
             color: "#FFDC00",
             verticalAlign: "middle",
-        }, 
+        },
+        menuButton: {
+            marginRight: theme.spacing(2)
+        },
+        title: {
+            flexGrow: 1
+        },
+        customColor: {
+            backgroundColor: green[500]
+        },
+        customHeight: {
+            minHeight: 220
+        },
+        offset: theme.mixins.toolbar
     })
 );
 
@@ -82,7 +100,11 @@ const initialState: State = {
 
 function App() {
     const classes = useStyles();
-    const [state, setState] = React.useState<State>(initialState); 
+    const [state, setState] = React.useState<State>(initialState);
+
+    const [example, setExample] = useState("primary");
+    const isCustomColor = example === "customColor";
+    const isCustomHeight = example === "customHeight";
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         if (event.target.name === "withPhoto") {
@@ -213,7 +235,14 @@ function App() {
     const photoUrlMaxLength = 1000;
 
     return (
-        <Container> 
+        <Container>
+            <AppBar
+                className={`${isCustomColor && classes.customColor} ${isCustomHeight && classes.customHeight}`}
+            >
+                <Toolbar>
+                    <Typography variant="h5">Signature Generator App</Typography>
+                </Toolbar>
+            </AppBar>
 
             <img className={classes.centeredImage} src={Logo} alt={"logo"} />
 
@@ -295,7 +324,7 @@ function App() {
                     <Paper className={classes.paper}>{enoughData()}</Paper>
                 </Grid>
             </Grid>
-            
+
         </Container>
     );
 }
