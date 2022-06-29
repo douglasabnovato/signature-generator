@@ -27,7 +27,7 @@ const Signature = (props: PhotoSignatureProps) => {
                 <td colSpan={3}>Telephone: {props.phone}</td>
             </tr>
             <tr>
-                <td colSpan={3}>Skype: {props.skype}</td>
+                <td colSpan={3}>Site: {props.site}</td>
             </tr>
             <tr>
                 <td colSpan={3}>
