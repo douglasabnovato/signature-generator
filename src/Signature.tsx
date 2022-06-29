@@ -32,17 +32,14 @@ const Signature = (props: PhotoSignatureProps) => {
             <tr>
                 <td colSpan={3}>
                     <div className={"social-logos-frame"}>
-                        <a href={"https://twitter.com/"}>
-                            <img src={"https://www.freepnglogos.com/uploads/twitter-logo-png/twitter-logo-vector-png-clipart-1.png"} width={"32px"} height={"32px"} alt={""}/>
+                        <a href={"https://www.instagram.com/"}>
+                            <img src={"https://www.freepnglogos.com/uploads/instagram-logos-png-images-free-download-5.png"} width={"32px"} height={"32px"} alt={""}/>
                         </a>
                         <a href={"https://www.linkedin.com/"}>
                             <img src={"https://www.freepnglogos.com/uploads/linkedin-social-media-logo-7.png"} width={"32px"} height={"32px"} alt={""}/>
                         </a>
-                        <a href={"https://www.facebook.com/"}>
-                            <img src={"https://www.freepnglogos.com/uploads/facebook-logo-14.png"} width={"32px"} height={"32px"} alt={""}/>
-                        </a>
-                        <a href={"https://www.behance.net/"}>
-                            <img src={"https://seeklogo.com/images/B/behance-icon-logo-287E5C6D93-seeklogo.com.png"} width={"32px"} height={"32px"} alt={""}/>
+                        <a href={"https://www.github.com/"}>
+                            <img src={"https://www.freepnglogos.com/uploads/512x512-logo-png/512x512-logo-github-icon-35.png"} width={"32px"} height={"32px"} alt={""}/>
                         </a>
                     </div>
                 </td>
