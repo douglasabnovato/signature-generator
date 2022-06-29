@@ -243,7 +243,6 @@ function App() {
                     <Typography variant="h5">Signature Generator App</Typography>
                 </Toolbar>
             </AppBar>
-
             <Grid container spacing={3}>
                 <Grid item xs={12}>
                     <Paper className={classes.paper}>
@@ -251,7 +250,6 @@ function App() {
                     </Paper>
                 </Grid>
             </Grid>
-
             <Grid container spacing={3}>
                 <Grid item xs={6}>
                     <Paper className={classes.paper}>
