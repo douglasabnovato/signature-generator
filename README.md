@@ -47,7 +47,7 @@ Uma aplicação web responsiva desenvolvida em reactjs com material design lite 
 As seguintes ferramentas foram usadas na construção do projeto:
 
 - SPA
-- html, css, javascript
+- html css javascript
 - material-ui
 - typescript
 - [Yarn][yarn]
