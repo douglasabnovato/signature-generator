@@ -32,13 +32,13 @@ const Signature = (props: PhotoSignatureProps) => {
             <tr>
                 <td colSpan={3}>
                     <div className={"social-logos-frame"}>
-                        <a href={"https://www.instagram.com/"}>
+                        <a href={"https://www.instagram.com/"} target="_blank">
                             <img src={"https://www.freepnglogos.com/uploads/instagram-logos-png-images-free-download-5.png"} width={"32px"} height={"32px"} alt={""}/>
                         </a>
-                        <a href={"https://www.linkedin.com/"}>
+                        <a href={"https://www.linkedin.com/"} target="_blank">
                             <img src={"https://www.freepnglogos.com/uploads/linkedin-social-media-logo-7.png"} width={"32px"} height={"32px"} alt={""}/>
                         </a>
-                        <a href={"https://www.github.com/"}>
+                        <a href={"https://www.github.com/"} target="_blank">
                             <img src={"https://www.freepnglogos.com/uploads/512x512-logo-png/512x512-logo-github-icon-35.png"} width={"32px"} height={"32px"} alt={""}/>
                         </a>
                     </div>
