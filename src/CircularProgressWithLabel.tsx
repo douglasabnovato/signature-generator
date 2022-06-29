@@ -1,4 +1,4 @@
-import {Box, CircularProgress, CircularProgressProps, Typography,} from "@material-ui/core";
+import { Box, CircularProgress, CircularProgressProps, Typography, } from "@material-ui/core";
 
 export default function CircularProgressWithLabel(
     props: CircularProgressProps & { value: number }

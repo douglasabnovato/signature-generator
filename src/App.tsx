@@ -2,7 +2,7 @@ import React from "react";
 import {
     createStyles,
     makeStyles,
-    Theme
+    Theme,
 } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
@@ -19,15 +19,9 @@ import {
     CheckOutlined,
     FileCopyOutlined
 } from "@material-ui/icons";
-import CircularProgressWithLabel from "./CircularProgressWithLabel";
-
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
+import CircularProgressWithLabel from "./CircularProgressWithLabel"; 
 
 import "./App.css";
-
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -59,7 +53,7 @@ const useStyles = makeStyles((theme: Theme) =>
             textAlign: "center",
             color: "#FFDC00",
             verticalAlign: "middle",
-        },
+        }, 
     })
 );
 
@@ -88,7 +82,7 @@ const initialState: State = {
 
 function App() {
     const classes = useStyles();
-    const [state, setState] = React.useState<State>(initialState);
+    const [state, setState] = React.useState<State>(initialState); 
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         if (event.target.name === "withPhoto") {
@@ -219,16 +213,7 @@ function App() {
     const photoUrlMaxLength = 1000;
 
     return (
-        <Container>
-            <Box sx={{ flexGrow: 1 }}>
-                <AppBar position="static">
-                    <Toolbar>
-                        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                            Signature Generator App
-                        </Typography>
-                    </Toolbar>
-                </AppBar>
-            </Box>
+        <Container> 
 
             <img className={classes.centeredImage} src={Logo} alt={"logo"} />
 
@@ -310,6 +295,7 @@ function App() {
                     <Paper className={classes.paper}>{enoughData()}</Paper>
                 </Grid>
             </Grid>
+            
         </Container>
     );
 }
