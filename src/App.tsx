@@ -20,12 +20,10 @@ import {
     FileCopyOutlined
 } from "@material-ui/icons";
 import CircularProgressWithLabel from "./CircularProgressWithLabel";
-
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import green from "@material-ui/core/colors/green";
-
 import "./App.css";
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -101,7 +99,6 @@ const initialState: State = {
 function App() {
     const classes = useStyles();
     const [state, setState] = React.useState<State>(initialState);
-
     const [example, setExample] = useState("primary");
     const isCustomColor = example === "customColor";
     const isCustomHeight = example === "customHeight";
