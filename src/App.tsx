@@ -201,9 +201,11 @@ function App() {
     const copyToClipboard = () => {
         let copyText = document.querySelector(".signature");
         const range = document.createRange();
+
         if (copyText) {
             range.selectNode(copyText);
         }
+        
         const windowSelection = window.getSelection();
         if (windowSelection) {
             windowSelection.removeAllRanges();
