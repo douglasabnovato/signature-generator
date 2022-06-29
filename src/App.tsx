@@ -108,12 +108,12 @@ function App() {
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         if (event.target.name === "withPhoto") {
-            setState((prevState) => ({
+            setState(prevState => ({
                 ...prevState,
                 [event.target.name]: event.target.checked,
             }));
         } else {
-            setState((prevState) => ({
+            setState(prevState => ({
                 ...prevState,
                 [event.target.name]: event.target.value,
             }));
