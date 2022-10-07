@@ -13,7 +13,6 @@ import {
     Switch,
     TextField,
 } from "@material-ui/core";
-import Logo from "./assets/software-development.png";
 import Signature from "./Signature";
 import {
     CheckOutlined,
@@ -37,31 +36,13 @@ const useStyles = makeStyles((theme: Theme) =>
             },
         },
         paper: {
-            padding: theme.spacing(2),
+            marginTop: 75,
+            padding: theme.spacing(3),
             textAlign: "left",
             color: theme.palette.text.secondary,
         },
-        centeredImage: {
-            display: "block",
-            marginLeft: "auto",
-            marginRight: "auto",
-            marginTop: "11.5vh",
-            marginBottom: "1.5vh",
-            height: "23vh"
-        },
         centeredText: {
             textAlign: "center",
-        },
-        warningIconStyle: {
-            textAlign: "center",
-            color: "#FFDC00",
-            verticalAlign: "middle",
-        },
-        menuButton: {
-            marginRight: theme.spacing(2)
-        },
-        title: {
-            flexGrow: 1
         },
         customColor: {
             backgroundColor: green[500]
@@ -69,7 +50,6 @@ const useStyles = makeStyles((theme: Theme) =>
         customHeight: {
             minHeight: 220
         },
-        offset: theme.mixins.toolbar
     })
 );
 
@@ -99,7 +79,7 @@ const initialState: State = {
 function App() {
     const classes = useStyles();
     const [state, setState] = React.useState<State>(initialState);
-    const [example, setExample] = useState("primary");
+    const [example] = useState("primary");
     const isCustomColor = example === "customColor";
     const isCustomHeight = example === "customHeight";
 
@@ -242,13 +222,6 @@ function App() {
                     <Typography variant="h5">Signature Generator App</Typography>
                 </Toolbar>
             </AppBar>
-            <Grid container spacing={3}>
-                <Grid item xs={12}>
-                    <Paper className={classes.paper}>
-                        <img className={classes.centeredImage} src={Logo} alt={"logo"} />
-                    </Paper>
-                </Grid>
-            </Grid>
             <Grid container spacing={3}>
                 <Grid item xs={6}>
                     <Paper className={classes.paper}>
