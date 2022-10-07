@@ -3,7 +3,7 @@
 </h4> 
 
 <h1 align="center">
-    <img alt="Signature Generator App" title="#SignatureGeneratorApp" src="./.github/signature-generator-app-v3.1.jpg" />
+    <img alt="Signature Generator App" title="#SignatureGeneratorApp" src="./.github/signature-generator-app-v3.1-desktop.jpg" />
 </h1>
 
 ### 💻 Sobre o projeto
@@ -25,10 +25,17 @@ Uma aplicação web responsiva desenvolvida em reactjs com material design lite 
 
 #### Web - v3.1
 
+- revisando o design do projeto e identificando pontos de melhorias
+
+<p align="center" style="display: flex; align-items: flex-start; justify-content: center;">
+  <img alt="Signature Generator App" title="#SignatureGeneratorApp" src="./.github/signature-generator-app-v3.1-desktop.jpg" width="400px">
+</p>
+
+#### Web - v3.0
+
 - implementar as funcionalidades descritivas no projects board com as issues e fazer a atualização na master das branches com pull requests.
 
 <p align="center" style="display: flex; align-items: flex-start; justify-content: center;">
-  <img alt="Signature Generator App" title="#SignatureGeneratorApp" src="./.github/signature-generator-app-v3.1.jpg" width="400px"/>
   <img alt="Signature Generator App" title="#SignatureGeneratorApp" src="./.github/signature-generator-app-v3.0.jpg" width="400px">
 </p>
 
