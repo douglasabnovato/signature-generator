@@ -18,9 +18,9 @@ Uma aplicação web responsiva desenvolvida em reactjs com material design lite 
 
 #### Próximo passo
 
-- [ ] Hospedar aplicação: Netlify
+- [ ] Hospedar aplicação
+- [ ] Design nas transições
 - [ ] Eficiência da assinatura
-- [ ] Aperfeiçar responsividade com material-ui
 - [x] Limpar design
 
 #### Web - v3.1
