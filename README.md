@@ -23,7 +23,7 @@ Uma aplicação web responsiva desenvolvida em reactjs com material design lite 
 - [ ] Aperfeiçar responsividade com material-ui
 - [x] Limpar design
 
-#### Web - v3.0
+#### Web - v3.1
 
 - implementar as funcionalidades descritivas no projects board com as issues e fazer a atualização na master das branches com pull requests.
 
