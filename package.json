@@ -10,7 +10,7 @@
     }
   ],
   "description": "A simple email signature generator app (SPA) made with React",
-  "homepage": "https://signature-generator-app.herokuapp.com/",
+  "homepage": "https://github.com/douglasabnovato/signature-generator-app/",
   "keywords": [
     "spa",
     "react",
@@ -22,7 +22,7 @@
   "private": true,
   "repository": {
     "type": "git",
-    "url": "https://github.com/douglasabnovato/signature-generator-app"
+    "url": "https://github.com/douglasabnovato/signature-generator-app/"
   },
   "version": "0.1.0",
   "dependencies": {
