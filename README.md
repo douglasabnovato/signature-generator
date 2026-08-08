@@ -16,12 +16,85 @@ Uma aplicação que oferece um formulário para ser preenchido e assim, construi
 
 Uma aplicação web responsiva desenvolvida em reactjs com material design lite do Google. 
 
-#### Próximo passo
 
-- [ ] Hospedar aplicação
-- [ ] Design nas transições
-- [ ] Eficiência da assinatura
-- [x] Limpar design
+#### Estrutura de Pastas
+
+```text
+SIGNATURE-GENERATOR/
+├── .github/
+│   └── refs/
+│       ├── Main.png
+│       ├── NoPhotoSignature.png
+│       └── PhotoSignature.png
+├── signature-generator-app-v3.0.jpg
+├── signature-generator-app-v3.1-desktop.jpg
+├── tela-1.jpg
+├── tela-2.jpg
+├── tela-3.jpg
+├── tela-4.jpg
+├── public/
+├── src/
+│   ├── assets/
+│   ├── App.css
+│   ├── App.tsx
+│   ├── CircularProgressWithLabel.tsx
+│   ├── index.css
+│   ├── index.tsx
+│   ├── react-app-env.d.ts
+│   └── Signature.tsx
+├── .gitignore
+├── package.json
+├── README.md
+└── tsconfig.json
+```
+
+
+---
+
+
+# Proposta de Funcionalidades e Requisitos: Signature Generator v4.0
+
+## 🎯 1. Visão Geral da Funcionalidade Core
+A aplicação deve permitir que profissionais criem assinaturas de e-mail limpas, padronizadas e compatíveis com os principais clientes de e-mail (Gmail, Outlook, Apple Mail), oferecendo preenchimento guiado e seleção visual de templates.
+
+---
+
+## 🚀 2. Funcionalidades Principais (Features)
+
+### A. Painel de Dados do Usuário (Formulário Inteligente)
+* **Informações Básicas:** Nome completo, cargo/função, empresa/departamento.
+* **Contatos:** E-mail principal, telefone/celular, site da empresa.
+* **Redes Sociais:** Links dinâmicos para LinkedIn, GitHub, Instagram, Twitter/X e YouTube (com ícones automáticos).
+* **Upload/Avatar:** Inclusão de foto de perfil (com opção de recorte circular ou quadrado) ou opção de gerar a assinatura sem foto.
+
+### B. Seletor de Templates (Cards de Rodapé)
+* **Galeria de Modelos Visuais:** O usuário poderá escolher entre diferentes estilos de cards estruturados para o rodapé:
+  * *Minimalista:* Foco em texto limpo com divisores sutis.
+  * *Moderno com Foto:* Layout em duas colunas (Avatar à esquerda, dados e redes à direita).
+  * *Corporativo/Compacto:* Otimizado para economizar espaço em comunicações corporativas diárias.
+* **Personalização de Cores (Theming):** Escolha da cor de destaque da assinatura (barra lateral, ícones e links) combinando com a identidade visual da marca ou do usuário.
+
+### C. Engine de Pré-visualização em Tempo Real (Live Preview)
+* **Split-Screen Responsivo:** À medida que o usuário digita ou altera as opções, a assinatura se atualiza instantaneamente na tela.
+* **Alternância de Fundo:** Botão para alternar o fundo da pré-visualização (Modo Claro / Modo Escuro) para testar o contraste real da assinatura.
+
+### D. Exportação e Cópia Otimizada (Copy to Clipboard)
+* **Cópia em HTML Formatado:** Botão "Copiar Assinatura" que injeta o código HTML limpo e inline na área de transferência, pronto para ser colado nas configurações de assinatura do Gmail ou Outlook sem perder a formatação.
+* **Exportação de Código HTML:** Opção avançada para visualizar e copiar o código puro (caso o usuário queira customizar manualmente).
+
+---
+
+## 📐 3. Requisitos Técnicos e de Arquitetura
+
+### Requisitos Funcionais (RF)
+* **RF01:** O sistema deve validar os campos de e-mail e URLs de redes sociais antes de gerar o código final.
+* **RF02:** O layout gerado deve utilizar tabelas HTML (`<table>`) aninhadas e estilos *inline* (padrão obrigatório para garantir compatibilidade de renderização em clientes de e-mail restritos como o Outlook).
+* **RF03:** O sistema deve persistir temporariamente os dados preenchidos no `localStorage` do navegador para evitar perda de informações caso a página seja recarregada acidentalmente.
+
+### Requisitos Não Funcionais (RNF)
+* **RNF01 (Performance):** A renderização da pré-visualização não deve apresentar atrasos perceptíveis (*debounce* otimizado nos inputs).
+* **RNF02 (Compatibilidade):** O código HTML gerado deve ser compatível com os principais Webmail e Clients (Gmail, Outlook Desktop/Web, Apple Mail).
+* **RNF03 (Stack Moderna):** Migração estruturada para React moderno com TypeScript estrito, garantindo segurança de tipos para os dados da assinatura.
 
 #### Web - v3.1
 
@@ -30,6 +103,13 @@ Uma aplicação web responsiva desenvolvida em reactjs com material design lite 
 <p align="center" style="display: flex; align-items: flex-start; justify-content: center;">
   <img alt="Signature Generator App" title="#SignatureGeneratorApp" src="./.github/signature-generator-app-v3.1-desktop.jpg" width="400px">
 </p>
+
+##### Próximo passo
+
+- [ ] Hospedar aplicação
+- [ ] Design nas transições
+- [ ] Eficiência da assinatura
+- [x] Limpar design
 
 #### Web - v3.0
 
