@@ -7,7 +7,7 @@ type SignatureProps = SignatureData;
 const Signature: React.FC<SignatureProps> = (props) => {
     const avatarSrc = props.photo === "no-photo" || !props.photo ? Profile : props.photo;
 
-    // SVGs Inline para Redes Sociais (Zero dependência externa = Zero erros de CORS)
+    // Renderização dos ícones de redes sociais com SVGs inline otimizados
     const renderSocialIcons = (size = "20px") => {
         const iconStyle = { width: size, height: size, display: "block" };
 
@@ -68,69 +68,71 @@ const Signature: React.FC<SignatureProps> = (props) => {
     };
 
     // ==========================================
-    // GRUPO 1: ASSINATURAS DE E-MAIL
+    // GRUPO 1: ASSINATURAS DE E-MAIL (3 ESTILOS)
     // ==========================================
     if (props.productType === "email-signature") {
+        // Estilo 1: Classic Executive Vertical
         if (props.template === "classic") {
             return (
                 <table cellPadding={0} cellSpacing={0} className={"signature"} style={{ fontFamily: "sans-serif", fontSize: "14px", color: "#333" }}>
                     <tbody>
                         <tr>
                             <td rowSpan={5} style={{ paddingRight: "12px" }}>
-                                <img className={"main-image"} src={avatarSrc} alt={""} width={"110px"} height={"110px"} style={{ borderRadius: "8px", objectFit: "cover" }} />
+                                <img className={"main-image"} src={avatarSrc} alt={""} width={"110px"} height={"110px"} style={{ borderRadius: "50%", border: "2px solid #1e3a8a", objectFit: "cover" }} />
                             </td>
-                            <td rowSpan={5} style={{ borderRight: "2px solid #e5e7eb", paddingRight: "12px" }}></td>
-                            <td style={{ paddingLeft: "12px", fontWeight: "bold", fontSize: "16px", color: "#111827" }}>{props.fullName || "Seu Nome"}</td>
+                            <td rowSpan={5} style={{ borderRight: "2px solid #1e3a8a", paddingRight: "12px" }}></td>
+                            <td style={{ paddingLeft: "12px", fontWeight: "bold", fontSize: "16px", color: "#1e3a8a" }}>{props.fullName || "Seu Nome Completo"}</td>
                         </tr>
-                        <tr><td style={{ paddingLeft: "12px", color: "#4b5563", paddingBottom: "4px" }}>{props.position || "Seu Cargo"}</td></tr>
+                        <tr><td style={{ paddingLeft: "12px", color: "#4b5563", fontWeight: "600", paddingBottom: "4px" }}>{props.position || "Cargo e Setor"}</td></tr>
                         <tr><td style={{ paddingLeft: "12px", color: "#6b7280", fontSize: "13px" }}>Tel: {props.phone || "(00) 00000-0000"}</td></tr>
-                        <tr><td style={{ paddingLeft: "12px", color: "#2563eb", fontSize: "13px" }}><a href={props.site} target="_blank" rel="noreferrer" style={{ color: "#2563eb", textDecoration: "none" }}>{props.site || "www.site.com"}</a></td></tr>
-                        <tr><td style={{ paddingLeft: "12px", paddingTop: "4px" }}>{renderSocialIcons("20px")}</td></tr>
+                        <tr><td style={{ paddingLeft: "12px", fontSize: "13px" }}><a href={props.site} target="_blank" rel="noreferrer" style={{ color: "#2563eb", textDecoration: "none" }}>{props.site || "www.site.com.br"}</a></td></tr>
+                        <tr><td style={{ paddingLeft: "12px", paddingTop: "6px" }}>{renderSocialIcons("20px")}</td></tr>
                     </tbody>
                 </table>
             );
         }
 
+        // Estilo 2: Modern Fluid & Creative
         if (props.template === "modern") {
             return (
-                <table cellPadding={0} cellSpacing={0} className={"signature"} style={{ fontFamily: "sans-serif", fontSize: "14px", backgroundColor: "#f9fafb", border: "1px solid #e5e7eb", borderRadius: "8px", padding: "12px" }}>
+                <table cellPadding={0} cellSpacing={0} className={"signature"} style={{ fontFamily: "sans-serif", fontSize: "14px", backgroundColor: "#f8fafc", border: "1px solid #cbd5e1", borderRadius: "10px", padding: "14px" }}>
                     <tbody>
                         <tr>
-                            <td style={{ paddingBottom: "8px", borderBottom: "1px solid #e5e7eb" }}>
+                            <td style={{ paddingBottom: "8px", borderBottom: "1px solid #e2e8f0" }}>
                                 <table cellPadding={0} cellSpacing={0}>
                                     <tbody>
                                         <tr>
                                             {props.photo !== "no-photo" && (
                                                 <td style={{ paddingRight: "10px" }}>
-                                                    <img src={avatarSrc} alt="" width={"45px"} height={"45px"} style={{ borderRadius: "50%", objectFit: "cover" }} />
+                                                    <img src={avatarSrc} alt="" width={"45px"} height={"45px"} style={{ borderRadius: "50%", objectFit: "cover", border: "2px solid #0ea5e9" }} />
                                                 </td>
                                             )}
                                             <td>
-                                                <div style={{ fontWeight: "bold", fontSize: "15px", color: "#111827" }}>{props.fullName || "Seu Nome"}</div>
-                                                <div style={{ color: "#4b5563", fontSize: "12px" }}>{props.position || "Seu Cargo"}</div>
+                                                <div style={{ fontWeight: "bold", fontSize: "15px", color: "#0f172a" }}>{props.fullName || "Seu Nome Completo"}</div>
+                                                <div style={{ color: "#0ea5e9", fontSize: "12px", fontWeight: "bold" }}>{props.position || "Cargo e Setor"}</div>
                                             </td>
                                         </tr>
                                     </tbody>
                                 </table>
                             </td>
                         </tr>
-                        <tr><td style={{ paddingTop: "8px", fontSize: "13px", color: "#4b5563" }}>📱 {props.phone} &nbsp;|&nbsp; 🌐 <a href={props.site} style={{ color: "#2563eb", textDecoration: "none" }}>{props.site}</a></td></tr>
-                        <tr><td style={{ paddingTop: "6px" }}>{renderSocialIcons("18px")}</td></tr>
+                        <tr><td style={{ paddingTop: "8px", fontSize: "13px", color: "#334155" }}>📱 {props.phone || "(00) 00000-0000"} &nbsp;|&nbsp; 🌐 <a href={props.site} style={{ color: "#0ea5e9", textDecoration: "none" }}>{props.site || "site.com.br"}</a></td></tr>
+                        <tr><td style={{ paddingTop: "8px" }}>{renderSocialIcons("18px")}</td></tr>
                     </tbody>
                 </table>
             );
         }
 
-        // Minimalist
+        // Estilo 3: Minimalist Neo-Line
         return (
             <table cellPadding={0} cellSpacing={0} className={"signature"} style={{ fontFamily: "sans-serif", fontSize: "14px" }}>
                 <tbody>
                     <tr>
-                        <td style={{ width: "4px", backgroundColor: "#2563eb", borderRadius: "2px" }} />
+                        <td style={{ width: "4px", backgroundColor: "#0f172a", borderRadius: "2px" }} />
                         <td style={{ paddingLeft: "12px" }}>
-                            <div style={{ fontWeight: "bold", fontSize: "16px", color: "#111827" }}>{props.fullName || "Seu Nome"}</div>
-                            <div style={{ color: "#4b5563", fontSize: "13px", marginBottom: "4px" }}>{props.position} — <span style={{ color: "#2563eb" }}>{props.site}</span></div>
-                            <div style={{ color: "#6b7280", fontSize: "12px", marginBottom: "4px" }}>Tel: {props.phone}</div>
+                            <div style={{ fontWeight: "bold", fontSize: "16px", color: "#0f172a" }}>{props.fullName || "Seu Nome Completo"}</div>
+                            <div style={{ color: "#475569", fontSize: "13px", marginBottom: "4px" }}>{props.position || "Cargo"} — <span style={{ color: "#2563eb" }}>{props.site || "site.com"}</span></div>
+                            <div style={{ color: "#64748b", fontSize: "12px", marginBottom: "6px" }}>Tel: {props.phone || "(00) 00000-0000"}</div>
                             <div>{renderSocialIcons("18px")}</div>
                         </td>
                     </tr>
@@ -140,22 +142,64 @@ const Signature: React.FC<SignatureProps> = (props) => {
     }
 
     // ==========================================
-    // GRUPO 2: CRACHÁS DIGITAIS (ID CARDS)
+    // GRUPO 2: CRACHÁS DIGITAIS (3 ESTILOS)
     // ==========================================
     if (props.productType === "digital-badge") {
+        // Estilo 4: Tech Cyber Neon
+        if (props.template === "tech") {
+            return (
+                <div className="signature" style={{ width: "280px", background: "#0b0f19", border: "1px solid #38bdf8", borderRadius: "12px", padding: "16px", fontFamily: "sans-serif", color: "#fff", boxShadow: "0 10px 25px rgba(56,189,248,0.2)" }}>
+                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", borderBottom: "1px solid #1e293b", paddingBottom: "8px", marginBottom: "12px" }}>
+                        <span style={{ fontSize: "10px", letterSpacing: "1px", color: "#38bdf8", fontWeight: "bold" }}>CYBER ID CARD</span>
+                        <span style={{ fontSize: "10px", color: "#94a3b8" }}>{props.department || "TECH TEAM"}</span>
+                    </div>
+                    <div style={{ textAlign: "center", marginBottom: "12px" }}>
+                        <img src={avatarSrc} alt="" style={{ width: "75px", height: "75px", borderRadius: "50%", objectFit: "cover", border: "2px solid #38bdf8", margin: "0 auto" }} />
+                        <div style={{ fontWeight: "bold", fontSize: "16px", marginTop: "8px" }}>{props.fullName || "Nome do Profissional"}</div>
+                        <div style={{ fontSize: "12px", color: "#38bdf8" }}>{props.position || "Cargo ou Função"}</div>
+                    </div>
+                    <div style={{ background: "#111827", padding: "8px", borderRadius: "6px", fontSize: "11px", display: "flex", justifyContent: "space-between", color: "#cbd5e1" }}>
+                        <span>ID: <b>{props.badgeId || "324553"}</b></span>
+                        <span>EXP: <b>{props.badgeExpiration || "31-12-28"}</b></span>
+                    </div>
+                </div>
+            );
+        }
+
+        // Estilo 5: Corporate Clean Executive
+        if (props.template === "corporate") {
+            return (
+                <div className="signature" style={{ width: "280px", background: "#ffffff", border: "1px solid #cbd5e1", borderRadius: "12px", padding: "16px", fontFamily: "sans-serif", color: "#0f172a", boxShadow: "0 10px 25px rgba(0,0,0,0.1)" }}>
+                    <div style={{ textAlign: "center", borderBottom: "2px solid #0f172a", paddingBottom: "10px", marginBottom: "12px" }}>
+                        <span style={{ fontSize: "10px", fontWeight: "bold", color: "#64748b", letterSpacing: "1px" }}>CREDENCIAL EXECUTIVA</span>
+                    </div>
+                    <div style={{ textAlign: "center", marginBottom: "12px" }}>
+                        <img src={avatarSrc} alt="" style={{ width: "75px", height: "75px", borderRadius: "8px", objectFit: "cover", border: "2px solid #0f172a", margin: "0 auto" }} />
+                        <div style={{ fontWeight: "bold", fontSize: "16px", marginTop: "8px", color: "#0f172a" }}>{props.fullName || "Nome Executivo"}</div>
+                        <div style={{ fontSize: "12px", color: "#475569" }}>{props.position || "Diretoria / Gestão"}</div>
+                    </div>
+                    <div style={{ background: "#f1f5f9", padding: "8px", borderRadius: "6px", fontSize: "11px", display: "flex", justifyContent: "space-between", color: "#334155" }}>
+                        <span>SETOR: <b>{props.department || "GERAL"}</b></span>
+                        <span>ID: <b>{props.badgeId || "102938"}</b></span>
+                    </div>
+                </div>
+            );
+        }
+
+        // Estilo 6: Creative Gradient Diamond
         return (
-            <div className="signature" style={{ width: "280px", background: "#0b0f19", border: "1px solid #1e293b", borderRadius: "12px", padding: "16px", fontFamily: "sans-serif", color: "#fff", boxShadow: "0 10px 25px rgba(0,0,0,0.5)" }}>
-                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", borderBottom: "1px solid #1e293b", paddingBottom: "8px", marginBottom: "12px" }}>
-                    <span style={{ fontSize: "10px", letterSpacing: "1px", color: "#38bdf8", fontWeight: "bold" }}>DIGITAL ID CARD</span>
-                    <span style={{ fontSize: "10px", color: "#94a3b8" }}>{props.department || "CORE TEAM"}</span>
+            <div className="signature" style={{ width: "280px", background: "linear-gradient(135deg, #7c3aed 0%, #db2777 100%)", borderRadius: "12px", padding: "16px", fontFamily: "sans-serif", color: "#fff", boxShadow: "0 10px 25px rgba(124,58,237,0.3)" }}>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", paddingBottom: "8px", marginBottom: "8px" }}>
+                    <span style={{ fontSize: "10px", letterSpacing: "1px", color: "#fef08a", fontWeight: "bold" }}>CREATIVE CREW</span>
+                    <span style={{ fontSize: "10px", color: "#f1f5f9" }}>{props.department || "DESIGN"}</span>
                 </div>
                 <div style={{ textAlign: "center", marginBottom: "12px" }}>
-                    <img src={avatarSrc} alt="" style={{ width: "75px", height: "75px", borderRadius: "50%", objectFit: "cover", border: "2px solid #38bdf8", margin: "0 auto" }} />
-                    <div style={{ fontWeight: "bold", fontSize: "16px", marginTop: "8px" }}>{props.fullName || "Nome do Profissional"}</div>
-                    <div style={{ fontSize: "12px", color: "#94a3b8" }}>{props.position || "Cargo / Função"}</div>
+                    <img src={avatarSrc} alt="" style={{ width: "75px", height: "75px", borderRadius: "16px", objectFit: "cover", border: "2px solid #fff", margin: "0 auto" }} />
+                    <div style={{ fontWeight: "bold", fontSize: "16px", marginTop: "8px" }}>{props.fullName || "Nome Criativo"}</div>
+                    <div style={{ fontSize: "12px", color: "#fbcfe8" }}>{props.position || "Especialista"}</div>
                 </div>
-                <div style={{ background: "#111827", padding: "8px", borderRadius: "6px", fontSize: "11px", display: "flex", justifyContent: "space-between", color: "#cbd5e1" }}>
-                    <span>ID: <b>{props.badgeId || "000000"}</b></span>
+                <div style={{ background: "rgba(0,0,0,0.2)", padding: "8px", borderRadius: "6px", fontSize: "11px", display: "flex", justifyContent: "space-between", color: "#fff" }}>
+                    <span>ID: <b>{props.badgeId || "998877"}</b></span>
                     <span>EXP: <b>{props.badgeExpiration || "31-12-28"}</b></span>
                 </div>
             </div>
@@ -163,23 +207,67 @@ const Signature: React.FC<SignatureProps> = (props) => {
     }
 
     // ==========================================
-    // GRUPO 3: CARTÕES DE VISITA DIGITAIS (MOBILE)
+    // GRUPO 3: CARTÕES DE VISITA DIGITAIS (3 ESTILOS)
     // ==========================================
+    // Estilo 7: Mobile App Card
+    if (props.template === "mobile-app") {
+        return (
+            <div className="signature" style={{ width: "260px", background: "#ffffff", border: "1px solid #e2e8f0", borderRadius: "16px", padding: "16px", fontFamily: "sans-serif", color: "#1e293b", textAlign: "center", boxShadow: "0 10px 25px rgba(0,0,0,0.1)" }}>
+                <div style={{ height: "45px", background: "linear-gradient(135deg, #f97316 0%, #ea580c 100%)", borderRadius: "10px 10px 0 0", margin: "-16px -16px 12px -16px", width: "calc(100% + 32px)" }}></div>
+                <img src={avatarSrc} alt="" style={{ width: "60px", height: "60px", borderRadius: "50%", objectFit: "cover", border: "3px solid #fff", marginTop: "-38px", boxShadow: "0 4px 10px rgba(0,0,0,0.15)", position: "relative" }} />
+                <div style={{ fontWeight: "bold", fontSize: "15px", marginTop: "4px", color: "#0f172a" }}>{props.fullName || "Seu Nome Completo"}</div>
+                <div style={{ fontSize: "11px", color: "#64748b", marginBottom: "10px" }}>{props.position || "Profissão ou Especialidade"}</div>
+                
+                <div style={{ display: "flex", flexWrap: "wrap", gap: "4px", justifyContent: "center", marginBottom: "12px" }}>
+                    {props.specialties.map((spec, i) => (
+                        <span key={i} style={{ fontSize: "9px", background: "#ffedd5", color: "#c2410c", padding: "2px 6px", borderRadius: "4px", fontWeight: "bold" }}>{spec}</span>
+                    ))}
+                </div>
+
+                <div style={{ display: "flex", justifyContent: "center", paddingTop: "6px", borderTop: "1px solid #f1f5f9" }}>
+                    {renderSocialIcons("20px")}
+                </div>
+            </div>
+        );
+    }
+
+    // Estilo 8: Horizontal Banner Executive
+    if (props.template === "horizontal-banner") {
+        return (
+            <div className="signature" style={{ width: "280px", background: "#f8fafc", border: "1px solid #cbd5e1", borderRadius: "12px", padding: "14px", fontFamily: "sans-serif", color: "#0f172a", boxShadow: "0 8px 20px rgba(0,0,0,0.08)" }}>
+                <table cellPadding={0} cellSpacing={0} style={{ width: "100%" }}>
+                    <tbody>
+                        <tr>
+                            <td style={{ width: "80px", verticalAlign: "top", paddingRight: "10px" }}>
+                                <img src={avatarSrc} alt="" style={{ width: "70px", height: "70px", borderRadius: "8px", objectFit: "cover", border: "1px solid #94a3b8" }} />
+                            </td>
+                            <td style={{ verticalAlign: "top" }}>
+                                <div style={{ fontWeight: "bold", fontSize: "14px", color: "#0f172a" }}>{props.fullName || "Nome Profissional"}</div>
+                                <div style={{ fontSize: "11px", color: "#0284c7", fontWeight: "600", marginBottom: "6px" }}>{props.position || "Cargo"}</div>
+                                <div style={{ fontSize: "10px", color: "#475569", marginBottom: "6px" }}>📱 {props.phone || "(00) 00000-0000"}</div>
+                                <div>{renderSocialIcons("16px")}</div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        );
+    }
+
+    // Estilo 9: Sleek Dark Minimalist
     return (
-        <div className="signature" style={{ width: "260px", background: "#ffffff", border: "1px solid #e2e8f0", borderRadius: "16px", padding: "16px", fontFamily: "sans-serif", color: "#1e293b", textAlign: "center", boxShadow: "0 10px 25px rgba(0,0,0,0.1)" }}>
-            <div style={{ height: "45px", background: "linear-gradient(135deg, #f97316 0%, #ea580c 100% )", borderRadius: "10px 10px 0 0", margin: "-16px -16px 12px -16px", width: "calc(100% + 32px)" }}></div>
-            <img src={avatarSrc} alt="" style={{ width: "60px", height: "60px", borderRadius: "50%", objectFit: "cover", border: "3px solid #fff", marginTop: "-38px", boxShadow: "0 4px 10px rgba(0,0,0,0.15)", position: "relative" }} />
-            <div style={{ fontWeight: "bold", fontSize: "15px", marginTop: "4px", color: "#0f172a" }}>{props.fullName || "Seu Nome"}</div>
-            <div style={{ fontSize: "11px", color: "#64748b", marginBottom: "10px" }}>{props.position || "Especialista"}</div>
+        <div className="signature" style={{ width: "260px", background: "#0f172a", border: "1px solid #334155", borderRadius: "16px", padding: "16px", fontFamily: "sans-serif", color: "#fff", textAlign: "center", boxShadow: "0 10px 25px rgba(0,0,0,0.4)" }}>
+            <img src={avatarSrc} alt="" style={{ width: "65px", height: "65px", borderRadius: "50%", objectFit: "cover", border: "2px solid #38bdf8", margin: "0 auto 8px auto" }} />
+            <div style={{ fontWeight: "bold", fontSize: "15px", color: "#f8fafc" }}>{props.fullName || "Seu Nome Completo"}</div>
+            <div style={{ fontSize: "11px", color: "#38bdf8", marginBottom: "12px" }}>{props.position || "Especialista Digital"}</div>
             
-            <div style={{ display: "flex", flexWrap: "wrap", gap: "4px", justifyContent: "center", marginBottom: "12px" }}>
-                {props.specialties.map((spec, i) => (
-                    <span key={i} style={{ fontSize: "9px", background: "#ffedd5", color: "#c2410c", padding: "2px 6px", borderRadius: "4px", fontWeight: "bold" }}>{spec}</span>
-                ))}
+            <div style={{ background: "#1e293b", padding: "8px", borderRadius: "8px", marginBottom: "10px", fontSize: "11px", color: "#cbd5e1" }}>
+                <div>📞 {props.phone || "Contato Direto"}</div>
+                <div style={{ marginTop: "4px", color: "#38bdf8" }}>🌐 {props.site || "site.com.br"}</div>
             </div>
 
-            <div style={{ display: "flex", justifyContent: "center", paddingTop: "6px", borderTop: "1px solid #f1f5f9" }}>
-                {renderSocialIcons("20px")}
+            <div style={{ display: "flex", justifyContent: "center", paddingTop: "4px" }}>
+                {renderSocialIcons("18px")}
             </div>
         </div>
     );
