@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/douglasabnovato/signature-generator-app/static/css/main.61c2ad40.chunk.css",
-    "main.js": "/douglasabnovato/signature-generator-app/static/js/main.ec2e2eb6.chunk.js",
-    "main.js.map": "/douglasabnovato/signature-generator-app/static/js/main.ec2e2eb6.chunk.js.map",
-    "runtime-main.js": "/douglasabnovato/signature-generator-app/static/js/runtime-main.e53db843.js",
-    "runtime-main.js.map": "/douglasabnovato/signature-generator-app/static/js/runtime-main.e53db843.js.map",
-    "static/js/2.39a8124c.chunk.js": "/douglasabnovato/signature-generator-app/static/js/2.39a8124c.chunk.js",
-    "static/js/2.39a8124c.chunk.js.map": "/douglasabnovato/signature-generator-app/static/js/2.39a8124c.chunk.js.map",
-    "index.html": "/douglasabnovato/signature-generator-app/index.html",
-    "static/css/main.61c2ad40.chunk.css.map": "/douglasabnovato/signature-generator-app/static/css/main.61c2ad40.chunk.css.map",
-    "static/js/2.39a8124c.chunk.js.LICENSE.txt": "/douglasabnovato/signature-generator-app/static/js/2.39a8124c.chunk.js.LICENSE.txt"
+    "main.css": "/signature-generator/static/css/main.61c2ad40.chunk.css",
+    "main.js": "/signature-generator/static/js/main.ec2e2eb6.chunk.js",
+    "main.js.map": "/signature-generator/static/js/main.ec2e2eb6.chunk.js.map",
+    "runtime-main.js": "/signature-generator/static/js/runtime-main.9829b0aa.js",
+    "runtime-main.js.map": "/signature-generator/static/js/runtime-main.9829b0aa.js.map",
+    "static/js/2.39a8124c.chunk.js": "/signature-generator/static/js/2.39a8124c.chunk.js",
+    "static/js/2.39a8124c.chunk.js.map": "/signature-generator/static/js/2.39a8124c.chunk.js.map",
+    "index.html": "/signature-generator/index.html",
+    "static/css/main.61c2ad40.chunk.css.map": "/signature-generator/static/css/main.61c2ad40.chunk.css.map",
+    "static/js/2.39a8124c.chunk.js.LICENSE.txt": "/signature-generator/static/js/2.39a8124c.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.e53db843.js",
+    "static/js/runtime-main.9829b0aa.js",
     "static/js/2.39a8124c.chunk.js",
     "static/css/main.61c2ad40.chunk.css",
     "static/js/main.ec2e2eb6.chunk.js"
