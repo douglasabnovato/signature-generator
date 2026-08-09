@@ -21,6 +21,7 @@ import Signature from "./components/Signature";
 import {
     CheckOutlined,
     FileCopyOutlined,
+    GetAppOutlined,
     Brightness4Outlined,
     Brightness7Outlined,
 } from "@material-ui/icons";
@@ -31,6 +32,7 @@ import Typography from "@material-ui/core/Typography";
 import green from "@material-ui/core/colors/green";
 import { SignatureData } from "./types/signature";
 import { calculateProgress } from "./utils/signatureHelpers";
+import { toPng } from "html-to-image";
 import "./App.css";
 
 function Alert(props: AlertProps) {
@@ -41,9 +43,6 @@ const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         root: {
             "& .MuiTextField-root": {
-                margin: theme.spacing(1),
-            },
-            "& .label-root": {
                 margin: theme.spacing(1),
             },
         },
@@ -65,7 +64,6 @@ const useStyles = makeStyles((theme: Theme) =>
             alignItems: "center",
             justifyContent: "center",
             minHeight: "220px",
-            transition: "background-color 0.3s ease",
         },
         previewContainerLight: {
             backgroundColor: "#ffffff",
@@ -77,7 +75,6 @@ const useStyles = makeStyles((theme: Theme) =>
             justifyContent: "center",
             minHeight: "220px",
             border: "1px solid #e2e8f0",
-            transition: "background-color 0.3s ease",
         },
         customColor: {
             backgroundColor: green[500]
@@ -116,12 +113,13 @@ function App() {
     const classes = useStyles();
     const [state, setState] = useState<SignatureData>(initialState);
     const [toastOpen, setToastOpen] = useState(false);
+    const [toastMessage, setToastMessage] = useState("Conteúdo copiado com sucesso!");
     const [isDarkModePreview, setIsDarkModePreview] = useState(true);
     const [example] = useState("primary");
     const isCustomColor = example === "customColor";
     const isCustomHeight = example === "customHeight";
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement | { name?: string; value: unknown }>) => {
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement | { name?: string; value: unknown }>) => {
         const target = event.target as HTMLInputElement;
         const name = target.name as keyof SignatureData;
         const value = target.type === "checkbox" ? target.checked : target.value;
@@ -156,7 +154,6 @@ function App() {
         if (hasRequiredData) {
             return (
                 <React.Fragment>
-                    {/* Barra de Ferramentas do Preview (Alternador de Tema e Indicador de Produto) */}
                     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", width: "100%", marginBottom: "12px" }}>
                         <span style={{ fontSize: "12px", fontWeight: "bold", color: "#64748b", textTransform: "uppercase" }}>
                             Preview [{state.productType}]
@@ -179,7 +176,6 @@ function App() {
                         </ButtonGroup>
                     </div>
 
-                    {/* Caixa de Exibição Dinâmica (Fundo Alternável) */}
                     <div className={isDarkModePreview ? classes.previewContainerDark : classes.previewContainerLight}>
                         <Signature
                             {...state}
@@ -189,15 +185,23 @@ function App() {
 
                     <br />
                     
-                    {/* Ações Contextuais baseadas no Produto */}
-                    <div style={{ display: "flex", gap: "10px", justifyContent: "center" }}>
+                    <div style={{ display: "flex", gap: "10px", justifyContent: "center", flexWrap: "wrap" }}>
                         <Button
                             variant="contained"
                             color="primary"
                             onClick={copyToClipboard}
                             endIcon={state.copied ? <CheckOutlined /> : <FileCopyOutlined />}
                         >
-                            {state.copied ? "Copiado com Sucesso" : "Copiar para Área de Transferência"}
+                            {state.copied ? "Copiado" : "Copiar HTML"}
+                        </Button>
+
+                        <Button
+                            variant="outlined"
+                            color="primary"
+                            onClick={downloadAsImage}
+                            startIcon={<GetAppOutlined />}
+                        >
+                            Baixar como Imagem (PNG)
                         </Button>
                     </div>
                 </React.Fragment>
@@ -230,14 +234,30 @@ function App() {
         }
         try {
             document.execCommand("copy");
-            setState((prevState) => ({
-                ...prevState,
-                copied: true,
-            }));
+            setState((prevState) => ({ ...prevState, copied: true }));
+            setToastMessage("Assinatura copiada com sucesso para o clipboard!");
             setToastOpen(true);
         } catch (err) {
             console.log("Fail to copy");
         }
+    };
+
+    const downloadAsImage = () => {
+        const node = document.querySelector(".signature") as HTMLElement;
+        if (!node) return;
+
+        toPng(node, { cacheBust: true, quality: 0.95, fontEmbedCSS: '' })
+            .then((dataUrl) => {
+                const link = document.createElement("a");
+                link.download = `${state.productType}-${state.fullName || "identidade"}.png`;
+                link.href = dataUrl;
+                link.click();
+                setToastMessage("Card baixado como imagem PNG com sucesso!");
+                setToastOpen(true);
+            })
+            .catch((err) => {
+                console.error("Erro ao gerar imagem:", err);
+            });
     };
 
     const isStateChanged = () => {
@@ -260,7 +280,6 @@ function App() {
                 </Toolbar>
             </AppBar>
             <Grid container spacing={3}>
-                {/* Coluna do Formulário */}
                 <Grid item xs={12} md={6}>
                     <Paper className={classes.paper}>
                         <form className={classes.root} noValidate autoComplete="off">
@@ -442,7 +461,6 @@ function App() {
                     </Paper>
                 </Grid>
 
-                {/* Coluna do Preview Dinâmico */}
                 <Grid item xs={12} md={6}>
                     <Paper className={classes.paper}>
                         {renderSignatureContent()}
@@ -457,7 +475,7 @@ function App() {
                 anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
             >
                 <Alert onClose={handleToastClose} severity="success">
-                    Identidade digital copiada com sucesso para a área de transferência!
+                    {toastMessage}
                 </Alert>
             </Snackbar>
         </Container>
