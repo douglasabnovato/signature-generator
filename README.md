@@ -1,5 +1,5 @@
 <h4 align="center"> 
-	🚧 Digital Identity Suite (Signature Generator App) 🚀
+	🚧 Digital Identity Suite  🚀
 </h4> 
 
 <h1 align="center">
@@ -24,10 +24,9 @@ Uma aplicação web moderna e responsiva desenvolvida em React com TypeScript, i
 ```text
 SIGNATURE-GENERATOR/
 ├── .github/
-│   └── refs/
-│       ├── Main.png
-│       ├── NoPhotoSignature.png
-│       └── PhotoSignature.png
+├── build/
+├── docs/
+├── node_modules/
 ├── public/
 ├── src/
 │   ├── assets/
