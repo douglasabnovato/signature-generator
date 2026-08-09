@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/signature-generator/static/css/main.61c2ad40.chunk.css",
-    "main.js": "/signature-generator/static/js/main.ec2e2eb6.chunk.js",
-    "main.js.map": "/signature-generator/static/js/main.ec2e2eb6.chunk.js.map",
+    "main.js": "/signature-generator/static/js/main.0a27c493.chunk.js",
+    "main.js.map": "/signature-generator/static/js/main.0a27c493.chunk.js.map",
     "runtime-main.js": "/signature-generator/static/js/runtime-main.9829b0aa.js",
     "runtime-main.js.map": "/signature-generator/static/js/runtime-main.9829b0aa.js.map",
     "static/js/2.39a8124c.chunk.js": "/signature-generator/static/js/2.39a8124c.chunk.js",
@@ -15,6 +15,6 @@
     "static/js/runtime-main.9829b0aa.js",
     "static/js/2.39a8124c.chunk.js",
     "static/css/main.61c2ad40.chunk.css",
-    "static/js/main.ec2e2eb6.chunk.js"
+    "static/js/main.0a27c493.chunk.js"
   ]
 }
