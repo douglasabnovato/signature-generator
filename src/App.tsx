@@ -156,7 +156,7 @@ function App() {
                 <React.Fragment>
                     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", width: "100%", marginBottom: "12px" }}>
                         <span style={{ fontSize: "12px", fontWeight: "bold", color: "#64748b", textTransform: "uppercase" }}>
-                            Preview [{state.productType}]
+                            Pré-visualização [{state.productType}]
                         </span>
                         <ButtonGroup size="small" variant="outlined">
                             <Button 
@@ -164,14 +164,14 @@ function App() {
                                 color={isDarkModePreview ? "primary" : "default"}
                                 startIcon={<Brightness4Outlined />}
                             >
-                                Dark
+                                Escuro
                             </Button>
                             <Button 
                                 onClick={() => setIsDarkModePreview(false)}
                                 color={!isDarkModePreview ? "primary" : "default"}
                                 startIcon={<Brightness7Outlined />}
                             >
-                                Light
+                                Claro
                             </Button>
                         </ButtonGroup>
                     </div>
@@ -192,7 +192,7 @@ function App() {
                             onClick={copyToClipboard}
                             endIcon={state.copied ? <CheckOutlined /> : <FileCopyOutlined />}
                         >
-                            {state.copied ? "Copiado" : "Copiar HTML"}
+                            {state.copied ? "Copiado!" : "Copiar Código HTML"}
                         </Button>
 
                         <Button
@@ -235,10 +235,10 @@ function App() {
         try {
             document.execCommand("copy");
             setState((prevState) => ({ ...prevState, copied: true }));
-            setToastMessage("Assinatura copiada com sucesso para o clipboard!");
+            setToastMessage("Assinatura copiada com sucesso para a área de transferência!");
             setToastOpen(true);
         } catch (err) {
-            console.log("Fail to copy");
+            console.log("Falha ao copiar");
         }
     };
 
@@ -252,7 +252,7 @@ function App() {
                 link.download = `${state.productType}-${state.fullName || "identidade"}.png`;
                 link.href = dataUrl;
                 link.click();
-                setToastMessage("Card baixado como imagem PNG com sucesso!");
+                setToastMessage("Cartão baixado como imagem PNG com sucesso!");
                 setToastOpen(true);
             })
             .catch((err) => {
@@ -286,7 +286,7 @@ function App() {
                             <TextField
                                 select
                                 fullWidth={true}
-                                label="Identity Product"
+                                label="Produto de Identidade Digital"
                                 value={state.productType}
                                 name="productType"
                                 onChange={handleChange}
@@ -299,16 +299,16 @@ function App() {
                             <TextField
                                 select
                                 fullWidth={true}
-                                label="Design Variation (Template)"
+                                label="Estilo do Design (Template)"
                                 value={state.template}
                                 name="template"
                                 onChange={handleChange}
                             >
                                 {state.productType === "email-signature" && (
                                     [
-                                        <MenuItem key="classic" value="classic">Classic (Divisor Vertical)</MenuItem>,
-                                        <MenuItem key="modern" value="modern">Modern (Card Destaque)</MenuItem>,
-                                        <MenuItem key="minimalist" value="minimalist">Minimalist (Barra Lateral)</MenuItem>
+                                        <MenuItem key="classic" value="classic">Clássico (Divisor Vertical)</MenuItem>,
+                                        <MenuItem key="modern" value="modern">Moderno (Card Destaque)</MenuItem>,
+                                        <MenuItem key="minimalist" value="minimalist">Minimalista (Barra Lateral)</MenuItem>
                                     ]
                                 )}
                                 {state.productType === "digital-badge" && (
@@ -321,7 +321,7 @@ function App() {
                                 {state.productType === "digital-business-card" && (
                                     [
                                         <MenuItem key="mobile-app" value="mobile-app">Mobile App (Estilo Smartphone)</MenuItem>,
-                                        <MenuItem key="horizontal-banner" value="horizontal-banner">Horizontal Banner (Corporativo)</MenuItem>,
+                                        <MenuItem key="horizontal-banner" value="horizontal-banner">Banner Horizontal (Corporativo)</MenuItem>,
                                         <MenuItem key="sleek-dark" value="sleek-dark">Sleek Dark (Minimalista Escuro)</MenuItem>
                                     ]
                                 )}
@@ -330,7 +330,7 @@ function App() {
                             <TextField
                                 fullWidth={true}
                                 required
-                                label="Full Name"
+                                label="Nome Completo"
                                 value={state.fullName}
                                 name={"fullName"}
                                 onChange={handleChange}
@@ -339,7 +339,7 @@ function App() {
                             <TextField
                                 fullWidth={true}
                                 required
-                                label="Position / Title"
+                                label="Cargo e Setor"
                                 value={state.position}
                                 name={"position"}
                                 onChange={handleChange}
@@ -347,7 +347,7 @@ function App() {
                             <TextField
                                 fullWidth={true}
                                 required
-                                label="Site"
+                                label="Site Oficial da Empresa"
                                 value={state.site}
                                 name={"site"}
                                 onChange={handleChange}
@@ -355,7 +355,7 @@ function App() {
                             <TextField
                                 fullWidth={true}
                                 required
-                                label="Telephone"
+                                label="Telefone de Contato"
                                 value={state.phone}
                                 name={"phone"}
                                 onChange={handleChange}
@@ -365,21 +365,21 @@ function App() {
                                 <React.Fragment>
                                     <TextField
                                         fullWidth={true}
-                                        label="Badge ID (ex: 324553)"
+                                        label="Código do Crachá (ID ex: 324553)"
                                         value={state.badgeId}
                                         name={"badgeId"}
                                         onChange={handleChange}
                                     />
                                     <TextField
                                         fullWidth={true}
-                                        label="Expiration Date (ex: 21-12-28)"
+                                        label="Data de Validade (EXP ex: 31-12-28)"
                                         value={state.badgeExpiration}
                                         name={"badgeExpiration"}
                                         onChange={handleChange}
                                     />
                                     <TextField
                                         fullWidth={true}
-                                        label="Department"
+                                        label="Departamento / Setor"
                                         value={state.department}
                                         name={"department"}
                                         onChange={handleChange}
@@ -389,35 +389,35 @@ function App() {
 
                             <TextField
                                 fullWidth={true}
-                                label="LinkedIn URL"
+                                label="Link do LinkedIn"
                                 value={state.linkedinUrl}
                                 name={"linkedinUrl"}
                                 onChange={handleChange}
                             />
                             <TextField
                                 fullWidth={true}
-                                label="GitHub URL"
+                                label="Link do GitHub"
                                 value={state.githubUrl}
                                 name={"githubUrl"}
                                 onChange={handleChange}
                             />
                             <TextField
                                 fullWidth={true}
-                                label="Instagram URL"
+                                label="Link do Instagram"
                                 value={state.instagramUrl}
                                 name={"instagramUrl"}
                                 onChange={handleChange}
                             />
                             <TextField
                                 fullWidth={true}
-                                label="WhatsApp Number (com DDI/DDD)"
+                                label="Número do WhatsApp (com DDI/DDD)"
                                 value={state.whatsappNumber}
                                 name={"whatsappNumber"}
                                 onChange={handleChange}
                             />
                             <TextField
                                 fullWidth={true}
-                                label="YouTube URL"
+                                label="Link do Canal no YouTube"
                                 value={state.youtubeUrl}
                                 name={"youtubeUrl"}
                                 onChange={handleChange}
@@ -432,20 +432,20 @@ function App() {
                                         color="primary"
                                     />
                                 }
-                                label={state.withPhoto ? "Photo Enabled" : "No photo"}
+                                label={state.withPhoto ? "Foto Habilitada" : "Sem Foto"}
                             />
                             {state.withPhoto && (
                                 <TextField
                                     error={state.photo.length > photoUrlMaxLength}
                                     fullWidth={true}
                                     required
-                                    label="Link to image"
+                                    label="Link da Foto de Perfil"
                                     value={state.photo}
                                     name={"photo"}
                                     onChange={handleChange}
                                     helperText={
                                         state.photo.length > photoUrlMaxLength &&
-                                        "It's not an image url, but image in base64 form."
+                                        "Não é uma URL de imagem válida, mas sim um formato Base64."
                                     }
                                 />
                             )}
@@ -455,7 +455,7 @@ function App() {
                                 onClick={clearState}
                                 color={"secondary"}
                             >
-                                Clear
+                                Limpar Campos
                             </Button>
                         </form>
                     </Paper>

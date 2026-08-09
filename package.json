@@ -10,7 +10,7 @@
     }
   ],
   "description": "A simple email signature generator app (SPA) made with React",
-  "homepage": "https://github.com/douglasabnovato/signature-generator-app/",
+  "homepage": "https://douglasabnovato.github.io/signature-generator",
   "keywords": [
     "spa",
     "react",
@@ -22,7 +22,7 @@
   "private": true,
   "repository": {
     "type": "git",
-    "url": "https://github.com/douglasabnovato/signature-generator-app/"
+    "url": "https://github.com/douglasabnovato/signature-generator"
   },
   "version": "0.1.0",
   "dependencies": {
@@ -44,8 +44,10 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "cross-env NODE_OPTIONS=--openssl-legacy-provider react-scripts build && rm -rf docs && mv build docs",
+    "predeploy": "cross-env NODE_OPTIONS=--openssl-legacy-provider react-scripts build",
+    "deploy": "gh-pages -d build",
+    "start": "cross-env NODE_OPTIONS=--openssl-legacy-provider react-scripts start",
+    "build": "cross-env NODE_OPTIONS=--openssl-legacy-provider react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
