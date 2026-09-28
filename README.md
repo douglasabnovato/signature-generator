@@ -6,6 +6,12 @@
     <img alt="Signature Generator App" title="#SignatureGeneratorApp" src="./.github/signature-generator-app-v3.1-desktop.jpg" />
 </h1>
 
+### 🌐 Em produção
+
+- URL: https://douglasabnovato.github.io/signature-generator/
+- Hospedagem: GitHub Pages, publicado pelo GitHub Actions a cada push na `master`
+- Passo a passo: [documentacao/DEPLOY.md](documentacao/DEPLOY.md)
+
 ### 💻 Sobre o projeto
 
 ♻️ **Digital Identity Suite** é uma evolução profissional do clássico Signature Generator. A aplicação oferece um painel inteligente e responsivo para preenchimento de dados e geração em tempo real de identidades visuais corporativas e pessoais para o mercado digital.
@@ -105,6 +111,14 @@ A aplicação permite que profissionais criem assinaturas de e-mail limpas, crac
 
 ---
 
+#### Web - v5.1 (revisão de qualidade)
+- [x] Voltou a compilar: a foto padrão (`src/assets/steve-jobs.jpg`) não estava no repositório; agora o avatar é gerado com as iniciais
+- [x] Links da assinatura saneados (só http/https; `javascript:` era copiado para o e-mail)
+- [x] Cópia com a API de área de transferência (HTML + texto) e aviso quando falha
+- [x] Material UI 4 → 7, React 17 → 18, CRA 4 → Vite 8; Tailwind (sem uso) removido
+- [x] WCAG AA na aplicação (axe-core sem violações); 5 testes automatizados
+- Detalhes em [documentacao/](documentacao/ANALISE.md)
+
 #### Web - v5.0
 - Evolução completa para a **Digital Identity Suite**: Suporte a 3 produtos distintos (Assinatura, Crachá e Cartão Digital), totalizando 9 templates visuais exclusivos, alternador de fundo para preview, ícones em SVG inline e exportação automatizada em formato de imagem PNG.
 
@@ -131,11 +145,10 @@ A aplicação permite que profissionais criem assinaturas de e-mail limpas, crac
 As seguintes ferramentas foram usadas na construção do projeto:
 * SPA (Single Page Application)
 * HTML5 / CSS3 / JavaScript
-* Tailwind CSS
-* Material-UI (v4)
+* Material UI (v7)
+* Vite 8 e Vitest
 * TypeScript
 * html-to-image
-* Yarn
 * Node.js
 * React
 * Git
@@ -148,16 +161,14 @@ Além disto, é bom ter um editor para trabalhar com o código como o **VSCode**
 ### 🧭 Rodando a aplicação web
 
 ```bash
-# Clone este repositório
-$ git clone [https://github.com/douglasabnovato/signature-generator-app](https://github.com/douglasabnovato/signature-generator-app)
-
-# Instale as dependências
-$ npm install
-
-# Execute a aplicação em modo de desenvolvimento
-$ npm run start
-
-# A aplicação será aberta na porta:3000 - acesse http://localhost:3000
+git clone https://github.com/douglasabnovato/signature-generator
+cd signature-generator
+npm install
+npm run dev       # http://localhost:5173
+npm test          # testes com Vitest
+npm run build     # gera build/ (a publicação é feita pelo GitHub Actions)
+npm run deploy    # alternativa manual: publica build/ na branch gh-pages
+```
 
 #### 😯 Como contribuir para o projeto
 
