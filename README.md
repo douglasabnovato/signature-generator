@@ -11,6 +11,7 @@
 - URL: https://douglasabnovato.github.io/signature-generator/
 - Hospedagem: GitHub Pages, publicado pelo GitHub Actions a cada push na `master`
 - Passo a passo: [documentacao/DEPLOY.md](documentacao/DEPLOY.md)
+- Avaliação e plano: [documentacao/AVALIACAO.md](documentacao/AVALIACAO.md) · [documentacao/PLANO-ESTRATEGICO.md](documentacao/PLANO-ESTRATEGICO.md)
 
 ### 💻 Sobre o projeto
 
@@ -23,7 +24,7 @@ O sistema suporta três grandes vertentes de apresentação profissional:
  
 #### 🎨 Layout
 
-Uma aplicação web moderna e responsiva desenvolvida em React com TypeScript, integrando Material-UI e Tailwind CSS.
+Uma aplicação web moderna e responsiva desenvolvida em React com TypeScript, integrando Material-UI.
 
 #### 📂 Estrutura de Pastas
 
@@ -107,7 +108,7 @@ A aplicação permite que profissionais criem assinaturas de e-mail limpas, crac
 ### Requisitos Não Funcionais (RNF)
 * **RNF01 (Performance):** Renderização da pré-visualização em tempo real sem latência perceptível.
 * **RNF02 (Compatibilidade Visual):** Ícones renderizados por meio de vetores SVG inline, blindando a aplicação contra bloqueios de políticas de CORS em exportações gráficas.
-* **RNF03 (Stack Moderna):** Integração com Tailwind CSS, Material-UI (v4) e bibliotecas de manipulação de imagem de alta performance.
+* **RNF03 (Stack Moderna):** Integração com Material-UI (v7) e bibliotecas de manipulação de imagem de alta performance.
 
 ---
 

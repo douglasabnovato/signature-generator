@@ -1,5 +1,7 @@
 # Deploy · Digital Identity Suite (signature-generator)
 
+> **Atualização de 30/10/2026:** o workflow fica em `.github/workflows/ci.yml` e publica na branch `gh-pages`, que é a fonte configurada no GitHub Pages. As etapas abaixo que citam `ci/` e `deploy-pages` são históricas.
+
 Plano de ação para publicar o gerador de assinaturas no GitHub Pages, sem custo.
 
 ## 1. Desafio
