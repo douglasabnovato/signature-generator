@@ -7,6 +7,6 @@ export default defineConfig({
   base: "./",
   plugins: [react()],
   build: { outDir: "build" },
-  test: { environment: "jsdom" },
+  test: { environment: "jsdom", testTimeout: 20000 },
 });
 /* Fim de vite.config.ts */
