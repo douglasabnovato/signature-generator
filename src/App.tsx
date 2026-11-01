@@ -11,6 +11,7 @@ import CircularProgressWithLabel from "./components/CircularProgressWithLabel";
 import { SignatureData, ProductType } from "./types/signature";
 import { calculateProgress, hasRequiredData, safeImage } from "./utils/signatureHelpers";
 import "./App.css";
+import { trackEvent } from "./utils/metrics";
 
 export const initialState: SignatureData = {
   productType: "email-signature",
@@ -106,6 +107,7 @@ function App() {
     try {
       await copySignature(node);
       setState((p) => ({ ...p, copied: true }));
+      trackEvent("assinatura-copiada");
       notify("Assinatura copiada. Cole nas configurações de assinatura do seu e-mail.");
     } catch {
       notify("Não foi possível copiar. Selecione a prévia e use Ctrl+C.", "error");
@@ -122,6 +124,7 @@ function App() {
       link.download = `${state.productType}-${(state.fullName || "identidade").trim().replace(/\s+/g, "-").toLowerCase()}.png`;
       link.href = dataUrl;
       link.click();
+      trackEvent("assinatura-baixada");
       notify("Imagem PNG baixada.");
     } catch {
       notify("Não foi possível gerar a imagem (a foto pode estar em um site que bloqueia cópia). Tente outra URL de foto.", "error");
