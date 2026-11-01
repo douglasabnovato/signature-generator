@@ -186,3 +186,9 @@ Este projeto está sob a licença MIT.
 ---
 
 Feito com ❤️ por <a href="https://www.linkedin.com/in/douglasabnovato/"><img src="https://img.shields.io/static/v1?label=Dev&message=douglasabnovato&color=7159c1&style=for-the-badge&logo=ghost"/></a>👋🏽
+
+## Próximos passos do responsável
+
+- Testar a assinatura gerada em um e-mail real.
+
+Acompanhamento na issue #66.
