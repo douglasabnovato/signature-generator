@@ -16,7 +16,7 @@
 | 2 | Hipótese a validar | Existe uma aposta escrita, com meta | Parcial: meta proposta |
 | 3 | Fluxo principal completo | Uma pessoa conclui sem ajuda | Parcial: formulário, prévia, cópia e PNG testados; colar em e-mail real pendente (#66) |
 | 4 | Escopo enxuto | O que não entra está registrado | Atende |
-| 5 | Medição de uso | A métrica principal é coletada | Não atende: nada coleta uso |
+| 5 | Medição de uso | A métrica principal é coletada | Parcial: cópia e download registrados no código, só com o nome do evento; falta a conta do GoatCounter (#87) |
 | 6 | Falhas tratadas | Erro, vazio e carregamento têm resposta clara | Atende: falhas de cópia e de imagem têm mensagem; a prévia estreita está corrigida em PR |
 | 7 | Desempenho aceitável | LCP de até 2,5 s no celular | Não medido neste ciclo |
 | 8 | Acessibilidade básica | Lighthouse e teclado | Parcial: foco visível e rótulos; teclado não testado de ponta a ponta |

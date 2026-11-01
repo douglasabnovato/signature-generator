@@ -51,10 +51,13 @@ describe("tela", () => {
     const write = vi.fn().mockResolvedValueOnce(undefined).mockRejectedValueOnce(new Error("negado"));
     Object.assign(navigator, { clipboard: { write } });
     vi.stubGlobal("ClipboardItem", class { constructor(public items: Record<string, Blob>) {} });
+    const count = vi.fn();
+    window.goatcounter = { count };
     render(<App />);
     await fillRequired();
     await userEvent.click(screen.getByRole("button", { name: "Copiar assinatura" }));
     expect(await screen.findByText(/Assinatura copiada/)).toBeTruthy();
+    expect(count).toHaveBeenCalledWith({ path: "assinatura-copiada", title: "assinatura-copiada", event: true });
     expect(screen.getByRole("button", { name: "Copiado!" })).toBeTruthy();
     fireEvent.change(screen.getByLabelText(/Cargo e Setor/), { target: { value: "CTO" } });
     await userEvent.click(screen.getByRole("button", { name: "Copiar assinatura" }));
