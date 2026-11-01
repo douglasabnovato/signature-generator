@@ -190,5 +190,6 @@ Feito com ❤️ por <a href="https://www.linkedin.com/in/douglasabnovato/"><img
 ## Próximos passos do responsável
 
 - Testar a assinatura gerada em um e-mail real.
+- Criar uma conta gratuita no [GoatCounter](https://www.goatcounter.com/) e definir `VITE_GOATCOUNTER_CODE` no ambiente de build, com o código da conta. Sem isso, os eventos não são enviados.
 
-Acompanhamento na issue #66.
+Acompanhamento nas issues #66 e #87.
