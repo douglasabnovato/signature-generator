@@ -74,6 +74,24 @@ const Signature: React.FC<SignatureProps> = (props) => {
         );
     };
 
+    /* Links de texto para os modelos de e-mail: vários clientes removem SVG e flex, então os ícones sumiriam */
+    const renderSocialLinks = (color: string) => {
+        const links = [
+            ["LinkedIn", safeUrl(props.linkedinUrl)],
+            ["GitHub", safeUrl(props.githubUrl)],
+            ["Instagram", safeUrl(props.instagramUrl)],
+            ["WhatsApp", waLink(props.whatsappNumber)],
+            ["YouTube", safeUrl(props.youtubeUrl)],
+        ].filter(([, url]) => url);
+
+        return links.map(([name, url], index) => (
+            <React.Fragment key={name}>
+                {index > 0 && " · "}
+                <a href={url} target="_blank" rel="noopener noreferrer" style={{ color, fontSize: "12px", textDecoration: "none" }}>{name}</a>
+            </React.Fragment>
+        ));
+    };
+
     // ==========================================
     // GRUPO 1: ASSINATURAS DE E-MAIL (3 ESTILOS)
     // ==========================================
@@ -84,16 +102,16 @@ const Signature: React.FC<SignatureProps> = (props) => {
                 <table cellPadding={0} cellSpacing={0} className={"signature"} style={{ fontFamily: "sans-serif", fontSize: "14px", color: "#333" }}>
                     <tbody>
                         <tr>
-                            <td rowSpan={5} style={{ paddingRight: "12px" }}>
+                            {props.photo !== "no-photo" && <td rowSpan={5} style={{ paddingRight: "12px" }}>
                                 <img className={"main-image"} src={avatarSrc} alt={props.fullName ? `Foto de ${props.fullName}` : ""} width={"110px"} height={"110px"} style={{ borderRadius: "50%", border: "2px solid #1e3a8a", objectFit: "cover" }} />
-                            </td>
+                            </td>}
                             <td rowSpan={5} style={{ borderRight: "2px solid #1e3a8a", paddingRight: "12px" }}></td>
                             <td style={{ paddingLeft: "12px", fontWeight: "bold", fontSize: "16px", color: "#1e3a8a" }}>{props.fullName || "Seu Nome Completo"}</td>
                         </tr>
                         <tr><td style={{ paddingLeft: "12px", color: "#4b5563", fontWeight: "600", paddingBottom: "4px" }}>{props.position || "Cargo e Setor"}</td></tr>
                         <tr><td style={{ paddingLeft: "12px", color: "#6b7280", fontSize: "13px" }}>Tel: {props.phone || "(00) 00000-0000"}</td></tr>
                         <tr><td style={{ paddingLeft: "12px", fontSize: "13px" }}><a href={siteHref || undefined} target="_blank" rel="noreferrer" style={{ color: "#2563eb", textDecoration: "none" }}>{props.site || "www.site.com.br"}</a></td></tr>
-                        <tr><td style={{ paddingLeft: "12px", paddingTop: "6px" }}>{renderSocialIcons("20px")}</td></tr>
+                        <tr><td style={{ paddingLeft: "12px", paddingTop: "6px" }}>{renderSocialLinks("#2563eb")}</td></tr>
                     </tbody>
                 </table>
             );
@@ -114,7 +132,7 @@ const Signature: React.FC<SignatureProps> = (props) => {
                                                     <img src={avatarSrc} alt={props.fullName ? `Foto de ${props.fullName}` : ""} width={"45px"} height={"45px"} style={{ borderRadius: "50%", objectFit: "cover", border: "2px solid #0ea5e9" }} />
                                                 </td>
                                             )}
-                                            <td>
+                                            <td style={{ verticalAlign: "middle" }}>
                                                 <div style={{ fontWeight: "bold", fontSize: "15px", color: "#0f172a" }}>{props.fullName || "Seu Nome Completo"}</div>
                                                 <div style={{ color: "#0ea5e9", fontSize: "12px", fontWeight: "bold" }}>{props.position || "Cargo e Setor"}</div>
                                             </td>
@@ -124,7 +142,7 @@ const Signature: React.FC<SignatureProps> = (props) => {
                             </td>
                         </tr>
                         <tr><td style={{ paddingTop: "8px", fontSize: "13px", color: "#334155" }}>📱 {props.phone || "(00) 00000-0000"} &nbsp;|&nbsp; 🌐 <a href={siteHref || undefined} style={{ color: "#0ea5e9", textDecoration: "none" }}>{props.site || "site.com.br"}</a></td></tr>
-                        <tr><td style={{ paddingTop: "8px" }}>{renderSocialIcons("18px")}</td></tr>
+                        <tr><td style={{ paddingTop: "8px" }}>{renderSocialLinks("#0ea5e9")}</td></tr>
                     </tbody>
                 </table>
             );
@@ -140,7 +158,7 @@ const Signature: React.FC<SignatureProps> = (props) => {
                             <div style={{ fontWeight: "bold", fontSize: "16px", color: "#0f172a" }}>{props.fullName || "Seu Nome Completo"}</div>
                             <div style={{ color: "#475569", fontSize: "13px", marginBottom: "4px" }}>{props.position || "Cargo"} — <span style={{ color: "#2563eb" }}>{props.site || "site.com"}</span></div>
                             <div style={{ color: "#64748b", fontSize: "12px", marginBottom: "6px" }}>Tel: {props.phone || "(00) 00000-0000"}</div>
-                            <div>{renderSocialIcons("18px")}</div>
+                            <div>{renderSocialLinks("#2563eb")}</div>
                         </td>
                     </tr>
                 </tbody>
