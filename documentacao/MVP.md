@@ -18,8 +18,8 @@
 | 4 | Escopo enxuto | O que não entra está registrado | Atende |
 | 5 | Medição de uso | A métrica principal é coletada | Parcial: cópia e download registrados no código, só com o nome do evento; falta a conta do GoatCounter (#87) |
 | 6 | Falhas tratadas | Erro, vazio e carregamento têm resposta clara | Atende: falhas de cópia e de imagem têm mensagem; a prévia estreita está corrigida em PR |
-| 7 | Desempenho aceitável | LCP de até 2,5 s no celular | Não medido neste ciclo |
-| 8 | Acessibilidade básica | Lighthouse e teclado | Parcial: foco visível e rótulos; teclado não testado de ponta a ponta |
+| 7 | Desempenho aceitável | LCP de até 2,5 s no celular | Atende: mediana de 1,71 s no site publicado (3 execuções), CLS 0 |
+| 8 | Acessibilidade básica | Lighthouse e teclado | Atende: Lighthouse 100, foco por Tab em 28 passos, com borda de 2 px nos campos; a região principal foi adicionada depois do alerta do axe |
 | 9 | Segurança e conformidade | Riscos decididos; termos de terceiros cumpridos | Atende: URLs validadas; nenhum dado sai do navegador |
 | 10 | Entrega confiável | Publicação só depois de CI verde | Parcial: publica só depois do CI; `master` sem proteção |
 | 11 | Testes dos fluxos críticos | Testes automatizados no CI | Atende: regras, prévia e cópia |
@@ -31,10 +31,14 @@
 
 | # | Tarefa | Situação |
 |---|---|---|
-| 1 | Corrigir a prévia cortada em telas estreitas (#51) | PR aberto |
+| 1 | Corrigir a prévia cortada em telas estreitas (#51) | Feito |
 | 2 | Testar a assinatura em e-mail real (#66) | Com o responsável |
 | 3 | Medir cópias e downloads | Com o responsável |
 
 ## 3. Fora do MVP
 
 Contas de usuário, modelos salvos e editor visual. A lista é uma proposta e pode mudar com a decisão do responsável.
+
+## Medições de 02/11/2026
+
+Mediana do LCP de 1,71 s (1,71, 1,71 e 1,50 s), desempenho 89, acessibilidade 100. Lighthouse 12.8.2 local, perfil móvel simulado, sem aparelho real.

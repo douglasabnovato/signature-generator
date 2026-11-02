@@ -141,7 +141,7 @@ function App() {
   );
 
   return (
-    <Container maxWidth="lg" sx={{ mt: 3, mb: 5 }}>
+    <Container component="main" maxWidth="lg" sx={{ mt: 3, mb: 5 }}>
       <AppBar position="static" component="header" sx={{ borderRadius: 2, mb: 3 }}>
         <Toolbar><Typography variant="h6" component="h1">Digital Identity Suite — Gerador Profissional</Typography></Toolbar>
       </AppBar>
