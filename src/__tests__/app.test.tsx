@@ -44,7 +44,7 @@ describe("tela", () => {
     const preview = screen.getByRole("region", { name: "Pré-visualização" });
     expect(preview.textContent).toContain("Ada Lovelace");
     expect(preview.querySelector('a[href^="javascript"]')).toBeNull();
-    expect(screen.getByAltText("Foto de Ada Lovelace")).toBeTruthy();
+    expect(preview.querySelector("img")).toBeNull();
   });
 
   it("copiar usa a área de transferência com HTML e avisa falhas", async () => {
