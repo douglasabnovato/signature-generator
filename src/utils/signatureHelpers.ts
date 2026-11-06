@@ -43,6 +43,29 @@ export function initialsAvatar(name: string): string {
   return `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`;
 }
 
+/* mailto: só para e-mail com formato válido (nome@dominio.tld) */
+export function mailtoLink(email: string): string {
+  const e = String(email || "").trim();
+  return /^[^\s@<>"]+@[^\s@<>"]+\.[a-z]{2,}$/i.test(e) ? `mailto:${e}` : "";
+}
+
+/* tel: com dígitos (e o + do DDI), para o telefone abrir a discagem no celular */
+export function telLink(phone: string): string {
+  const s = String(phone || "").trim();
+  const d = s.replace(/\D/g, "");
+  if (d.length < 8 || d.length > 15) return "";
+  return `tel:${s.startsWith("+") ? "+" : ""}${d}`;
+}
+
+/* Aviso para a foto da assinatura de e-mail: o Gmail pede imagem por link público e
+   vários clientes não mostram imagem embutida (base64) nem link http sem "s" */
+export function photoWarning(photo: string): string {
+  const s = String(photo || "").trim();
+  if (/^data:image\//i.test(s)) return "Imagem embutida (base64) pode não aparecer no Gmail e no Outlook. Prefira um link https:// público da imagem.";
+  if (/^http:\/\//i.test(s)) return "Link sem https:// pode ser bloqueado pelo cliente de e-mail. Use https://.";
+  return "";
+}
+
 /* Dados obrigatórios preenchidos para mostrar a prévia */
 export function hasRequiredData(s: SignatureData): boolean {
   const base = Boolean(s.fullName.trim() && s.phone.trim() && s.position.trim() && s.site.trim());
