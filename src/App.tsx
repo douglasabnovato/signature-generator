@@ -9,7 +9,7 @@ import { toPng } from "html-to-image";
 import Signature from "./components/Signature";
 import CircularProgressWithLabel from "./components/CircularProgressWithLabel";
 import { SignatureData, ProductType } from "./types/signature";
-import { calculateProgress, hasRequiredData, safeImage } from "./utils/signatureHelpers";
+import { calculateProgress, hasRequiredData, mailtoLink, photoWarning, safeImage } from "./utils/signatureHelpers";
 import "./App.css";
 import { trackEvent } from "./utils/metrics";
 
@@ -134,6 +134,8 @@ function App() {
   const progress = calculateProgress(state);
   const ready = hasRequiredData(state);
   const photoInvalid = state.withPhoto && state.photo.trim() !== "" && !safeImage(state.photo);
+  const photoHint = state.withPhoto && !photoInvalid && state.productType === "email-signature" ? photoWarning(state.photo) : "";
+  const emailInvalid = state.email.trim() !== "" && !mailtoLink(state.email);
   const pristine = JSON.stringify(state) === JSON.stringify(initialState);
   const field = (key: keyof SignatureData, label: string, type = "text", required = false) => (
     <TextField key={key} fullWidth margin="dense" required={required} label={label} name={key} type={type}
@@ -158,12 +160,15 @@ function App() {
                 {TEMPLATES[state.productType].map(([v, l]) => <MenuItem key={v} value={v}>{l}</MenuItem>)}
               </TextField>
               {REQUIRED.map(([k, l, t]) => field(k, l, t, true))}
+              <TextField fullWidth margin="dense" label="E-mail profissional (opcional)" name="email" type="email" value={state.email} onChange={handleChange}
+                error={emailInvalid} helperText={emailInvalid ? "Use o formato nome@empresa.com.br." : "Vira um link mailto: na assinatura."} />
               {state.productType === "digital-badge" && BADGE.map(([k, l]) => field(k, l))}
               {SOCIAL.map(([k, l]) => field(k, l, k === "whatsappNumber" ? "tel" : "url"))}
               <FormControlLabel control={<Switch checked={state.withPhoto} onChange={handleChange} name="withPhoto" />} label={state.withPhoto ? "Foto habilitada" : "Sem foto"} />
               {state.withPhoto && (
                 <TextField fullWidth margin="dense" required label="Link da Foto de Perfil" name="photo" value={state.photo} onChange={handleChange}
-                  error={photoInvalid} helperText={photoInvalid ? "Use um link https:// para uma imagem (ou uma imagem em base64)." : " "} />
+                  error={photoInvalid} helperText={photoInvalid ? "Use um link https:// para uma imagem (ou uma imagem em base64)." : photoHint || " "}
+                  slotProps={{ formHelperText: { sx: photoHint ? { color: "#92400e" } : undefined } }} />
               )}
               <Button disabled={pristine} onClick={() => setState(initialState)} color="secondary" sx={{ mt: 1 }}>Limpar campos</Button>
             </Box>

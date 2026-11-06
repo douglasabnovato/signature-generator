@@ -1,13 +1,23 @@
 /* Modelos de assinatura, crachá e cartão com estilos inline (compatíveis com clientes de e-mail); links saneados */
 import React from "react";
 import { SignatureData } from "../types/signature";
-import { initialsAvatar, safeImage, safeUrl, waLink } from "../utils/signatureHelpers";
+import { initialsAvatar, mailtoLink, safeImage, safeUrl, telLink, waLink } from "../utils/signatureHelpers";
 
 type SignatureProps = SignatureData;
 
 const Signature: React.FC<SignatureProps> = (props) => {
     const avatarSrc = (props.photo !== "no-photo" && safeImage(props.photo)) || initialsAvatar(props.fullName);
     const siteHref = safeUrl(props.site);
+    const mailHref = mailtoLink(props.email);
+    const telHref = telLink(props.phone);
+
+    /* Telefone clicável (tel:) quando válido; senão, texto */
+    const phoneText = (fallback: string, color: string) => telHref
+        ? <a href={telHref} style={{ color, textDecoration: "none" }}>{props.phone}</a>
+        : <>{props.phone || fallback}</>;
+
+    /* E-mail clicável (mailto:), só quando válido */
+    const emailLink = (color: string) => <a href={mailHref} style={{ color, textDecoration: "none" }}>{props.email.trim()}</a>;
 
     /* Ícones de redes sociais com SVGs inline; só aparecem links http(s) válidos */
     const renderSocialIcons = (size = "20px") => {
@@ -102,14 +112,15 @@ const Signature: React.FC<SignatureProps> = (props) => {
                 <table cellPadding={0} cellSpacing={0} className={"signature"} style={{ fontFamily: "sans-serif", fontSize: "14px", color: "#333" }}>
                     <tbody>
                         <tr>
-                            {props.photo !== "no-photo" && <td rowSpan={5} style={{ paddingRight: "12px" }}>
+                            {props.photo !== "no-photo" && <td rowSpan={mailHref ? 6 : 5} style={{ paddingRight: "12px" }}>
                                 <img className={"main-image"} src={avatarSrc} alt={props.fullName ? `Foto de ${props.fullName}` : ""} width={"110px"} height={"110px"} style={{ borderRadius: "50%", border: "2px solid #1e3a8a", objectFit: "cover" }} />
                             </td>}
-                            <td rowSpan={5} style={{ borderRight: "2px solid #1e3a8a", paddingRight: "12px" }}></td>
+                            <td rowSpan={mailHref ? 6 : 5} style={{ borderRight: "2px solid #1e3a8a", paddingRight: "12px" }}></td>
                             <td style={{ paddingLeft: "12px", fontWeight: "bold", fontSize: "16px", color: "#1e3a8a" }}>{props.fullName || "Seu Nome Completo"}</td>
                         </tr>
                         <tr><td style={{ paddingLeft: "12px", color: "#4b5563", fontWeight: "600", paddingBottom: "4px" }}>{props.position || "Cargo e Setor"}</td></tr>
-                        <tr><td style={{ paddingLeft: "12px", color: "#6b7280", fontSize: "13px" }}>Tel: {props.phone || "(00) 00000-0000"}</td></tr>
+                        <tr><td style={{ paddingLeft: "12px", color: "#6b7280", fontSize: "13px" }}>Tel: {phoneText("(00) 00000-0000", "#6b7280")}</td></tr>
+                        {mailHref && <tr><td style={{ paddingLeft: "12px", color: "#6b7280", fontSize: "13px" }}>E-mail: {emailLink("#2563eb")}</td></tr>}
                         <tr><td style={{ paddingLeft: "12px", fontSize: "13px" }}><a href={siteHref || undefined} target="_blank" rel="noreferrer" style={{ color: "#2563eb", textDecoration: "none" }}>{props.site || "www.site.com.br"}</a></td></tr>
                         <tr><td style={{ paddingLeft: "12px", paddingTop: "6px" }}>{renderSocialLinks("#2563eb")}</td></tr>
                     </tbody>
@@ -141,7 +152,7 @@ const Signature: React.FC<SignatureProps> = (props) => {
                                 </table>
                             </td>
                         </tr>
-                        <tr><td style={{ paddingTop: "8px", fontSize: "13px", color: "#334155" }}>📱 {props.phone || "(00) 00000-0000"} &nbsp;|&nbsp; 🌐 <a href={siteHref || undefined} style={{ color: "#0ea5e9", textDecoration: "none" }}>{props.site || "site.com.br"}</a></td></tr>
+                        <tr><td style={{ paddingTop: "8px", fontSize: "13px", color: "#334155" }}>📱 {phoneText("(00) 00000-0000", "#334155")} &nbsp;|&nbsp; 🌐 <a href={siteHref || undefined} style={{ color: "#0ea5e9", textDecoration: "none" }}>{props.site || "site.com.br"}</a>{mailHref && <> &nbsp;|&nbsp; ✉️ {emailLink("#0ea5e9")}</>}</td></tr>
                         <tr><td style={{ paddingTop: "8px" }}>{renderSocialLinks("#0ea5e9")}</td></tr>
                     </tbody>
                 </table>
@@ -157,7 +168,7 @@ const Signature: React.FC<SignatureProps> = (props) => {
                         <td style={{ paddingLeft: "12px" }}>
                             <div style={{ fontWeight: "bold", fontSize: "16px", color: "#0f172a" }}>{props.fullName || "Seu Nome Completo"}</div>
                             <div style={{ color: "#475569", fontSize: "13px", marginBottom: "4px" }}>{props.position || "Cargo"} — <span style={{ color: "#2563eb" }}>{props.site || "site.com"}</span></div>
-                            <div style={{ color: "#64748b", fontSize: "12px", marginBottom: "6px" }}>Tel: {props.phone || "(00) 00000-0000"}</div>
+                            <div style={{ color: "#64748b", fontSize: "12px", marginBottom: "6px" }}>Tel: {phoneText("(00) 00000-0000", "#64748b")}{mailHref && <> · {emailLink("#2563eb")}</>}</div>
                             <div>{renderSocialLinks("#2563eb")}</div>
                         </td>
                     </tr>

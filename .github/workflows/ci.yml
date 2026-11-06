@@ -1,12 +1,14 @@
-# CI: testes e build em PR; publica no GitHub Pages (branch gh-pages) só em push na master
+# CI: testes e build em PR e push (master e developer/**); publica no GitHub Pages (branch gh-pages) só em push na master
 name: CI
 on:
   push:
     branches:
       - master
+      - "developer/**"
   pull_request:
     branches:
       - master
+      - "developer/**"
 permissions:
   contents: read
 jobs:
