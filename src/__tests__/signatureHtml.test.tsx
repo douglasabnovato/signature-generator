@@ -9,7 +9,7 @@ import manifestRaw from "../../public/manifest.json?raw";
 
 const TEMPLATES: EmailTemplateType[] = ["classic", "modern", "minimalist"];
 
-const html = (template: EmailTemplateType, photo = "no-photo") =>
+const html = (template: EmailTemplateType, photo = "no-photo", email = "") =>
   renderToStaticMarkup(
     <Signature
       {...initialState}
@@ -20,6 +20,7 @@ const html = (template: EmailTemplateType, photo = "no-photo") =>
       phone="(11) 90000-0000"
       site="empresa.com.br"
       photo={photo}
+      email={email}
       linkedinUrl="https://www.linkedin.com/in/exemplo"
       githubUrl="javascript:alert(1)"
       whatsappNumber="5511900000000"
@@ -38,11 +39,11 @@ describe.each(TEMPLATES)("assinatura de e-mail %s", (template) => {
     expect(out).not.toMatch(/<script|<style|<svg|<link|\son\w+=|display:\s*flex/i);
   });
 
-  it("só tem links http(s), todos com estilo inline, e recusa o inválido", () => {
+  it("só tem links http(s) ou tel:, todos com estilo inline, e recusa o inválido", () => {
     const links = out.match(/<a [^>]*>/g) ?? [];
     expect(links.length).toBeGreaterThan(0);
     for (const a of links) {
-      expect(a).toMatch(/href="https?:\/\//);
+      expect(a).toMatch(/href="(https?:\/\/|tel:)/);
       expect(a).toContain("style=");
     }
     expect(out).toContain("LinkedIn");
@@ -53,6 +54,19 @@ describe.each(TEMPLATES)("assinatura de e-mail %s", (template) => {
 
   it("sem foto, não inclui imagem", () => {
     expect(out).not.toContain("<img");
+  });
+});
+
+describe.each(TEMPLATES)("contato clicável em %s", (template) => {
+  it("telefone vira tel: e e-mail válido vira mailto:", () => {
+    const out = html(template, "no-photo", "ada@empresa.com.br");
+    expect(out).toContain('href="tel:11900000000"');
+    expect(out).toContain('href="mailto:ada@empresa.com.br"');
+    expect(out).not.toMatch(/display:\s*flex/i);
+  });
+
+  it("e-mail inválido não aparece", () => {
+    expect(html(template, "no-photo", "ada@")).not.toContain("mailto:");
   });
 });
 
