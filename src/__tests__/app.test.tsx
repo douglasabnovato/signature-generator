@@ -3,7 +3,7 @@ import { describe, it, expect, vi, beforeEach } from "vitest";
 import { render, screen, cleanup, fireEvent } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import App, { initialState } from "../App";
-import { calculateProgress, initialsAvatar, safeImage, safeUrl, waLink } from "../utils/signatureHelpers";
+import { calculateProgress, initialsAvatar, mailtoLink, photoWarning, safeImage, safeUrl, telLink, waLink } from "../utils/signatureHelpers";
 
 beforeEach(() => cleanup());
 
@@ -19,6 +19,17 @@ describe("regras", () => {
     expect(waLink("+55 (11) 98888-7777")).toBe("https://wa.me/5511988887777");
     expect(waLink("123")).toBe("");
     expect(decodeURIComponent(initialsAvatar("Ada Lovelace"))).toContain(">AL<");
+  });
+  it("mailto, tel e aviso da foto", () => {
+    expect(mailtoLink(" ada@empresa.com.br ")).toBe("mailto:ada@empresa.com.br");
+    expect(mailtoLink("ada@empresa")).toBe("");
+    expect(mailtoLink("a b@empresa.com")).toBe("");
+    expect(telLink("+55 (11) 98888-7777")).toBe("tel:+5511988887777");
+    expect(telLink("(11) 98888-7777")).toBe("tel:11988887777");
+    expect(telLink("123")).toBe("");
+    expect(photoWarning("data:image/png;base64,iVBORw0KGgo=")).toMatch(/base64/);
+    expect(photoWarning("http://exemplo.com/f.png")).toMatch(/https/);
+    expect(photoWarning("https://exemplo.com/f.png")).toBe("");
   });
   it("progresso conta campos preenchidos", () => {
     expect(calculateProgress({ ...initialState, fullName: "A", phone: "1" })).toBe(50);
@@ -62,6 +73,29 @@ describe("tela", () => {
     fireEvent.change(screen.getByLabelText(/Cargo e Setor/), { target: { value: "CTO" } });
     await userEvent.click(screen.getByRole("button", { name: "Copiar assinatura" }));
     expect(await screen.findByText(/Não foi possível copiar/)).toBeTruthy();
+  });
+});
+describe("e-mail e foto", () => {
+  it("valida o e-mail e o leva para a prévia", async () => {
+    render(<App />);
+    await fillRequired();
+    const email = screen.getByLabelText(/E-mail profissional/);
+    await userEvent.type(email, "ada@");
+    expect(screen.getByText(/Use o formato nome@empresa/)).toBeTruthy();
+    await userEvent.type(email, "empresa.com.br");
+    const preview = screen.getByRole("region", { name: "Pré-visualização" });
+    expect(preview.querySelector('a[href="mailto:ada@empresa.com.br"]')).toBeTruthy();
+    expect(preview.querySelector('a[href="tel:11988887777"]')).toBeTruthy();
+  });
+
+  it("avisa quando a foto da assinatura é base64", async () => {
+    render(<App />);
+    await fillRequired();
+    await userEvent.click(screen.getByLabelText("Sem foto"));
+    fireEvent.change(screen.getByLabelText(/Link da Foto/), { target: { value: "data:image/png;base64,iVBORw0KGgo=" } });
+    expect(screen.getByText(/pode não aparecer no Gmail/)).toBeTruthy();
+    fireEvent.change(screen.getByLabelText(/Link da Foto/), { target: { value: "https://exemplo.com/f.png" } });
+    expect(screen.queryByText(/pode não aparecer no Gmail/)).toBeNull();
   });
 });
 /* Fim de app.test.tsx */
