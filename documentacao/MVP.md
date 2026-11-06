@@ -20,7 +20,7 @@
 | 4 | Escopo enxuto | O que não entra está registrado | Atende |
 | 5 | Medição de uso | A métrica principal é coletada | Parcial: cópia e download registrados no código, só com o nome do evento; falta a conta do GoatCounter (#87) |
 | 6 | Falhas tratadas | Erro, vazio e carregamento têm resposta clara | Atende: falhas de cópia e de imagem têm mensagem; a prévia estreita está corrigida em PR |
-| 7 | Desempenho aceitável | LCP de até 2,5 s no celular | Atende: mediana de 1,71 s no site publicado (3 execuções), CLS 0 |
+| 7 | Desempenho aceitável | LCP de até 2,5 s no celular | Atende: mediana de 1,66 s no site publicado em 06/11/2026 (3 execuções); era 1,71 s em 02/11 |
 | 8 | Acessibilidade básica | Lighthouse e teclado | Atende: Lighthouse 100, foco por Tab em 28 passos, com borda de 2 px nos campos; a região principal foi adicionada depois do alerta do axe |
 | 9 | Segurança e conformidade | Riscos decididos; termos de terceiros cumpridos | Atende: URLs validadas; nenhum dado sai do navegador |
 | 10 | Entrega confiável | Publicação só depois de CI verde | Parcial: publica só depois do CI; `master` sem proteção, conferido pela API em 06/11/2026 (#101) |
@@ -46,3 +46,7 @@ Contas de usuário, modelos salvos e editor visual. A lista é uma proposta e po
 ## Medições de 02/11/2026
 
 Mediana do LCP de 1,71 s (1,71, 1,71 e 1,50 s), desempenho 89, acessibilidade 100. Lighthouse 12.8.2 local, perfil móvel simulado, sem aparelho real.
+
+## Medições de 06/11/2026
+
+Site publicado depois do PR #106 (bundle `index-CUVXHT6R.js`, com o contato clicável). Mediana do LCP de 1,66 s (1,66, 1,73 e 1,66 s), desempenho 80, 83 e 85, acessibilidade 100 nas 3 execuções. Lighthouse 12.8.2 local, perfil móvel simulado, sem aparelho real. Duas execuções anteriores pararam com `NO_FCP` (Chrome sem pintar a página no computador sobrecarregado) e foram descartadas.
