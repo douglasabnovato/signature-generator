@@ -50,7 +50,7 @@ test("o GoatCounter não carrega nos testes nem em localhost", async ({ page }) 
   expect(pedidos.filter((u) => /goatcounter|gc\.zgo\.at/.test(u))).toEqual([]);
 });
 
-test("no site publicado, copiar registra o evento no GoatCounter do portfólio", async ({ page, context }) => {
+test("no site publicado, copiar e baixar registram os eventos no GoatCounter do portfólio", async ({ page, context }) => {
   await context.grantPermissions(["clipboard-read", "clipboard-write"]);
   // Simula o navegador de um visitante: sem a marca de automação e fora de localhost.
   await page.addInitScript(() => Object.defineProperty(navigator, "webdriver", { get: () => false }));
@@ -72,10 +72,14 @@ test("no site publicado, copiar registra o evento no GoatCounter do portfólio",
   await preencher(page);
   await page.getByRole("button", { name: "Copiar assinatura" }).click();
   await expect(page.getByText(/Assinatura copiada/)).toBeVisible();
-  expect(await page.evaluate(() => (window as unknown as { contagens: unknown[] }).contagens)).toContainEqual({
-    path: "assinatura-copiada",
-    title: "assinatura-copiada",
-    event: true,
-  });
+  await Promise.all([
+    page.waitForEvent("download"),
+    page.getByRole("button", { name: "Baixar como imagem (PNG)" }).click(),
+  ]);
+  await expect(page.getByText("Imagem PNG baixada.")).toBeVisible();
+  const contagens = await page.evaluate(() => (window as unknown as { contagens: unknown[] }).contagens);
+  for (const nome of ["assinatura-copiada", "assinatura-baixada"]) {
+    expect(contagens).toContainEqual({ path: nome, title: nome, event: true });
+  }
 });
 /* Fim de e2e/fluxo.pw.ts */
