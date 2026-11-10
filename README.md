@@ -189,10 +189,11 @@ Feito com ❤️ por <a href="https://www.linkedin.com/in/douglasabnovato/"><img
 
 ## Estado e próximos passos (ciclo de 03/11/2026)
 
-No ar em https://douglasabnovato.github.io/signature-generator/ (HTTP 200 em 06/11/2026). Nível Vitrine (N2): 8 de 12 critérios atendidos, Finalizado: sim. Os 4 parciais dependem do responsável.
+No ar em https://douglasabnovato.github.io/signature-generator/ (HTTP 200 em 06/11/2026). Nível Vitrine (N2): 9 de 12 critérios atendidos em 10/11/2026, Finalizado: sim. Os 3 parciais dependem do responsável.
 
 **O que foi feito**
 
+- `master` protegida pelo ruleset `principal-protegida` desde 10/11/2026: só recebe mudanças por PR; critério 10 atende.
 - Telefone vira link `tel:` e e-mail válido vira `mailto:` nos 3 modelos de assinatura (PR #99).
 - Campo de e-mail profissional validado e aviso quando a foto é base64 ou `http://` (PR #99).
 - CI também nos PRs e pushes para `developer/**` (PR #99).
@@ -201,7 +202,7 @@ No ar em https://douglasabnovato.github.io/signature-generator/ (HTTP 200 em 06/
 
 **O que queremos fazer**
 
-- Do responsável: testar a assinatura no Gmail e no Outlook (#96), criar a conta de medição (#87), confirmar a meta (#100) e proteger a `master` (#101).
+- Do responsável: testar a assinatura no Gmail e no Outlook (#96), criar a conta de medição (#87), e confirmar a meta (#100).
 - Do código: avisar quando a assinatura passar do limite do Gmail (#102), testar o download do PNG (#103), decidir os PRs do Dependabot de versão maior (#104) e salvar os dados no navegador (#105).
 
 **Onde está a documentação**
