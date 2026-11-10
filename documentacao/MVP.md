@@ -2,7 +2,11 @@
 
 > Criado em 31/10/2026, com os critérios usados no `movies`. Revisto em 06/11/2026 (ciclo de 03/11/2026, PR #99).
 
-**Nível:** Vitrine (N2), 12 critérios. **Finalizado: sim** — os 4 critérios parciais dependem do responsável e cada um tem issue com o rótulo `depende-do-responsavel` (#100, #96, #87, #101).
+**Resumo:** 9 de 12 aplicáveis atendidos
+
+**Finalizado:** sim
+
+**Nível:** Vitrine (N2), 12 critérios. Os 3 critérios parciais dependem do responsável e cada um tem issue com o rótulo `depende-do-responsavel` (#100, #96, #87). O 10 passou a "Atende" em 10/11/2026, com a `master` protegida (#101).
 
 ## Problema e hipótese
 
@@ -23,11 +27,11 @@
 | 7 | Desempenho aceitável | LCP de até 2,5 s no celular | Atende: mediana de 1,66 s no site publicado em 06/11/2026 (3 execuções); era 1,71 s em 02/11 |
 | 8 | Acessibilidade básica | Lighthouse e teclado | Atende: Lighthouse 100, foco por Tab em 28 passos, com borda de 2 px nos campos; a região principal foi adicionada depois do alerta do axe |
 | 9 | Segurança e conformidade | Riscos decididos; termos de terceiros cumpridos | Atende: URLs validadas; nenhum dado sai do navegador |
-| 10 | Entrega confiável | Publicação só depois de CI verde | Parcial: publica só depois do CI; `master` sem proteção, conferido pela API em 06/11/2026 (#101) |
+| 10 | Entrega confiável | Publicação só depois de CI verde | Atende (10/11/2026): `gh api repos/douglasabnovato/signature-generator/rulesets`, em 10/11/2026: ruleset `principal-protegida` ativo (exige PR, bloqueia force push e exclusão); workflow `CI` roda nos PRs para `master` e `developer/**` e publica só depois do build e dos testes (#101) |
 | 11 | Testes dos fluxos críticos | Testes automatizados no CI | Atende: 33 testes Vitest no CI (regras, prévia, cópia, HTML dos 3 modelos, `tel:` e `mailto:`, aviso da foto) |
 | 12 | Documentação honesta | Qualquer pessoa roda o projeto, e os números estão certos | Atende com este documento |
 
-**Resultado:** 8 de 12 critérios atendidos por inteiro (1, 4, 6, 7, 8, 9, 11 e 12) e 4 parciais (2, 3, 5 e 10), todos dependentes do responsável. É um julgamento técnico.
+**Resultado:** 9 de 12 critérios atendidos por inteiro (1, 4, 6, 7, 8, 9, 10, 11 e 12) e 3 parciais (2, 3 e 5), todos dependentes do responsável. É um julgamento técnico.
 
 ## 2. Tarefas
 
@@ -37,7 +41,7 @@
 | 2 | Testar a assinatura em e-mail real (#96) | Com o responsável |
 | 3 | Medir cópias e downloads (#87) | Com o responsável |
 | 4 | Telefone e e-mail clicáveis e aviso da foto (PR #99) | Feito |
-| 5 | Confirmar a meta (#100) e proteger a `master` (#101) | Com o responsável |
+| 5 | Confirmar a meta (#100) e proteger a `master` (#101) | Meta com o responsável; `master` protegida em 10/11/2026 |
 
 ## 3. Fora do MVP
 
