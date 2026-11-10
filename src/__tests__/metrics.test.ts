@@ -1,6 +1,6 @@
 /* Testes da medição: envia só o nome do evento e não quebra sem o contador */
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import { loadMetrics, trackEvent } from '../utils/metrics';
+import { CODIGO_PORTFOLIO, deveMedir, loadMetrics, trackEvent } from '../utils/metrics';
 
 afterEach(() => {
   delete window.goatcounter;
@@ -27,5 +27,15 @@ describe('metrics', () => {
     expect(document.querySelector('script')).toBeNull();
     loadMetrics('minha-conta');
     expect(document.querySelector('script')?.dataset.goatcounter).toBe('https://minha-conta.goatcounter.com/count');
+  });
+
+  it('usa o código do portfólio e só mede no site publicado', () => {
+    expect(CODIGO_PORTFOLIO).toBe('douglasabnovato');
+    const publicado = { producao: true, hostname: 'douglasabnovato.github.io', automatizado: false };
+    expect(deveMedir(publicado)).toBe(true);
+    expect(deveMedir({ ...publicado, producao: false })).toBe(false);
+    expect(deveMedir({ ...publicado, automatizado: true })).toBe(false);
+    expect(deveMedir({ ...publicado, hostname: 'localhost' })).toBe(false);
+    expect(deveMedir()).toBe(false);
   });
 });

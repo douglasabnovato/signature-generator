@@ -1,4 +1,4 @@
-# CI: testes e build em PR e push (master e developer/**); publica no GitHub Pages (branch gh-pages) só em push na master
+# CI: testes, build e fluxo no navegador (Playwright) em PR e push (master e developer/**); publica no GitHub Pages (branch gh-pages) só em push na master
 name: CI
 on:
   push:
@@ -26,8 +26,18 @@ jobs:
         with:
           name: build
           path: build
+  e2e:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22, cache: npm }
+      - run: npm ci
+      - run: npm run build
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:e2e
   deploy:
-    needs: build-and-test
+    needs: [build-and-test, e2e]
     if: github.event_name == 'push' && github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
     permissions:

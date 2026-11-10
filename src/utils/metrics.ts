@@ -5,6 +5,23 @@ declare global {
   }
 }
 
+/* Conta única do portfólio (decisão D5 de 10/11/2026); VITE_GOATCOUNTER_CODE troca, se preciso */
+export const CODIGO_PORTFOLIO = 'douglasabnovato';
+
+interface Ambiente { producao: boolean; hostname: string; automatizado: boolean }
+
+const ambienteAtual = (): Ambiente => ({
+  producao: import.meta.env.PROD,
+  hostname: location.hostname,
+  automatizado: navigator.webdriver === true,
+});
+
+/* Mede só no build de produção, fora de localhost e fora de navegador automatizado (testes) */
+export function deveMedir(amb: Ambiente = ambienteAtual()): boolean {
+  if (!amb.producao || amb.automatizado) return false;
+  return !['localhost', '127.0.0.1', '[::1]', ''].includes(amb.hostname);
+}
+
 /* Carrega o contador só se o código da conta estiver configurado */
 export function loadMetrics(code: string | undefined = import.meta.env.VITE_GOATCOUNTER_CODE): void {
   if (!code || !/^[a-z0-9-]+$/.test(code)) return;
