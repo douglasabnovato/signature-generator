@@ -52,8 +52,10 @@ async function fillRequired(site = "empresa.com.br") {
 describe("tela", () => {
   it("mostra progresso e depois a prévia com link saneado", async () => {
     render(<App />);
+    expect(screen.getByText(/Preencha os dados obrigatórios no formulário/)).toBeTruthy();
     await userEvent.type(screen.getByLabelText(/Nome Completo/), "Ada");
     expect(screen.getByText("25%")).toBeTruthy();
+    expect(screen.getByText(/Complete os campos obrigatórios/)).toBeTruthy();
     await userEvent.clear(screen.getByLabelText(/Nome Completo/));
     await fillRequired("javascript:alert(1)");
     const preview = screen.getByRole("region", { name: "Pré-visualização" });
