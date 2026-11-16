@@ -12,6 +12,70 @@ Timebox: 40 min.
 | Could | Salvar os dados no navegador | Médio | Baixo | Próximo ciclo |
 | Could | Upload de foto (hoje é URL) | Médio | Médio | Próximo ciclo |
 
+## Ciclo de 16/11/2026
+
+### Produto
+
+**Problema e público.** Profissionais geram uma assinatura de e-mail, um crachá ou um cartão digital sem saber HTML ou design.
+
+**Hipótese e meta.** Acreditamos que a prévia ao vivo faz quem preenche os campos obrigatórios levar o resultado. Meta: pelo menos 50% copiam ou baixam. Saberemos quando o GoatCounter mostrar, em uma semana, os eventos `assinatura-copiada` e `assinatura-baixada` contra as visitas (#87). A meta pode ser trocada pelo responsável (#100).
+
+**O que a análise mostrou.**
+- O site no ar ainda serve o build de 06/11/2026 (`index-CUVXHT6R.js`, `Last-Modified` de 06/11). O deploy de 16/11 falhou com 403 no `github-actions[bot]` (#112, do responsável). O GoatCounter e o resto do ciclo de 10/11 estão na `master`, mas não no ar.
+- O critério 8 estava "Atende" com Lighthouse e teclado manual. A régua pede axe dentro do teste de navegador e teste de teclado. Estava sem evidência: passa a "Parcial" até o teste existir.
+- A falha do download (quando `toPng` falha) tem mensagem, mas não tem teste (#103).
+- Os PRs #72 e #68 do Dependabot são de versão maior e mexem em pacotes que o projeto não usa mais (`react-scripts` e `postcss` 7, do CRA).
+
+**O que a pesquisa trouxe.**
+
+| Ideia | O que levamos para o projeto | Fonte |
+|---|---|---|
+| Limite de 10.000 caracteres na assinatura do Gmail, com as imagens contando | Aviso na tela com o tamanho do HTML copiado, e a sugestão de link https para a foto (#102) | [Google Workspace: assinatura de até 10.000 caracteres](https://support.google.com/a/users/answer/9259758), [Gmail: criar uma assinatura](https://support.google.com/mail/answer/8395?hl=pt-BR) |
+| axe dentro do teste de navegador, com `AxeBuilder` do `@axe-core/playwright` | Teste do fluxo com axe, com a prévia visível e os dados preenchidos | [Playwright: Accessibility testing](https://playwright.dev/docs/accessibility-testing) |
+| Foco visível em todo controle (WCAG 2.4.7) | Teste só com teclado: `Tab` até os campos e botões, contorno visível, `Esc` fecha a lista de produtos | [W3C: Understanding Focus Visible](https://www.w3.org/WAI/WCAG22/Understanding/focus-visible.html) |
+
+**Backlog priorizado (impacto × esforço).**
+
+| Prioridade | Item | Impacto | Esforço | Destino |
+|---|---|---|---|---|
+| 1 | axe e teclado no Playwright (critério 8) | Alto | Baixo | Este ciclo |
+| 2 | Teste da falha do PNG (#103, critério 6) | Médio | Baixo | Este ciclo |
+| 3 | Aviso do limite do Gmail (#102) | Médio | Baixo | Este ciclo |
+| 4 | Decidir os PRs #72 e #68 (#104) | Baixo | Baixo | Este ciclo |
+| 5 | Deploy de volta (#112) | Alto | Baixo | Responsável |
+| 6 | Conta do GoatCounter (#87) | Alto | Baixo | Responsável |
+| 7 | Salvar os dados no navegador (#105) | Médio | Médio | Issue |
+| 8 | Tirar o build antigo do CRA de `docs/` e `public/` | Baixo | Baixo | Issue |
+
+**Fora do escopo.** Contas de usuário, modelos salvos na nuvem, editor visual, upload de foto e tema escuro do app (o botão "Escuro" muda só o fundo da prévia).
+
+### Engenharia
+
+**Arquitetura.** Sem mudança: SPA React 18, Vite 8 e MUI 7. Formulário em `src/App.tsx`, modelos em `src/components/Signature.tsx`, regras puras em `src/utils/signatureHelpers.ts`. Publicação na branch `gh-pages` pelo CI, só em push na `master`.
+
+**Riscos.**
+- O deploy está parado (#112). Até ele voltar, o que entra na `master` não chega ao site.
+- O tamanho que o Gmail conta pode ser diferente do `outerHTML` que copiamos. O aviso é uma estimativa e diz isso.
+
+**Qualidade.**
+- Testes: Vitest para a falha do PNG e para o aviso do Gmail; Playwright com axe e teclado.
+- Acessibilidade: axe sem violações em largura de desktop, com dados reais. O app não tem tema escuro próprio, então não há teste no escuro.
+- Desempenho: Lighthouse móvel no site publicado, 3 execuções.
+- Segurança: `npm audit --omit=dev` e alertas abertos do Dependabot pela API.
+
+**Definição de pronto.** `npm test`, `npm run build` e `npm run test:e2e` passam; CI verde no PR; `MVP.md` com evidência real em cada "Atende"; README e `DEPLOY.md` atualizados.
+
+### Plano de ação
+
+**Este ciclo executa.**
+1. Teste da falha do PNG (#103).
+2. axe e teclado no Playwright.
+3. Aviso do limite do Gmail (#102), com teste.
+4. Fechar os PRs #72 e #68 com o motivo (#104).
+5. `MVP.md`, README e `DEPLOY.md` com o estado de 16/11/2026.
+
+**Vira issue.** Build antigo do CRA em `docs/` e `public/index.html`; #105 segue aberta; #87, #96, #100 e #112 seguem com o responsável.
+
 ## Ciclo de 03/11/2026
 
 > Branch `feature/2026-11-05` → `developer/sprint-2026-11-05` → `master`. Nível: Vitrine (N2), 12 critérios.
