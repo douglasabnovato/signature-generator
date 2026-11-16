@@ -9,7 +9,7 @@
 
 ### Passo a passo do responsável (#112)
 
-1. **Settings → Actions → General → Workflow permissions:** marcar **Read and write permissions** e clicar em **Save**, mesmo que já pareça marcado.
+1. **Settings → Actions → General → Workflow permissions:** marcar **Read and write permissions** e clicar em **Save**, mesmo que já pareça marcado. Atenção: o job já declara `contents: write`, e essa opção só vale como padrão para workflows sem `permissions`. Este passo pode não resolver; se o 403 seguir no passo 3, ir direto ao passo 5.
 2. **Settings → Rules → Rulesets:** conferir que só existe o `principal-protegida`, com alvo `~DEFAULT_BRANCH`. Se houver outra regra que pegue todas as branches, ela barra o push na `gh-pages`.
 3. **Actions → CI → run 43799581411 → Re-run failed jobs.** O job `deploy` precisa ficar verde.
 4. Conferir: `curl -s https://douglasabnovato.github.io/signature-generator/ | grep -o 'index-[A-Za-z0-9_-]*\.js'` deve mostrar um nome diferente de `index-CUVXHT6R.js`.
