@@ -66,6 +66,15 @@ export function photoWarning(photo: string): string {
   return "";
 }
 
+/* Limite da assinatura no Gmail: 10.000 caracteres, contando o HTML e as imagens embutidas
+   (support.google.com/a/users/answer/9259758). O tamanho do outerHTML copiado é uma estimativa */
+export const GMAIL_LIMIT = 10000;
+export function gmailLimitWarning(htmlLength: number, fotoBase64 = false): string {
+  if (htmlLength <= GMAIL_LIMIT) return "";
+  const base = "A assinatura passa do limite de 10.000 caracteres do Gmail, que conta o HTML e as imagens embutidas.";
+  return fotoBase64 ? `${base} Use um link https:// para a foto em vez de imagem base64.` : `${base} Encurte os textos e os links.`;
+}
+
 /* Dados obrigatórios preenchidos para mostrar a prévia */
 export function hasRequiredData(s: SignatureData): boolean {
   const base = Boolean(s.fullName.trim() && s.phone.trim() && s.position.trim() && s.site.trim());

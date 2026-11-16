@@ -1,5 +1,6 @@
-/* Fluxo principal no navegador: preencher os campos obrigatórios, copiar e baixar a assinatura */
+/* Fluxo principal no navegador: preencher, copiar e baixar a assinatura; axe e teclado (WCAG 2.4.7) */
 import { expect, test, type Page } from "@playwright/test";
+import AxeBuilder from "@axe-core/playwright";
 
 /* Corta a rede externa: o fluxo não depende de nada fora do próprio site */
 test.beforeEach(async ({ page }) => {
@@ -81,5 +82,95 @@ test("no site publicado, copiar e baixar registram os eventos no GoatCounter do 
   for (const nome of ["assinatura-copiada", "assinatura-baixada"]) {
     expect(contagens).toContainEqual({ path: nome, title: nome, event: true });
   }
+});
+/* axe com as regras WCAG 2.x A e AA. O app não tem tema escuro próprio: o botão "Escuro" muda só o fundo da prévia */
+async function semViolacoes(page: Page) {
+  // Sem transição e sem o mouse em cima: no CI o axe pegou a cor de um botão no meio da animação do MUI
+  await page.addStyleTag({ content: "*, *::before, *::after { transition: none !important; animation: none !important; }" });
+  await page.mouse.move(0, 0);
+  const { violations } = await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa", "wcag21a", "wcag21aa"]).analyze();
+  expect(violations.map((v) => `${v.id}: ${v.nodes.map((n) => n.target.join(" ")).join(", ")}`)).toEqual([]);
+}
+
+test("axe sem violações na tela vazia, na prévia com dados reais e com os avisos", async ({ page }) => {
+  await page.setViewportSize({ width: 1366, height: 900 });
+  await page.goto("/");
+  await semViolacoes(page);
+
+  await preencher(page);
+  await page.getByLabel(/E-mail profissional/).fill("ada@empresa.example.com");
+  await page.getByLabel(/LinkedIn/).fill("https://www.linkedin.com/in/exemplo");
+  await page.getByLabel(/WhatsApp/).fill("+55 11 98888-7777");
+  await expect(page.getByRole("region", { name: "Pré-visualização" })).toContainText("Ada Lovelace");
+  await semViolacoes(page);
+
+  await page.getByRole("button", { name: "Claro" }).click();
+  await semViolacoes(page);
+
+  // Foto base64 grande: aparecem o aviso da foto e o do limite do Gmail
+  await page.getByLabel("Sem foto").check();
+  await page.getByLabel(/Link da Foto/).fill(`data:image/png;base64,${"A".repeat(12000)}`);
+  await expect(page.getByText(/passa do limite de 10\.000 caracteres do Gmail/)).toBeVisible();
+  await semViolacoes(page);
+});
+
+/* Aperta Tab até o foco chegar ao elemento (no máximo 40 vezes) */
+async function tabAte(page: Page, alvo: ReturnType<Page["locator"]>) {
+  for (let i = 0; i < 40; i++) {
+    if (await alvo.evaluate((el) => el === document.activeElement)) return;
+    await page.keyboard.press("Tab");
+  }
+  throw new Error("o foco não chegou ao elemento pelo Tab");
+}
+
+test("só com teclado: preenche, vê o foco, fecha a lista e o aviso com Esc e copia", async ({ page, context }) => {
+  await context.grantPermissions(["clipboard-read", "clipboard-write"]);
+  await page.goto("/");
+
+  // Lista de produtos: abre com a seta, fecha com Esc, e o foco volta para ela
+  const produto = page.getByRole("combobox", { name: /Produto de Identidade Digital/ });
+  await tabAte(page, produto);
+  await page.keyboard.press("ArrowDown");
+  await expect(page.getByRole("listbox")).toBeVisible();
+  await page.keyboard.press("Escape");
+  await expect(page.getByRole("listbox")).toBeHidden();
+  await expect(produto).toBeFocused();
+
+  // Campos: o tema do app desenha a borda de 2 px na cor primária no campo com foco
+  const campos: [RegExp, string][] = [
+    [/Nome Completo/, "Ada Lovelace"],
+    [/Cargo e Setor/, "Engenheira"],
+    [/Site Oficial/, "empresa.example.com"],
+    [/Telefone de Contato/, "11 98888-7777"],
+  ];
+  for (const [rotulo, valor] of campos) {
+    const campo = page.getByLabel(rotulo);
+    await tabAte(page, campo);
+    await page.keyboard.type(valor);
+    const borda = await campo.evaluate((el) => {
+      const fs = el.parentElement!.querySelector("fieldset")!;
+      return `${getComputedStyle(fs).borderTopWidth} ${getComputedStyle(fs).borderTopColor}`;
+    });
+    expect(borda).toBe("2px rgb(30, 64, 175)");
+  }
+
+  // Botões da prévia: contorno de 3 px do tema (src/main.tsx, .Mui-focusVisible), não o padrão do navegador
+  for (const nome of ["Escuro", "Claro", "Copiar assinatura", "Baixar como imagem (PNG)"]) {
+    const botao = page.getByRole("button", { name: nome });
+    await tabAte(page, botao);
+    const contorno = await botao.evaluate((el) => {
+      const cs = getComputedStyle(el);
+      return `${cs.outlineStyle} ${cs.outlineWidth} ${cs.outlineColor}`;
+    });
+    expect(contorno, nome).toBe("solid 3px rgb(29, 78, 216)");
+  }
+  // O "Copiar" vem antes do "Baixar" na ordem do Tab: volta um passo
+  await page.keyboard.press("Shift+Tab");
+  await expect(page.getByRole("button", { name: "Copiar assinatura" })).toBeFocused();
+  await page.keyboard.press("Enter");
+  await expect(page.getByText(/Assinatura copiada/)).toBeVisible();
+  // O aviso some sozinho em 5 s; o limite de 1 s prova que foi o Esc que o fechou
+  await page.keyboard.press("Escape");
+  await expect(page.getByText(/Assinatura copiada/)).toBeHidden({ timeout: 1000 });
 });
 /* Fim de e2e/fluxo.pw.ts */

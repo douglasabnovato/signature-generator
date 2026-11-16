@@ -1,5 +1,5 @@
 /* Digital Identity Suite: formulário à esquerda e prévia ao vivo à direita, com cópia e download em PNG */
-import React, { useState } from "react";
+import React, { useLayoutEffect, useRef, useState } from "react";
 import {
   AppBar, Box, Button, ButtonGroup, Container, FormControlLabel, Grid, MenuItem, Paper, Snackbar, Alert,
   Switch, TextField, Toolbar, Typography,
@@ -9,7 +9,7 @@ import { toPng } from "html-to-image";
 import Signature from "./components/Signature";
 import CircularProgressWithLabel from "./components/CircularProgressWithLabel";
 import { SignatureData, ProductType } from "./types/signature";
-import { calculateProgress, hasRequiredData, mailtoLink, photoWarning, safeImage } from "./utils/signatureHelpers";
+import { GMAIL_LIMIT, calculateProgress, gmailLimitWarning, hasRequiredData, mailtoLink, photoWarning, safeImage } from "./utils/signatureHelpers";
 import "./App.css";
 import { trackEvent } from "./utils/metrics";
 
@@ -86,6 +86,9 @@ function App() {
   const [state, setState] = useState<SignatureData>(initialState);
   const [toast, setToast] = useState<{ open: boolean; message: string; severity: "success" | "error" }>({ open: false, message: "", severity: "success" });
   const [dark, setDark] = useState(true);
+  const previewRef = useRef<HTMLDivElement>(null);
+  const [htmlLength, setHtmlLength] = useState(0);
+  const [gerando, setGerando] = useState(false);
 
   /* Atualiza um campo; trocar o produto escolhe o primeiro modelo dele; qualquer edição desfaz o "Copiado" */
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -117,7 +120,8 @@ function App() {
   /* Baixa a prévia como PNG */
   const handleDownload = async () => {
     const node = document.querySelector<HTMLElement>(".signature");
-    if (!node) return;
+    if (!node || gerando) return;
+    setGerando(true);
     try {
       const dataUrl = await toPng(node, { cacheBust: true, pixelRatio: 2 });
       const link = document.createElement("a");
@@ -128,6 +132,8 @@ function App() {
       notify("Imagem PNG baixada.");
     } catch {
       notify("Não foi possível gerar a imagem (a foto pode estar em um site que bloqueia cópia). Tente outra URL de foto.", "error");
+    } finally {
+      setGerando(false);
     }
   };
 
@@ -137,6 +143,14 @@ function App() {
   const photoHint = state.withPhoto && !photoInvalid && state.productType === "email-signature" ? photoWarning(state.photo) : "";
   const emailInvalid = state.email.trim() !== "" && !mailtoLink(state.email);
   const pristine = JSON.stringify(state) === JSON.stringify(initialState);
+  const isEmail = state.productType === "email-signature";
+
+  /* Mede o HTML que "Copiar" leva para a área de transferência (o mesmo outerHTML), para o aviso do limite do Gmail */
+  useLayoutEffect(() => {
+    const node = previewRef.current?.querySelector<HTMLElement>(".signature");
+    setHtmlLength(node ? node.outerHTML.length : 0);
+  }, [state]);
+  const gmailWarning = isEmail ? gmailLimitWarning(htmlLength, state.withPhoto && /^data:/i.test(state.photo.trim())) : "";
   const field = (key: keyof SignatureData, label: string, type = "text", required = false) => (
     <TextField key={key} fullWidth margin="dense" required={required} label={label} name={key} type={type}
       value={state[key] as string} onChange={handleChange} />
@@ -186,14 +200,22 @@ function App() {
                     <Button aria-pressed={!dark} variant={!dark ? "contained" : "outlined"} onClick={() => setDark(false)} startIcon={<Brightness7Outlined />}>Claro</Button>
                   </ButtonGroup>
                 </Box>
-                <Box className={dark ? "preview preview-dark" : "preview preview-light"}>
+                <Box ref={previewRef} className={dark ? "preview preview-dark" : "preview preview-light"}>
                   <Signature {...state} photo={state.withPhoto ? state.photo : "no-photo"} />
                 </Box>
+                {isEmail && htmlLength > 0 && (
+                  <Typography variant="caption" component="p" sx={{ mt: 1, color: "#475569" }}>
+                    Tamanho do HTML copiado: {htmlLength.toLocaleString("pt-BR")} de {GMAIL_LIMIT.toLocaleString("pt-BR")} caracteres (limite do Gmail, estimativa).
+                  </Typography>
+                )}
+                {gmailWarning && <Alert severity="warning" sx={{ mt: 1 }}>{gmailWarning}</Alert>}
                 <Box sx={{ display: "flex", gap: 1.25, justifyContent: "center", flexWrap: "wrap", mt: 2 }}>
                   <Button variant="contained" onClick={handleCopy} endIcon={state.copied ? <CheckOutlined /> : <ContentCopyOutlined />}>
                     {state.copied ? "Copiado!" : "Copiar assinatura"}
                   </Button>
-                  <Button variant="outlined" onClick={handleDownload} startIcon={<DownloadOutlined />}>Baixar como imagem (PNG)</Button>
+                  <Button variant="outlined" onClick={handleDownload} disabled={gerando} aria-busy={gerando} startIcon={<DownloadOutlined />}>
+                    {gerando ? "Gerando imagem…" : "Baixar como imagem (PNG)"}
+                  </Button>
                 </Box>
               </>
             ) : progress > 0 ? (
