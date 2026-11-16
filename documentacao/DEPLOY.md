@@ -1,5 +1,22 @@
 # Deploy · Digital Identity Suite (signature-generator)
 
+## Estado em 16/11/2026
+
+- **Como publica hoje:** o job `deploy` do `.github/workflows/ci.yml` roda só em push na `master`, depois de `build-and-test` e `e2e`. Ele usa `peaceiris/actions-gh-pages@v4` para enviar o `build/` à branch `gh-pages`. Em Settings → Pages, a fonte é **Deploy from a branch → `gh-pages` / (root)** (lido pela API em 16/11/2026: `build_type: legacy`).
+- **O que quebrou:** o run 43799581411, do merge do PR #110 em 16/11/2026, falhou no job `deploy` com `Permission to douglasabnovato/signature-generator.git denied to github-actions[bot]` (403). Os jobs `build-and-test` e `e2e` passaram.
+- **O que está no ar:** `https://douglasabnovato.github.io/signature-generator/` responde 200 com o build de 06/11/2026 (`index-CUVXHT6R.js`, `Last-Modified` de 06/11). O que entrou na `master` depois disso (GoatCounter, fluxo no Playwright) ainda não está no ar.
+- **O que já foi descartado (16/11/2026):** a `gh-pages` não tem proteção (`branches/gh-pages/protection` dá 404) nem regra de ruleset (`rules/branches/gh-pages` dá `[]`); as Actions estão ligadas para todas as ações; o job declara `contents: write`.
+
+### Passo a passo do responsável (#112)
+
+1. **Settings → Actions → General → Workflow permissions:** marcar **Read and write permissions** e clicar em **Save**, mesmo que já pareça marcado.
+2. **Settings → Rules → Rulesets:** conferir que só existe o `principal-protegida`, com alvo `~DEFAULT_BRANCH`. Se houver outra regra que pegue todas as branches, ela barra o push na `gh-pages`.
+3. **Actions → CI → run 43799581411 → Re-run failed jobs.** O job `deploy` precisa ficar verde.
+4. Conferir: `curl -s https://douglasabnovato.github.io/signature-generator/ | grep -o 'index-[A-Za-z0-9_-]*\.js'` deve mostrar um nome diferente de `index-CUVXHT6R.js`.
+5. **Se continuar negado:** trocar para o Pages por Actions. Em **Settings → Pages → Build and deployment → Source**, escolher **GitHub Actions**. Depois, um agente troca o job `deploy` por `actions/upload-pages-artifact` e `actions/deploy-pages` (permissões `pages: write` e `id-token: write`), sem push de branch.
+
+As seções abaixo são históricas, de 30/10/2026.
+
 > **Atualização de 30/10/2026:** o workflow fica em `.github/workflows/ci.yml` e publica na branch `gh-pages`, que é a fonte configurada no GitHub Pages. As etapas abaixo que citam `ci/` e `deploy-pages` são históricas.
 
 Plano de ação para publicar o gerador de assinaturas no GitHub Pages, sem custo.

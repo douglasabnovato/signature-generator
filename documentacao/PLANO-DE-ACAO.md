@@ -45,7 +45,7 @@ Timebox: 40 min.
 | 5 | Deploy de volta (#112) | Alto | Baixo | Responsável |
 | 6 | Conta do GoatCounter (#87) | Alto | Baixo | Responsável |
 | 7 | Salvar os dados no navegador (#105) | Médio | Médio | Issue |
-| 8 | Tirar o build antigo do CRA de `docs/` e `public/` | Baixo | Baixo | Issue |
+| 8 | Tirar o build antigo do CRA de `docs/` e `public/` | Baixo | Baixo | Issue (#113) |
 
 **Fora do escopo.** Contas de usuário, modelos salvos na nuvem, editor visual, upload de foto e tema escuro do app (o botão "Escuro" muda só o fundo da prévia).
 
@@ -74,7 +74,7 @@ Timebox: 40 min.
 4. Fechar os PRs #72 e #68 com o motivo (#104).
 5. `MVP.md`, README e `DEPLOY.md` com o estado de 16/11/2026.
 
-**Vira issue.** Build antigo do CRA em `docs/` e `public/index.html`; #105 segue aberta; #87, #96, #100 e #112 seguem com o responsável.
+**Vira issue.** Build antigo do CRA (#113), axe nos 9 modelos (#114), celular em 375 px (#115) e LCP de novo quando o deploy voltar (#116); #105 segue aberta; #87, #96, #100 e #112 seguem com o responsável.
 
 ## Ciclo de 03/11/2026
 
