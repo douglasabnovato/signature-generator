@@ -85,6 +85,9 @@ test("no site publicado, copiar e baixar registram os eventos no GoatCounter do 
 });
 /* axe com as regras WCAG 2.x A e AA. O app não tem tema escuro próprio: o botão "Escuro" muda só o fundo da prévia */
 async function semViolacoes(page: Page) {
+  // Sem transição e sem o mouse em cima: no CI o axe pegou a cor de um botão no meio da animação do MUI
+  await page.addStyleTag({ content: "*, *::before, *::after { transition: none !important; animation: none !important; }" });
+  await page.mouse.move(0, 0);
   const { violations } = await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa", "wcag21a", "wcag21aa"]).analyze();
   expect(violations.map((v) => `${v.id}: ${v.nodes.map((n) => n.target.join(" ")).join(", ")}`)).toEqual([]);
 }
@@ -151,17 +154,23 @@ test("só com teclado: preenche, vê o foco, fecha a lista e o aviso com Esc e c
     expect(borda).toBe("2px rgb(30, 64, 175)");
   }
 
-  // Botão: contorno de 3 px definido no App.css (:focus-visible), não o padrão do navegador
-  const copiar = page.getByRole("button", { name: "Copiar assinatura" });
-  await tabAte(page, copiar);
-  const contorno = await copiar.evaluate((el) => {
-    const cs = getComputedStyle(el);
-    return `${cs.outlineStyle} ${cs.outlineWidth} ${cs.outlineColor}`;
-  });
-  expect(contorno).toBe("solid 3px rgb(29, 78, 216)");
+  // Botões da prévia: contorno de 3 px do tema (src/main.tsx, .Mui-focusVisible), não o padrão do navegador
+  for (const nome of ["Escuro", "Claro", "Copiar assinatura", "Baixar como imagem (PNG)"]) {
+    const botao = page.getByRole("button", { name: nome });
+    await tabAte(page, botao);
+    const contorno = await botao.evaluate((el) => {
+      const cs = getComputedStyle(el);
+      return `${cs.outlineStyle} ${cs.outlineWidth} ${cs.outlineColor}`;
+    });
+    expect(contorno, nome).toBe("solid 3px rgb(29, 78, 216)");
+  }
+  // O "Copiar" vem antes do "Baixar" na ordem do Tab: volta um passo
+  await page.keyboard.press("Shift+Tab");
+  await expect(page.getByRole("button", { name: "Copiar assinatura" })).toBeFocused();
   await page.keyboard.press("Enter");
   await expect(page.getByText(/Assinatura copiada/)).toBeVisible();
+  // O aviso some sozinho em 5 s; o limite de 1 s prova que foi o Esc que o fechou
   await page.keyboard.press("Escape");
-  await expect(page.getByText(/Assinatura copiada/)).toBeHidden();
+  await expect(page.getByText(/Assinatura copiada/)).toBeHidden({ timeout: 1000 });
 });
 /* Fim de e2e/fluxo.pw.ts */

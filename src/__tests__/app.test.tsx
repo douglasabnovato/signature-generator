@@ -1,15 +1,19 @@
 /* Testes: URLs seguras, progresso, prévia, troca de produto, cópia e PNG com sucesso e falha, limite do Gmail */
-import { describe, it, expect, vi, beforeEach } from "vitest";
+import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import { render, screen, cleanup, fireEvent } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { toPng } from "html-to-image";
 import App, { initialState } from "../App";
-
-/* O html-to-image não desenha no jsdom: o teste controla o resultado do toPng */
-vi.mock("html-to-image", () => ({ toPng: vi.fn() }));
 import { GMAIL_LIMIT, calculateProgress, gmailLimitWarning, initialsAvatar, mailtoLink, photoWarning, safeImage, safeUrl, telLink, waLink } from "../utils/signatureHelpers";
 
+/* O html-to-image não desenha no jsdom: o teste controla o resultado do toPng (o vi.mock é içado para o topo) */
+vi.mock("html-to-image", () => ({ toPng: vi.fn() }));
+
 beforeEach(() => cleanup());
+afterEach(() => {
+  vi.restoreAllMocks();
+  delete window.goatcounter;
+});
 
 describe("regras", () => {
   it("safeUrl aceita só http(s) e completa o esquema", () => {
@@ -112,7 +116,7 @@ describe("PNG e limite do Gmail", () => {
     window.goatcounter = { count };
     /* O jsdom não navega: troca o clique do link de download por um registro do nome do arquivo */
     const nomes: string[] = [];
-    const clique = vi.spyOn(HTMLAnchorElement.prototype, "click").mockImplementation(function (this: HTMLAnchorElement) {
+    vi.spyOn(HTMLAnchorElement.prototype, "click").mockImplementation(function (this: HTMLAnchorElement) {
       nomes.push(this.download);
     });
     render(<App />);
@@ -128,12 +132,29 @@ describe("PNG e limite do Gmail", () => {
     expect(png).toHaveBeenCalledTimes(2);
     expect(count).not.toHaveBeenCalled();
     expect(nomes).toEqual(["email-signature-ada-lovelace.png"]);
-    clique.mockRestore();
+  });
+
+  it("mostra a espera enquanto gera o PNG e não aceita um segundo clique", async () => {
+    let terminar: (url: string) => void = () => {};
+    vi.mocked(toPng).mockReset().mockImplementationOnce(() => new Promise<string>((ok) => { terminar = ok; }));
+    vi.spyOn(HTMLAnchorElement.prototype, "click").mockImplementation(() => {});
+    render(<App />);
+    await fillRequired();
+    await userEvent.click(screen.getByRole("button", { name: "Baixar como imagem (PNG)" }));
+    const esperando = screen.getByRole("button", { name: "Gerando imagem…" }) as HTMLButtonElement;
+    expect(esperando.disabled).toBe(true);
+    expect(esperando.getAttribute("aria-busy")).toBe("true");
+    fireEvent.click(esperando);
+    expect(toPng).toHaveBeenCalledTimes(1);
+    terminar("data:image/png;base64,iVBORw0KGgo=");
+    expect(await screen.findByText("Imagem PNG baixada.")).toBeTruthy();
+    expect((screen.getByRole("button", { name: "Baixar como imagem (PNG)" }) as HTMLButtonElement).disabled).toBe(false);
   });
 
   it("mostra o tamanho do HTML e avisa acima de 10.000 caracteres", async () => {
     expect(gmailLimitWarning(GMAIL_LIMIT)).toBe("");
-    expect(gmailLimitWarning(GMAIL_LIMIT + 1)).toMatch(/limite de 10\.000/);
+    expect(gmailLimitWarning(GMAIL_LIMIT + 1)).toMatch(/limite de 10\.000.*Encurte/);
+    expect(gmailLimitWarning(GMAIL_LIMIT + 1, true)).toMatch(/limite de 10\.000.*link https/);
     render(<App />);
     await fillRequired();
     const tamanho = screen.getByText(/Tamanho do HTML copiado/);

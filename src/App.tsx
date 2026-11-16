@@ -88,6 +88,7 @@ function App() {
   const [dark, setDark] = useState(true);
   const previewRef = useRef<HTMLDivElement>(null);
   const [htmlLength, setHtmlLength] = useState(0);
+  const [gerando, setGerando] = useState(false);
 
   /* Atualiza um campo; trocar o produto escolhe o primeiro modelo dele; qualquer edição desfaz o "Copiado" */
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -119,7 +120,8 @@ function App() {
   /* Baixa a prévia como PNG */
   const handleDownload = async () => {
     const node = document.querySelector<HTMLElement>(".signature");
-    if (!node) return;
+    if (!node || gerando) return;
+    setGerando(true);
     try {
       const dataUrl = await toPng(node, { cacheBust: true, pixelRatio: 2 });
       const link = document.createElement("a");
@@ -130,6 +132,8 @@ function App() {
       notify("Imagem PNG baixada.");
     } catch {
       notify("Não foi possível gerar a imagem (a foto pode estar em um site que bloqueia cópia). Tente outra URL de foto.", "error");
+    } finally {
+      setGerando(false);
     }
   };
 
@@ -145,8 +149,8 @@ function App() {
   useLayoutEffect(() => {
     const node = previewRef.current?.querySelector<HTMLElement>(".signature");
     setHtmlLength(node ? node.outerHTML.length : 0);
-  }, [state, ready]);
-  const gmailWarning = isEmail ? gmailLimitWarning(htmlLength) : "";
+  }, [state]);
+  const gmailWarning = isEmail ? gmailLimitWarning(htmlLength, state.withPhoto && /^data:/i.test(state.photo.trim())) : "";
   const field = (key: keyof SignatureData, label: string, type = "text", required = false) => (
     <TextField key={key} fullWidth margin="dense" required={required} label={label} name={key} type={type}
       value={state[key] as string} onChange={handleChange} />
@@ -209,7 +213,9 @@ function App() {
                   <Button variant="contained" onClick={handleCopy} endIcon={state.copied ? <CheckOutlined /> : <ContentCopyOutlined />}>
                     {state.copied ? "Copiado!" : "Copiar assinatura"}
                   </Button>
-                  <Button variant="outlined" onClick={handleDownload} startIcon={<DownloadOutlined />}>Baixar como imagem (PNG)</Button>
+                  <Button variant="outlined" onClick={handleDownload} disabled={gerando} aria-busy={gerando} startIcon={<DownloadOutlined />}>
+                    {gerando ? "Gerando imagem…" : "Baixar como imagem (PNG)"}
+                  </Button>
                 </Box>
               </>
             ) : progress > 0 ? (
