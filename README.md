@@ -10,6 +10,7 @@
 
 - URL: https://douglasabnovato.github.io/signature-generator/
 - Hospedagem: GitHub Pages, publicado pelo GitHub Actions a cada push na `master`
+- Atenção: desde 16/11/2026 o deploy falha com 403 (#112). O site no ar é o build de 06/11/2026 e está atrás da `master`.
 - Passo a passo: [documentacao/DEPLOY.md](documentacao/DEPLOY.md)
 - Avaliação e plano: [documentacao/AVALIACAO.md](documentacao/AVALIACAO.md) · [documentacao/PLANO-ESTRATEGICO.md](documentacao/PLANO-ESTRATEGICO.md)
 
@@ -30,39 +31,23 @@ Uma aplicação web moderna e responsiva desenvolvida em React com TypeScript, i
 
 ```text
 SIGNATURE-GENERATOR/
-├── .github/
-├── build/
-├── docs/
-├── node_modules/
-├── public/
+├── .github/workflows/ci.yml   # testes, build, e2e e deploy no Pages
+├── docs/                      # build antigo do CRA, sem uso (#113)
+├── documentacao/              # MVP, plano de ação, deploy e análises
+├── e2e/fluxo.pw.ts            # fluxo no navegador, axe e teclado (Playwright)
+├── public/                    # ícones e manifest
 ├── src/
+│   ├── __tests__/             # testes Vitest
 │   ├── assets/
-│   │   ├── behance.png
-│   │   ├── facebook.png
-│   │   ├── linkedin.png
-│   │   ├── Logo.png
-│   │   ├── software-development.png
-│   │   ├── steve-jobs.jpg
-│   │   └── twitter.png
-│   ├── components/
-│   │   ├── CircularProgressWithLabel.tsx
-│   │   └── Signature.tsx
-│   ├── types/
-│   │   └── signature.ts
-│   ├── utils/
-│   │   └── signatureHelpers.ts
-│   ├── App.css
-│   ├── App.tsx
-│   ├── index.css
-│   ├── index.tsx
-│   └── react-app-env.d.ts
-├── .gitignore
-├── package-lock.json
+│   ├── components/            # Signature.tsx (os 9 modelos) e o progresso
+│   ├── types/signature.ts
+│   ├── utils/                 # signatureHelpers.ts e metrics.ts
+│   ├── App.tsx                # formulário, prévia, cópia e PNG
+│   └── main.tsx               # tema do MUI e entrada
+├── index.html
 ├── package.json
-├── postcss.config.js
-├── README.md
-├── tailwind.config.js
-└── tsconfig.json
+├── playwright.config.ts
+└── vite.config.ts
 ```
 
 # Proposta de Funcionalidades e Arquitetura: Digital Identity Suite v5.0
@@ -168,6 +153,7 @@ npm install
 npm run dev       # http://localhost:5173
 npm test          # testes com Vitest
 npm run build     # gera build/ (a publicação é feita pelo GitHub Actions)
+npm run test:e2e  # Playwright com axe e teclado, sobre o build (rode npm run build antes; Node 22.12 ou mais novo)
 npm run deploy    # alternativa manual: publica build/ na branch gh-pages
 ```
 
@@ -187,27 +173,27 @@ Este projeto está sob a licença MIT.
 
 Feito com ❤️ por <a href="https://www.linkedin.com/in/douglasabnovato/"><img src="https://img.shields.io/static/v1?label=Dev&message=douglasabnovato&color=7159c1&style=for-the-badge&logo=ghost"/></a>👋🏽
 
-## Estado e próximos passos (ciclo de 10/11/2026)
+## Estado e próximos passos (ciclo de 16/11/2026)
 
-No ar em https://douglasabnovato.github.io/signature-generator/ (HTTP 200 em 10/11/2026). Nível Vitrine (N2): 11 de 12 critérios atendidos em 10/11/2026, Finalizado: sim. Falta só a conta do GoatCounter, do responsável (#87).
+No ar em https://douglasabnovato.github.io/signature-generator/ (HTTP 200 em 16/11/2026), mas com o build de 06/11/2026: o deploy falha com 403 desde 16/11 (#112, do responsável). Nível Vitrine (N2): 11 de 12 critérios atendidos em 16/11/2026, Finalizado: sim. Falta a conta do GoatCounter, do responsável (#87).
 
 **O que foi feito**
 
-- GoatCounter ligado ao código `douglasabnovato`, só no site publicado (ciclo de 10/11/2026).
-- Fluxo principal no navegador com Playwright (preencher, copiar e baixar PNG) e job `e2e` no CI: `npm run build && npm run test:e2e` (ciclo de 10/11/2026).
-- `master` protegida pelo ruleset `principal-protegida` desde 10/11/2026: só recebe mudanças por PR; critério 10 atende.
-- Telefone vira link `tel:` e e-mail válido vira `mailto:` nos 3 modelos de assinatura (PR #99).
-- Campo de e-mail profissional validado e aviso quando a foto é base64 ou `http://` (PR #99).
-- CI também nos PRs e pushes para `developer/**` (PR #99).
+- Aviso quando a assinatura passa do limite de 10.000 caracteres do Gmail, com o tamanho do HTML copiado na tela (#102, ciclo de 16/11/2026).
+- Teste da falha do download do PNG (#103) e axe e teclado no Playwright; o teste achou o contorno de foco sumido nos botões do MUI, corrigido no tema (ciclo de 16/11/2026).
+- PRs #72 e #68 do Dependabot fechados: pacotes do CRA que o projeto não usa mais (#104).
+- GoatCounter ligado ao código `douglasabnovato`, só no site publicado, e fluxo principal no Playwright com o job `e2e` no CI (PR #111).
+- `master` protegida pelo ruleset `principal-protegida`, com os checks `build-and-test` e `e2e` (PR #109).
+- Telefone `tel:`, e-mail `mailto:`, aviso da foto e CI nos PRs para `developer/**` (PR #99).
 - Assinatura de e-mail compatível, com teste do HTML (PR #95), e região principal para leitores de tela (PR #97).
-- Eventos de cópia e download prontos para o GoatCounter, só com o nome do evento (PR #91).
 
 **O que queremos fazer**
 
-- Do responsável: criar a conta do GoatCounter com o código `douglasabnovato` (#87), validar a assinatura no Gmail e no Outlook (#96), revisar a meta (#100) e incluir o job `e2e` nos checks obrigatórios (#101).
-- Do código: avisar quando a assinatura passar do limite do Gmail (#102), testar o download do PNG (#103), decidir os PRs do Dependabot de versão maior (#104) e salvar os dados no navegador (#105).
+- Do responsável: fazer o deploy voltar (#112), criar a conta do GoatCounter (#87), validar a assinatura no Gmail e no Outlook (#96) e confirmar a meta (#100).
+- Do código: salvar os dados no navegador (#105), rodar o axe nos 9 modelos (#114), testar no celular (#115), medir de novo o LCP quando o deploy voltar (#116) e tirar o build antigo do CRA (#113).
 
 **Onde está a documentação**
 
 - [documentacao/MVP.md](documentacao/MVP.md): critérios, evidências e medições.
-- [documentacao/PLANO-DE-ACAO.md](documentacao/PLANO-DE-ACAO.md): seção "Ciclo de 03/11/2026", com pesquisa, produto e engenharia.
+- [documentacao/PLANO-DE-ACAO.md](documentacao/PLANO-DE-ACAO.md): seção "Ciclo de 16/11/2026", com pesquisa, produto e engenharia.
+- [documentacao/DEPLOY.md](documentacao/DEPLOY.md): publicação no GitHub Pages e o passo a passo do 403.
