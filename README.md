@@ -32,9 +32,8 @@ Uma aplicação web moderna e responsiva desenvolvida em React com TypeScript, i
 ```text
 SIGNATURE-GENERATOR/
 ├── .github/workflows/ci.yml   # testes, build, e2e e deploy no Pages
-├── docs/                      # build antigo do CRA, sem uso (#113)
 ├── documentacao/              # MVP, plano de ação, deploy e análises
-├── e2e/fluxo.pw.ts            # fluxo no navegador, axe e teclado (Playwright)
+├── e2e/                       # Playwright: fluxo, axe e teclado; axe nos 9 modelos; celular (375 px)
 ├── public/                    # ícones e manifest
 ├── src/
 │   ├── __tests__/             # testes Vitest

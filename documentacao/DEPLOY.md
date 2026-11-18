@@ -33,7 +33,7 @@ Publicar uma SPA em React + Vite (sem backend, sem variáveis de ambiente) de fo
 |---|---|
 | **GitHub Pages publicado pelo GitHub Actions (escolhida)** | O CI já testa e gera o `build/`; o job `deploy` publica o mesmo artefato. Nada de branch extra nem build no computador |
 | GitHub Pages pela branch `gh-pages` (`npm run deploy`) | Continua funcionando como alternativa manual. Só vale se o Pages estiver configurado em **Deploy from a branch → gh-pages** |
-| GitHub Pages pela pasta `/docs` da `master` | Não recomendado: exige copiar o build à mão e versionar arquivos gerados. Hoje `docs/` tem um build antigo do CRA (v3/v4) |
+| GitHub Pages pela pasta `/docs` da `master` | Não recomendado: exige copiar o build à mão e versionar arquivos gerados. O build antigo do CRA que ficava em `docs/` saiu em 18/11/2026 (#113) |
 | Netlify / Vercel | Funcionariam, mas o usuário prefere o GitHub Pages e o projeto já está lá |
 
 ### O que foi ajustado
@@ -45,10 +45,10 @@ Publicar uma SPA em React + Vite (sem backend, sem variáveis de ambiente) de fo
 | Nenhuma mudança em `vite.config.ts` | — | `base: "./"` gera caminhos relativos, que funcionam em `https://douglasabnovato.github.io/signature-generator/`. O app não tem rotas no cliente, então não precisa de `404.html` |
 | Seção "Em produção" | `README.md` | URL e link para este guia |
 
-### Pasta `docs/` (decisão sua)
+### Pasta `docs/` (removida em 18/11/2026)
 
-- `docs/` contém um build do CRA antigo (`static/js/2.39a8124c.chunk.js`, `asset-manifest.json` etc.). Com o Pages em **GitHub Actions**, essa pasta **deixa de ser usada**.
-- Recomendação: apagar `docs/` depois de confirmar que o site novo está no ar (`git rm -r docs`). Não foi apagada aqui porque a decisão é sua.
+- `docs/` guardava um build do CRA antigo (`static/js/2.39a8124c.chunk.js`, `asset-manifest.json` etc.) que nada usava: o Pages publica a branch `gh-pages` (`gh api repos/douglasabnovato/signature-generator/pages`, 18/11/2026: `build_type: legacy`, fonte `gh-pages` na raiz). O site no ar já servia o build da `master`.
+- A pasta e o `public/index.html`, que também sobrou do CRA, saíram no PR do ciclo de 18/11/2026 (#113).
 - Se quiser, a branch `gh-pages` também pode ser apagada no GitHub depois da troca (Branches → lixeira).
 
 ### Limitações e pontos de atenção
@@ -100,5 +100,5 @@ Branch principal: **`master`**.
 
 ### Etapa 5 · Fechar
 
-1. Decidir sobre `docs/`: se o site novo estiver ok, `git rm -r docs && git commit -m "chore: remove build antigo do CRA" && git push`.
+1. `docs/`: removida em 18/11/2026 (#113).
 2. No GitHub, **About → Website**: `https://douglasabnovato.github.io/signature-generator/`.
