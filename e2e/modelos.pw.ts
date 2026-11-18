@@ -35,6 +35,7 @@ async function semViolacoes(page: Page, rotulo: string) {
 }
 
 /* Mede cada texto da prévia que fica sobre um gradiente contra todas as cores do gradiente (WCAG 1.4.3, 4,5:1).
+   Limite: mede só nas paradas. Basta para texto claro (o pior caso fica numa ponta); texto escuro sobre gradiente pede outra conta.
    Camadas semitransparentes entre o texto e o gradiente (ex.: rgba(0,0,0,0.2)) entram na conta. */
 async function contrasteSobreGradiente(page: Page): Promise<string[]> {
   return page.evaluate(() => {
@@ -108,10 +109,14 @@ for (const [produto, modelos] of MODELOS) {
     const previa = page.getByRole("region", { name: "Pré-visualização" });
     for (const modelo of modelos) {
       await escolher(page, /Estilo do Design/, modelo);
+      // Confere que a troca aconteceu: sem isso, o axe rodaria de novo no modelo anterior
+      await expect(page.getByRole("combobox", { name: /Estilo do Design/ })).toHaveText(modelo);
       await expect(previa).toContainText("Ada Lovelace");
       await page.getByRole("button", { name: "Escuro" }).click();
+      await expect(page.locator(".preview")).toHaveClass(/preview-dark/);
       await semViolacoes(page, `${modelo}, fundo escuro`);
       await page.getByRole("button", { name: "Claro" }).click();
+      await expect(page.locator(".preview")).toHaveClass(/preview-light/);
       await semViolacoes(page, `${modelo}, fundo claro`);
     }
   });

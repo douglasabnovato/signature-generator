@@ -178,7 +178,7 @@ No ar em https://douglasabnovato.github.io/signature-generator/ (HTTP 200 em 18/
 
 **O que foi feito**
 
-- axe nos 9 modelos, nos dois fundos da prévia: 3 modelos tinham texto abaixo de 4,5:1 e ganharam cores mais escuras, sem mudar o desenho (#114, ciclo de 18/11/2026).
+- axe nos 9 modelos, nos dois fundos da prévia: 3 modelos tinham texto abaixo de 4,5:1 e tiveram as cores do texto ajustadas; no Creative Neon, o fim do gradiente ficou mais escuro (#114, ciclo de 18/11/2026).
 - Teste no celular (375 px) sem rolagem horizontal (#115) e remoção do build antigo do CRA de `docs/` (#113) (ciclo de 18/11/2026).
 - LCP medido de novo no site publicado com o build atual: mediana 1,58 s (#116, 18/11/2026).
 - Aviso quando a assinatura passa do limite de 10.000 caracteres do Gmail, com o tamanho do HTML copiado na tela (#102, ciclo de 16/11/2026).
@@ -198,4 +198,4 @@ No ar em https://douglasabnovato.github.io/signature-generator/ (HTTP 200 em 18/
 
 - [documentacao/MVP.md](documentacao/MVP.md): critérios, evidências e medições.
 - [documentacao/PLANO-DE-ACAO.md](documentacao/PLANO-DE-ACAO.md): seção "Ciclo de 16/11/2026", com pesquisa, produto e engenharia.
-- [documentacao/DEPLOY.md](documentacao/DEPLOY.md): publicação no GitHub Pages e o passo a passo do 403.
+- [documentacao/DEPLOY.md](documentacao/DEPLOY.md): publicação no GitHub Pages (pela branch `gh-pages`) e o histórico do 403 de 16/11/2026.

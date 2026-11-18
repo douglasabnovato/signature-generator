@@ -1,6 +1,11 @@
 # Deploy · Digital Identity Suite (signature-generator)
 
-## Estado em 16/11/2026
+## Estado em 18/11/2026
+
+- **Publicação em dia:** o run 43888664058, do merge do PR #118 (commit `cfa17b5`), passou no job `deploy` em 16/11/2026. Em 18/11/2026, o site serve `assets/index-CBoBlsDB.js`, com o mesmo md5 de um `npm run build` local desse commit. A fonte do Pages segue **Deploy from a branch → `gh-pages` / (root)** (`build_type: legacy`): **não apague a branch `gh-pages`**, ou o site sai do ar.
+- O 403 de 16/11/2026 (#112) foi uma negação temporária durante uma rajada de merges; passou com um novo run, sem mudar configuração. O registro abaixo fica como histórico.
+
+## Estado em 16/11/2026 (histórico)
 
 - **Como publica hoje:** o job `deploy` do `.github/workflows/ci.yml` roda só em push na `master`, depois de `build-and-test` e `e2e`. Ele usa `peaceiris/actions-gh-pages@v4` para enviar o `build/` à branch `gh-pages`. Em Settings → Pages, a fonte é **Deploy from a branch → `gh-pages` / (root)** (lido pela API em 16/11/2026: `build_type: legacy`).
 - **O que quebrou:** o run 43799581411, do merge do PR #110 em 16/11/2026, falhou no job `deploy` com `Permission to douglasabnovato/signature-generator.git denied to github-actions[bot]` (403). Os jobs `build-and-test` e `e2e` passaram.
@@ -49,7 +54,7 @@ Publicar uma SPA em React + Vite (sem backend, sem variáveis de ambiente) de fo
 
 - `docs/` guardava um build do CRA antigo (`static/js/2.39a8124c.chunk.js`, `asset-manifest.json` etc.) que nada usava: o Pages publica a branch `gh-pages` (`gh api repos/douglasabnovato/signature-generator/pages`, 18/11/2026: `build_type: legacy`, fonte `gh-pages` na raiz). O site no ar já servia o build da `master`.
 - A pasta e o `public/index.html`, que também sobrou do CRA, saíram no PR do ciclo de 18/11/2026 (#113).
-- Se quiser, a branch `gh-pages` também pode ser apagada no GitHub depois da troca (Branches → lixeira).
+- A branch `gh-pages` só pode ser apagada **depois** de trocar a fonte do Pages para GitHub Actions (passo 5 acima). Hoje ela é a fonte do site (18/11/2026).
 
 ### Limitações e pontos de atenção
 
