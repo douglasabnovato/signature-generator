@@ -10,7 +10,7 @@
 
 - URL: https://douglasabnovato.github.io/signature-generator/
 - Hospedagem: GitHub Pages, publicado pelo GitHub Actions a cada push na `master`
-- Atenção: desde 16/11/2026 o deploy falha com 403 (#112). O site no ar é o build de 06/11/2026 e está atrás da `master`.
+- Conferido em 18/11/2026: o site no ar serve o build da `master` (commit `cfa17b5`, `assets/index-CBoBlsDB.js`, mesmo md5 de um `npm run build` local). O 403 de 16/11 (#112) passou com um novo run.
 - Passo a passo: [documentacao/DEPLOY.md](documentacao/DEPLOY.md)
 - Avaliação e plano: [documentacao/AVALIACAO.md](documentacao/AVALIACAO.md) · [documentacao/PLANO-ESTRATEGICO.md](documentacao/PLANO-ESTRATEGICO.md)
 
@@ -172,12 +172,15 @@ Este projeto está sob a licença MIT.
 
 Feito com ❤️ por <a href="https://www.linkedin.com/in/douglasabnovato/"><img src="https://img.shields.io/static/v1?label=Dev&message=douglasabnovato&color=7159c1&style=for-the-badge&logo=ghost"/></a>👋🏽
 
-## Estado e próximos passos (ciclo de 16/11/2026)
+## Estado e próximos passos (ciclo de 18/11/2026)
 
-No ar em https://douglasabnovato.github.io/signature-generator/ (HTTP 200 em 16/11/2026), mas com o build de 06/11/2026: o deploy falha com 403 desde 16/11 (#112, do responsável). Nível Vitrine (N2): 11 de 12 critérios atendidos em 16/11/2026, Finalizado: sim. Falta a conta do GoatCounter, do responsável (#87).
+No ar em https://douglasabnovato.github.io/signature-generator/ (HTTP 200 em 18/11/2026), com o build da `master` de 16/11/2026. Nível Vitrine (N2): 11 de 12 critérios atendidos em 18/11/2026, Finalizado: sim. Falta a conta do GoatCounter, do responsável (#87).
 
 **O que foi feito**
 
+- axe nos 9 modelos, nos dois fundos da prévia: 3 modelos tinham texto abaixo de 4,5:1 e ganharam cores mais escuras, sem mudar o desenho (#114, ciclo de 18/11/2026).
+- Teste no celular (375 px) sem rolagem horizontal (#115) e remoção do build antigo do CRA de `docs/` (#113) (ciclo de 18/11/2026).
+- LCP medido de novo no site publicado com o build atual: mediana 1,58 s (#116, 18/11/2026).
 - Aviso quando a assinatura passa do limite de 10.000 caracteres do Gmail, com o tamanho do HTML copiado na tela (#102, ciclo de 16/11/2026).
 - Teste da falha do download do PNG (#103) e axe e teclado no Playwright; o teste achou o contorno de foco sumido nos botões do MUI, corrigido no tema (ciclo de 16/11/2026).
 - PRs #72 e #68 do Dependabot fechados: pacotes do CRA que o projeto não usa mais (#104).
@@ -188,8 +191,8 @@ No ar em https://douglasabnovato.github.io/signature-generator/ (HTTP 200 em 16/
 
 **O que queremos fazer**
 
-- Do responsável: fazer o deploy voltar (#112), criar a conta do GoatCounter (#87), validar a assinatura no Gmail e no Outlook (#96) e confirmar a meta (#100).
-- Do código: salvar os dados no navegador (#105), rodar o axe nos 9 modelos (#114), testar no celular (#115), medir de novo o LCP quando o deploy voltar (#116) e tirar o build antigo do CRA (#113).
+- Do responsável: criar a conta do GoatCounter (#87), validar a assinatura no Gmail e no Outlook (#96) e confirmar a meta (#100).
+- Do código: salvar os dados no navegador (#105); levar à `master` o ciclo de 18/11/2026 (#113 a #116).
 
 **Onde está a documentação**
 
