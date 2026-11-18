@@ -145,15 +145,15 @@ const Signature: React.FC<SignatureProps> = (props) => {
                                             )}
                                             <td style={{ verticalAlign: "middle" }}>
                                                 <div style={{ fontWeight: "bold", fontSize: "15px", color: "#0f172a" }}>{props.fullName || "Seu Nome Completo"}</div>
-                                                <div style={{ color: "#0ea5e9", fontSize: "12px", fontWeight: "bold" }}>{props.position || "Cargo e Setor"}</div>
+                                                <div style={{ color: "#0369a1", fontSize: "12px", fontWeight: "bold" }}>{props.position || "Cargo e Setor"}</div>
                                             </td>
                                         </tr>
                                     </tbody>
                                 </table>
                             </td>
                         </tr>
-                        <tr><td style={{ paddingTop: "8px", fontSize: "13px", color: "#334155" }}>📱 {phoneText("(00) 00000-0000", "#334155")} &nbsp;|&nbsp; 🌐 <a href={siteHref || undefined} style={{ color: "#0ea5e9", textDecoration: "none" }}>{props.site || "site.com.br"}</a>{mailHref && <> &nbsp;|&nbsp; ✉️ {emailLink("#0ea5e9")}</>}</td></tr>
-                        <tr><td style={{ paddingTop: "8px" }}>{renderSocialLinks("#0ea5e9")}</td></tr>
+                        <tr><td style={{ paddingTop: "8px", fontSize: "13px", color: "#334155" }}>📱 {phoneText("(00) 00000-0000", "#334155")} &nbsp;|&nbsp; 🌐 <a href={siteHref || undefined} style={{ color: "#0369a1", textDecoration: "none" }}>{props.site || "site.com.br"}</a>{mailHref && <> &nbsp;|&nbsp; ✉️ {emailLink("#0369a1")}</>}</td></tr>
+                        <tr><td style={{ paddingTop: "8px" }}>{renderSocialLinks("#0369a1")}</td></tr>
                     </tbody>
                 </table>
             );
@@ -224,7 +224,7 @@ const Signature: React.FC<SignatureProps> = (props) => {
 
         // Estilo 6: Creative Gradient Diamond
         return (
-            <div className="signature" style={{ width: "280px", background: "linear-gradient(135deg, #7c3aed 0%, #db2777 100%)", borderRadius: "12px", padding: "16px", fontFamily: "sans-serif", color: "#fff", boxShadow: "0 10px 25px rgba(124,58,237,0.3)" }}>
+            <div className="signature" style={{ width: "280px", background: "linear-gradient(135deg, #7c3aed 0%, #be185d 100%)", borderRadius: "12px", padding: "16px", fontFamily: "sans-serif", color: "#fff", boxShadow: "0 10px 25px rgba(124,58,237,0.3)" }}>
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", paddingBottom: "8px", marginBottom: "8px" }}>
                     <span style={{ fontSize: "10px", letterSpacing: "1px", color: "#fef08a", fontWeight: "bold" }}>CREATIVE CREW</span>
                     <span style={{ fontSize: "10px", color: "#f1f5f9" }}>{props.department || "DESIGN"}</span>
@@ -232,7 +232,7 @@ const Signature: React.FC<SignatureProps> = (props) => {
                 <div style={{ textAlign: "center", marginBottom: "12px" }}>
                     <img src={avatarSrc} alt={props.fullName ? `Foto de ${props.fullName}` : ""} style={{ width: "75px", height: "75px", borderRadius: "16px", objectFit: "cover", border: "2px solid #fff", margin: "0 auto" }} />
                     <div style={{ fontWeight: "bold", fontSize: "16px", marginTop: "8px" }}>{props.fullName || "Nome Criativo"}</div>
-                    <div style={{ fontSize: "12px", color: "#fbcfe8" }}>{props.position || "Especialista"}</div>
+                    <div style={{ fontSize: "12px", color: "#fce7f3" }}>{props.position || "Especialista"}</div>
                 </div>
                 <div style={{ background: "rgba(0,0,0,0.2)", padding: "8px", borderRadius: "6px", fontSize: "11px", display: "flex", justifyContent: "space-between", color: "#fff" }}>
                     <span>ID: <b>{props.badgeId || "998877"}</b></span>
@@ -279,7 +279,7 @@ const Signature: React.FC<SignatureProps> = (props) => {
                             </td>
                             <td style={{ verticalAlign: "top" }}>
                                 <div style={{ fontWeight: "bold", fontSize: "14px", color: "#0f172a" }}>{props.fullName || "Nome Profissional"}</div>
-                                <div style={{ fontSize: "11px", color: "#0284c7", fontWeight: "600", marginBottom: "6px" }}>{props.position || "Cargo"}</div>
+                                <div style={{ fontSize: "11px", color: "#0369a1", fontWeight: "600", marginBottom: "6px" }}>{props.position || "Cargo"}</div>
                                 <div style={{ fontSize: "10px", color: "#475569", marginBottom: "6px" }}>📱 {props.phone || "(00) 00000-0000"}</div>
                                 <div>{renderSocialIcons("16px")}</div>
                             </td>
